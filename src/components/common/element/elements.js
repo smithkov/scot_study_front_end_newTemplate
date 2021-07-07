@@ -1,0 +1,31 @@
+export const colors = {
+  bg1: "#182B49",
+  bg2: "#F6F9FF",
+  gr_bg: "linear-gradient(90deg, #4F70A9 0%, #072354 100%)",
+  gr_bg2: "linear-gradient(90deg, #072354 0%, #4F70A9 100%)",
+  copy_bg: "#122340",
+  blue: "#2c97ea",
+  green: "#4F70A9",
+  green2: "#244886",
+  red: "#ff6f6f",
+  purple: "#84479c",
+  yellow: "#fbab19",
+  black1: "#182B49",
+  black2: "#444444",
+  text1: "#555555",
+  text2: "#666666",
+  text3: "#969696",
+  text4: "#aaaaaa",
+  text5: "#cccccc",
+  border1: "#eeeeee",
+  border2: "#3e3e3e",
+  border3: "#dddddd",
+  footer1: "#1a1b25",
+  footer2: "#16171f",
+  ftext: "#8D8E92",
+};
+
+export const fonts = {
+  roboto: "'Roboto', sans-serif",
+  poppins: "'Poppins', sans-serif",
+};
