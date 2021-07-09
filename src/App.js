@@ -6,13 +6,15 @@ import HomeOne from "./HomeOne";
 import HomeTwo from "./HomeTwo";
 import About from "./pages/about/About";
 import CourseGrid from "./pages/courses/CourseGrid";
+import CourseFaculty from "./pages/courses/CourseFaculty";
 import CourseList from "./pages/courses/CourseList";
 import CourseDetails from "./pages/courses/CourseDetails";
 import Instructor from "./pages/instructor/Instructors";
 import InstructorDetails from "./pages/instructor/InstructorDetails";
 import Gallery from "./pages/gallery/Gallery";
-import Events from "./pages/events/Events";
-import EventDetails from "./pages/events/EventsDetails";
+//import Events from "./pages/institution/Events";
+import InstitutionDetail from "./pages/institution/institutionDetail";
+import Institutions from "./pages/institution/institutions";
 import Login from "./pages/account/Login";
 import Register from "./pages/account/Register";
 import Contact from "./pages/contact/Contact";
@@ -42,15 +44,18 @@ function App() {
           path={`${process.env.PUBLIC_URL + "/courses"}`}
           component={CourseGrid}
         />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/course-list"}`}
-          component={CourseList}
-        />
+
+        <Route path={`/faculty-courses/:id`} component={CourseFaculty} />
+        <Route path="/course-list" component={CourseList} />
+
         <Route path="/course-details/:id" component={CourseDetails} />
         <Route
           path={`${process.env.PUBLIC_URL + "/instructor"}`}
           component={Instructor}
         />
+        <Route path={`/institution/:id`} component={InstitutionDetail} />
+
+        <Route path={`/institutions`} component={Institutions} />
         <Route
           path={`${process.env.PUBLIC_URL + "/instructor-details"}`}
           component={InstructorDetails}
@@ -59,14 +64,11 @@ function App() {
           path={`${process.env.PUBLIC_URL + "/gallery"}`}
           component={Gallery}
         />
-        <Route
+        {/* <Route
           path={`${process.env.PUBLIC_URL + "/events"}`}
           component={Events}
-        />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/event-details"}`}
-          component={EventDetails}
-        />
+        /> */}
+
         <Route
           path={`${process.env.PUBLIC_URL + "/login"}`}
           component={Login}

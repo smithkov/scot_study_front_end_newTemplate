@@ -20,7 +20,90 @@ class AboutUs extends Component {
   }
 
   render() {
-    return <Styles></Styles>;
+    return (
+      <Styles>
+        {/* About Us */}
+        <section className="about-us">
+          <Container>
+            <Row>
+              <Col md="6">
+                <div className="about-image">
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + `/assets/images/imageHome.jpg`
+                    }
+                    className="main-img"
+                    alt=""
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/assets/images/pattern.png"}
+                    className="pattern-img"
+                    alt=""
+                  />
+                  <div
+                    className="video-player"
+                    style={{
+                      backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/vd_thumb.jpg)`,
+                    }}
+                  >
+                    <ModalVideo
+                      channel="youtube"
+                      isOpen={this.state.isOpen}
+                      videoId="Tlyz-FOoOL0"
+                      onClose={() => this.setState({ isOpen: false })}
+                    />
+                    <button onClick={this.openModal} className="play-button">
+                      <i className="las la-play"></i>
+                    </button>
+                  </div>
+                </div>
+              </Col>
+              <Col md="6">
+                <div className="about-content">
+                  <h4 className="about-title">{Datas.title}</h4>
+                  <p className="about-para">
+                    {Datas.desc1}
+                    <span>{Datas.desc2}</span>
+                  </p>
+                  <Row>
+                    <Col sm="4">
+                      <div className="counter-box box1 text-center">
+                        <h3>
+                          <CountUp end={970} duration={5} delay={1.5} />
+                          <i className="las la-plus"></i>
+                        </h3>
+                        <p>Happy Students</p>
+                      </div>
+                    </Col>
+                    <Col sm="4">
+                      <div className="counter-box box2 text-center">
+                        <h3>
+                          <CountUp end={130} duration={5} delay={1.5} />
+                          <i className="las la-plus"></i>
+                        </h3>
+                        <p>Countries</p>
+                      </div>
+                    </Col>
+                    <Col sm="4">
+                      <div className="counter-box box3 text-center">
+                        <h3>
+                          <CountUp end={2000} duration={5} delay={1.5} />
+                          <i className="las la-plus"></i>
+                        </h3>
+                        <p>Courses</p>
+                      </div>
+                    </Col>
+                  </Row>
+                  <a className="readmore-btn" href="/about">
+                    Read More
+                  </a>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </Styles>
+    );
   }
 }
 

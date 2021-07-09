@@ -11,7 +11,7 @@ import { Styles } from "./styles/course.js";
 import clientService from "../../services/clientService";
 const initialLimit = 6;
 const initialOffset = 1;
-class CourseGrid extends Component {
+class CourseFaculty extends Component {
   state = {
     courses: [],
     isLoading: true,
@@ -25,20 +25,19 @@ class CourseGrid extends Component {
     totalLoad: initialLimit,
     isDisableNext: false,
     isDisablePrev: true,
+    facultyName: "",
   };
 
   componentDidMount = async () => {
-    const {
-      selectedFaculty,
-      selectedDegreeType,
-      selectedInstitution,
-      offset,
-      limit,
-      search,
-    } = this.state;
+    const facultyId = this.props.match.params.id;
+    this.setState({
+      selectedFaculty: facultyId,
+    });
+    const { selectedDegreeType, selectedInstitution, offset, limit, search } =
+      this.state;
 
     await this.schoolCourse(
-      selectedFaculty,
+      facultyId,
       offset,
       limit,
       selectedDegreeType,
@@ -56,9 +55,9 @@ class CourseGrid extends Component {
     selectedInstitution,
     search
   ) => {
-    const result = await clientService.allCoursesSearch({
-      institutionId: selectedInstitution,
+    const result = await clientService.courseByParams({
       facultyId: selectedFaculty,
+      institutionId: selectedInstitution,
       offset,
       limit,
       degreeTypeId: selectedDegree,
@@ -112,6 +111,30 @@ class CourseGrid extends Component {
       search
     );
   };
+
+  onChangeInstitution = async (e) => {
+    const {
+      selectedDegreeType,
+      selectedFaculty,
+      selectedInstitution,
+      offset,
+      limit,
+      search,
+    } = this.state;
+
+    const institution = e.target.value;
+    this.setState({
+      selectedInstitution: institution,
+    });
+    await this.schoolCourse(
+      selectedFaculty,
+      offset,
+      limit,
+      selectedDegreeType,
+      institution,
+      search
+    );
+  };
   onChange = async (e) => {
     const search = e.target.value;
     const {
@@ -124,6 +147,24 @@ class CourseGrid extends Component {
     this.setState({
       [e.target.name]: search,
     });
+
+    const result = await this.schoolCourse(
+      selectedFaculty,
+      offset,
+      limit,
+      selectedDegreeType,
+      selectedInstitution,
+      search
+    );
+  };
+
+  reset = async (e) => {
+    const search = "";
+    const selectedDegreeType = "";
+    const selectedInstitution = "";
+    const offset = initialOffset;
+    const limit = initialLimit;
+    const { selectedFaculty } = this.state;
 
     const result = await this.schoolCourse(
       selectedFaculty,
@@ -192,24 +233,6 @@ class CourseGrid extends Component {
     }
   };
 
-  reset = async (e) => {
-    const search = "";
-    const selectedDegreeType = "";
-    const selectedInstitution = "";
-    const offset = initialOffset;
-    const limit = initialLimit;
-    const selectedFaculty = "";
-
-    const result = await this.schoolCourse(
-      selectedFaculty,
-      offset,
-      limit,
-      selectedDegreeType,
-      selectedInstitution,
-      search
-    );
-  };
-
   render() {
     const {
       courses,
@@ -234,11 +257,12 @@ class CourseGrid extends Component {
               <Row>
                 <Col lg="3" md="4" sm="5">
                   <CourseSidebar
-                    canShowFaculty={true}
+                    canShowFaculty={false}
                     search={search}
                     onChange={this.onChange}
                     onChangeFaculty={this.onChangeFaculty}
                     onChangeDegreeType={this.onChangeDegreeType}
+                    onChangeInstitution={this.onChangeInstitution}
                     reset={this.reset}
                   />
                 </Col>
@@ -254,6 +278,7 @@ class CourseGrid extends Component {
                       </Row>
                     </div>
                   )}
+
                   {isEmpty || isLoading ? (
                     ""
                   ) : (
@@ -292,4 +317,4 @@ class CourseGrid extends Component {
   }
 }
 
-export default CourseGrid;
+export default CourseFaculty;

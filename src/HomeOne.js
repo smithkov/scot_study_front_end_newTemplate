@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import HeroSlider from "./components/HeroSlider";
 import IconBox from "./components/IconBox";
 import AboutUs from "./components/AboutUs";
-import CourseFilter from "./components/CourseFilter";
+import CourseSlider from "./components/CourseSlider";
 import TestimonialSlider from "./components/TestimonialSlider";
 import FaqEvent from "./components/FaqEvent";
 import TeamSlider from "./components/TeamSlider";
@@ -30,7 +30,8 @@ export default class HomeOne extends Component {
         <AboutUs />
 
         {/* Course Filter */}
-        <CourseFilter />
+        {/* <CourseFilter /> */}
+        <CourseSlider />
 
         {/* Testimonial Slider */}
         <TestimonialSlider />

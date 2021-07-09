@@ -27,6 +27,10 @@ class ClientService {
     return http.post(`${SERVER_URL}/faculties`);
   };
 
+  facultiesLight = async () => {
+    return http.post(`${SERVER_URL}/facultiesLight`);
+  };
+
   institutions = async () => {
     return http.post(`${SERVER_URL}/institutions`);
   };

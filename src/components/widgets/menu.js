@@ -8,28 +8,28 @@ function Menu(props) {
   useEffect(async () => {
     const result = await clientService.institutions();
     setInstitutions(result.data.data);
-    window.addEventListener("scroll", () => {
-      const stickyMenu = document.querySelector(".sticky-menu");
+    // window.addEventListener("scroll", () => {
+    //   const stickyMenu = document.querySelector(".sticky-menu");
 
-      if (window.scrollY > 160) {
-        stickyMenu.classList.add("sticky");
-      } else {
-        stickyMenu.classList.remove("sticky");
-      }
-    });
+    //   if (window.scrollY > 160) {
+    //     stickyMenu.classList.add("sticky");
+    //   } else {
+    //     stickyMenu.classList.remove("sticky");
+    //   }
+    // });
   }, []);
 
   return (
     <div className="menu-box d-flex justify-content-end">
       <ul className="nav menu-nav">
         <li className="nav-item dropdown active">
-          <Link
+          <a
             className="nav-link dropdown-toggle"
-            to={process.env.PUBLIC_URL + "/"}
+            href="/"
             data-toggle="dropdown"
           >
             Home <i className="las"></i>
-          </Link>
+          </a>
         </li>
         <li className="nav-item dropdown">
           <Link
@@ -42,13 +42,10 @@ function Menu(props) {
           <ul className="dropdown list-unstyled">
             {institutions.map((item) => {
               return (
-                <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to={process.env.PUBLIC_URL + "/about"}
-                  >
+                <li key={item.id} className="nav-item">
+                  <a className="nav-link" href={`/institution/${item.id}`}>
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               );
             })}

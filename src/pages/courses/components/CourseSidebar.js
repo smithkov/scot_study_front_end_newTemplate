@@ -17,19 +17,22 @@ class CourseSidebar extends Component {
   state = {
     faculties: [],
     degreeTypes: [],
+    institutions: [],
   };
 
   componentDidMount = async () => {
     const result = await clientService.faculties();
     const degreeTypeResult = await clientService.degreeTypes();
+    const institutionResult = await clientService.institutions();
 
     this.setState({
       faculties: result.data.data,
       degreeTypes: degreeTypeResult.data.data,
+      institutions: institutionResult.data.data,
     });
   };
   render() {
-    const { faculties, degreeTypes } = this.state;
+    const { institutions, faculties, degreeTypes } = this.state;
     return (
       <div className="course-sidebar">
         <Row>
@@ -57,14 +60,14 @@ class CourseSidebar extends Component {
             <Styles2>
               {/* Course Tag */}
               <div className="course-category">
-                <h5>Course Faculty</h5>
+                <h5>Institutions</h5>
                 <select
-                  onChange={this.props.onChangeFaculty}
+                  onChange={this.props.onChangeInstitution}
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
-                  <option selected>Select faculty</option>
-                  {faculties.map((item) => (
+                  <option selected>Select Institution</option>
+                  {institutions.map((item) => (
                     <>
                       <option key={item.id} value={item.id}>
                         {item.name}
@@ -73,8 +76,31 @@ class CourseSidebar extends Component {
                     </>
                   ))}
                 </select>
+                {this.props.canShowFaculty ? (
+                  <>
+                    <h5>Course Faculty</h5>
+                    <select
+                      onChange={this.props.onChangeFaculty}
+                      class="form-select form-select-lg mb-3"
+                      aria-label=".form-select-lg example"
+                    >
+                      <option selected>Select faculty</option>
+                      {faculties.map((item) => (
+                        <>
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>{" "}
+                          <br /> <br />
+                        </>
+                      ))}
+                    </select>
 
-                <hr />
+                    <hr />
+                  </>
+                ) : (
+                  ""
+                )}
+
                 <h5>Degree Type</h5>
                 <select
                   onChange={this.props.onChangeDegreeType}
@@ -91,6 +117,15 @@ class CourseSidebar extends Component {
                     </>
                   ))}
                 </select>
+                <div class="d-grid gap-2">
+                  <button
+                    onClick={this.props.reset}
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </Styles2>
           </Col>
@@ -101,9 +136,9 @@ class CourseSidebar extends Component {
           <Col md="12">
             <PopularCourse />
           </Col>
-          <Col md="12">
+          {/* <Col md="12">
             <CourseTag />
-          </Col>
+          </Col> */}
         </Row>
       </div>
     );

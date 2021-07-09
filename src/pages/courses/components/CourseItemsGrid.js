@@ -8,12 +8,15 @@ class CourseItemGrid extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const { courses, isForInstitution } = this.props;
     return (
       <Fragment>
         {/* Course Item */}
-        {this.props.courses.map((item, i) => (
-          <Col lg="6" md="12" key={i}>
+
+        {courses.map((item, i) => (
+          <Col lg={isForInstitution ? 4 : 6} md={12} key={i}>
             <div className="course-item">
               <a href={`/course-details/${item.id}`}>
                 <div
@@ -28,7 +31,7 @@ class CourseItemGrid extends Component {
                     </div>
                     <div className="title">
                       <p>{item.Institution.name}</p>
-                      <span>courses</span>
+                      <span>{item.Faculty.name}</span>
                     </div>
                   </div>
                   <div className="course-price">
@@ -54,7 +57,7 @@ class CourseItemGrid extends Component {
                   <div className="student">
                     <p>
                       <i className="las la-chair"></i>
-                      {item.intake}
+                      {item.DegreeType.name}
                     </p>
                   </div>
                 </div>
