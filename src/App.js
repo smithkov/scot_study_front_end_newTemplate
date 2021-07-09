@@ -40,21 +40,15 @@ function App() {
           component={HomeTwo}
         />
         <Route path="/about" component={About} />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/courses"}`}
-          component={CourseGrid}
-        />
-
+        <Route path="/courses" component={CourseGrid} />
         <Route path={`/faculty-courses/:id`} component={CourseFaculty} />
         <Route path="/course-list" component={CourseList} />
-
         <Route path="/course-details/:id" component={CourseDetails} />
         <Route
           path={`${process.env.PUBLIC_URL + "/instructor"}`}
           component={Instructor}
         />
         <Route path={`/institution/:id`} component={InstitutionDetail} />
-
         <Route path={`/institutions`} component={Institutions} />
         <Route
           path={`${process.env.PUBLIC_URL + "/instructor-details"}`}
@@ -68,24 +62,13 @@ function App() {
           path={`${process.env.PUBLIC_URL + "/events"}`}
           component={Events}
         /> */}
-
-        <Route
-          path={`${process.env.PUBLIC_URL + "/login"}`}
-          component={Login}
-        />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/registration"}`}
-          component={Register}
-        />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/contact"}`}
-          component={Contact}
-        />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/contact" component={Contact} />
         <Route path={`${process.env.PUBLIC_URL + "/faq"}`} component={Faq} />
-        <Route
-          path={`${process.env.PUBLIC_URL + "/404"}`}
-          component={PageNotFound}
-        />
+        <Route path="" component={PageNotFound} /> // empty ""
+        <Route path="*" component={PageNotFound} /> // star *
+        <Route component={PageNotFound} />
         <Route
           path={`${process.env.PUBLIC_URL + "/coming-soon"}`}
           component={ComingSoon}

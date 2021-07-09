@@ -40,6 +40,11 @@ function Menu(props) {
             Institutions <i className="las la-angle-down"></i>
           </Link>
           <ul className="dropdown list-unstyled">
+            <li key={3} className="nav-item">
+              <a className="nav-link" href={`/institutions`}>
+                All Institutions
+              </a>
+            </li>
             {institutions.map((item) => {
               return (
                 <li key={item.id} className="nav-item">
@@ -70,13 +75,13 @@ function Menu(props) {
           </Link>
         </li>
         <li className="nav-item dropdown">
-          <Link
+          <a
             className="nav-link dropdown-toggle"
-            to={process.env.PUBLIC_URL + "/"}
+            href={"/contact"}
             data-toggle="dropdown"
           >
             Contact <i className="las"></i>
-          </Link>
+          </a>
         </li>
         <li className="nav-item dropdown">
           <a

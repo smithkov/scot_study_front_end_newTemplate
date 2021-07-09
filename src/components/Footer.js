@@ -14,9 +14,7 @@ class Footer extends Component {
         <footer
           className="footer1"
           style={{
-            backgroundImage: `url(assets/images/${
-              process.env.PUBLIC_URL + Datas.backgroundImage
-            })`,
+            backgroundImage: `url(assets/images/${Datas.backgroundImage})`,
           }}
         >
           <Container>
@@ -24,7 +22,7 @@ class Footer extends Component {
               <Col md="4">
                 <div className="footer-logo-info">
                   <img
-                    src={process.env.PUBLIC_URL + "/assets/images/f-logo.png"}
+                    src={"/assets/images/f-logo.png"}
                     alt=""
                     className="img-fluid"
                   />
@@ -52,49 +50,49 @@ class Footer extends Component {
                   <h5>Useful Links</h5>
                   <ul className="list-unstyled">
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>General Info
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Help Center
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Our Services
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Privacy Policy
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Online Support
                       </Link>
                     </li>
                   </ul>
                   <ul className="list-unstyled">
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>General Info
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Help Center
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Our Services
                       </Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Privacy Policy
                       </Link>
                     </li>
@@ -111,15 +109,10 @@ class Footer extends Component {
                   <h5>Recent Post</h5>
                   <div className="post-box d-flex">
                     <div className="post-img">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + "/assets/images/blog-2.jpg"
-                        }
-                        alt=""
-                      />
+                      <img src={"/assets/images/blog-2.jpg"} alt="" />
                     </div>
                     <div className="post-content">
-                      <Link to={process.env.PUBLIC_URL + "/blog-details"}>
+                      <Link to={"/blog-details"}>
                         Lorem ipsum dolor sit amet consectet adipisicing elit
                         com...
                       </Link>
@@ -128,15 +121,10 @@ class Footer extends Component {
                   </div>
                   <div className="post-box d-flex">
                     <div className="post-img">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + "/assets/images/blog-3.jpg"
-                        }
-                        alt=""
-                      />
+                      <img src={"/assets/images/blog-3.jpg"} alt="" />
                     </div>
                     <div className="post-content">
-                      <Link to={process.env.PUBLIC_URL + "/blog-details"}>
+                      <Link to={"/blog-details"}>
                         Lorem ipsum dolor sit amet consectet adipisicing elit
                         com...
                       </Link>

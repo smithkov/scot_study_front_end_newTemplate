@@ -61,9 +61,8 @@ function Sidebar() {
         <div className="side-content">
           <h5>About Us</h5>
           <p>
-            Lorem ipsum dolor sit amet, consecte adipisicing elit. Mollitia
-            modi, nostru rem sapiente. Excepturi molestiae soluta quisquam
-            officiis iure sunt.
+            OUR ALL-IN-ONE PLATFORM HELPS YOU MONITOR AND SECURE ADMISSION,
+            GUIDES YOU THROUGH VISA PROCESSES AND SETTLES YOUR ACCOMMODATION.
           </p>
         </div>
         <div className="side-post">
@@ -137,14 +136,11 @@ function Sidebar() {
           <ul className="list-unstyled">
             <li>
               <i className="las la-map-marker"></i>121 Giles Street, Edinburgh
-              EH6 6BZ, New York, NY USA 94107
+              EH6 6BZ
             </li>
             <li>
-              <i className="las la-phone"></i>(234) 802 666 8008 Enquery Us
+              <i className="las la-phone"></i>(234) 802 666 8008 Contact Us
               info@scotstudy.co.uk
-            </li>
-            <li>
-              <i className="las la-envelope"></i>enquery@edulyb.com
             </li>
           </ul>
         </div>

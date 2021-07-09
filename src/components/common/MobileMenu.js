@@ -60,7 +60,7 @@ function MobileMenu() {
               <div className="mb-topbar d-flex justify-content-between">
                 <div className="topbar-item">
                   <p>
-                    <i className="las la-phone"></i>+1 (396) 486 4709
+                    <i className="las la-phone"></i>(234) 802 666 8008
                   </p>
                 </div>
                 <div className="topbar-item">

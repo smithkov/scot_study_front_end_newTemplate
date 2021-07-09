@@ -92,10 +92,7 @@ function Contact() {
                   </div>
                   <div className="box-content">
                     <h5>Our Location</h5>
-                    <p>
-                      121 Giles Street, Edinburgh EH6 6BZ, Long Island, Newyork,
-                      NY 94107.
-                    </p>
+                    <p>121 Giles Street, Edinburgh EH6 6BZ.</p>
                   </div>
                 </div>
                 <div className="contact-icon-box d-flex">
@@ -105,9 +102,9 @@ function Contact() {
                   <div className="box-content">
                     <h5>Email Address</h5>
                     <p>
-                      info@mydomain.com
+                      info@scotstudy.co.uk
                       <br />
-                      enquery@edu.com
+                      admissions@scotstudy.co.uk
                     </p>
                   </div>
                 </div>
@@ -118,9 +115,9 @@ function Contact() {
                   <div className="box-content">
                     <h5>Phone Number</h5>
                     <p>
-                      +1 (396) 486 4709
+                      +(234) 802 666 8008
                       <br />
-                      +1 (396) 486 8419
+                      +(44) 758 677 0652
                     </p>
                   </div>
                 </div>

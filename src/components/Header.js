@@ -78,62 +78,25 @@ class Header extends Component {
                     <li className="list-inline-item">
                       <Dropdown>
                         <Dropdown.Toggle as="a">
-                          <img
-                            src={
-                              process.env.PUBLIC_URL + "/assets/images/us.png"
-                            }
-                            alt=""
-                          />
+                          <img src={"/assets/images/us.png"} alt="" />
                           English<i className="las la-angle-down"></i>
                         </Dropdown.Toggle>
                         <Dropdown.Menu as="ul">
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/assets/images/us.png"
-                              }
-                              alt=""
-                            />{" "}
-                            English
+                            <img src={"/assets/images/us.png"} alt="" /> English
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/fra.png"
-                              }
-                              alt=""
-                            />{" "}
-                            French
+                            <img src={"/assets/images/fra.png"} alt="" /> French
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/ger.png"
-                              }
-                              alt=""
-                            />{" "}
-                            German
+                            <img src={"/assets/images/ger.png"} alt="" /> German
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/spa.png"
-                              }
-                              alt=""
-                            />{" "}
+                            <img src={"/assets/images/spa.png"} alt="" />{" "}
                             Spanish
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/bra.png"
-                              }
-                              alt=""
-                            />{" "}
+                            <img src={"/assets/images/bra.png"} alt="" />{" "}
                             Brazilian
                           </Dropdown.Item>
                         </Dropdown.Menu>
@@ -142,14 +105,14 @@ class Header extends Component {
                   </ul>
                   <ul className="list-unstyled list-inline bar-login">
                     <li className="list-inline-item">
-                      <Link to={process.env.PUBLIC_URL + "/login"}>
+                      <a href="/login">
                         <i className="las la-user"></i>Log In
-                      </Link>
+                      </a>
                     </li>
                     <li className="list-inline-item">
-                      <Link to={process.env.PUBLIC_URL + "/registration"}>
+                      <a href="/registration">
                         <i className="las la-user-edit"></i>Register
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -164,12 +127,9 @@ class Header extends Component {
             <Row>
               <Col md="3">
                 <div className="logo">
-                  <Link to={process.env.PUBLIC_URL + "/"}>
-                    <img
-                      src={process.env.PUBLIC_URL + "/assets/images/logo.png"}
-                      alt=""
-                    />
-                  </Link>
+                  <a href="/">
+                    <img src={"/assets/images/logo.png"} alt="" />
+                  </a>
                 </div>
               </Col>
               <Col md="9">
@@ -188,14 +148,14 @@ class Header extends Component {
                       <i className="flaticon-envelope"></i>
                     </div>
                     <div className="box-content">
-                      <p>Enquery Us</p>
+                      <p>Contact</p>
                       <span>info@scotstudy.co.uk</span>
                     </div>
                   </div>
                   <div className="apply-btn">
-                    <Link to={process.env.PUBLIC_URL + "/registration"}>
+                    <a href="/register">
                       <i className="las la-clipboard-list"></i>Apply Now
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </Col>

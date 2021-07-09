@@ -4,7 +4,7 @@ import HeaderTwo from "../../components/HeaderTwo";
 import { BreadcrumbBox } from "../../components/common/Breadcrumb";
 import CourseSidebar from "./components/CourseSidebar";
 import CourseItemGrid from "./components/CourseItemsGrid";
-import Footer from "../../components/Footer";
+import FooterTwo from "../../components/FooterTwo";
 import Loading from "../../components/widgets/loading";
 import Message from "../../components/widgets/message";
 import { Styles } from "./styles/course.js";
@@ -285,8 +285,8 @@ class CourseGrid extends Component {
           </section>
         </Styles>
 
-        {/* Footer 2 */}
-        <Footer />
+        {/* FooterTwo 2 */}
+        <FooterTwo />
       </div>
     );
   }

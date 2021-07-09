@@ -6,7 +6,7 @@ import IconBox from "../../components/IconBox";
 import TabBox from "./../../components/TabBox";
 import TestimonialSlider from "../../components/TestimonialSlider";
 import FaqEvent from "../../components/FaqEvent";
-import Footer from "../../components/Footer";
+import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/about.js";
 
 class About extends Component {
@@ -24,8 +24,8 @@ class About extends Component {
           {/* Tab Section */}
           <TabBox />
 
-          {/* Footer 2 */}
-          <Footer />
+          {/* FooterTwo 2 */}
+          <FooterTwo />
         </div>
       </Styles>
     );

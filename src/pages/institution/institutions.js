@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import HeaderTwo from "../../components/HeaderTwo";
 import { BreadcrumbBox } from "../../components/common/Breadcrumb";
-
-import Footer from "../../components/Footer";
+import PopularCourse from "../courses/components/PopularCourse";
+import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/blog.js";
 import clientService from "../../services/clientService";
 
@@ -38,21 +38,21 @@ class Institutions extends Component {
           <section className="blog-classic-area">
             <Container>
               <Row>
-                <Col lg="9" md="8" sm="7">
+                <Col lg="12" md="11" sm="10">
                   {institutions.map((item, i) => (
                     <div className="blog-item" key={i}>
                       <div className="blog-img">
-                        <Link to={``}>
+                        <a href={`institution/${item.id}`}>
                           <img src={item.banner} alt="" className="img-fluid" />
-                        </Link>
+                        </a>
                       </div>
                       <div className="blog-auth_date d-flex">
                         <div className="author-img d-flex">
-                          <Link to={``}>
+                          <Link to={`institution/${item.id}`}>
                             <img src={item.logo} alt="" />
                           </Link>
                           <p>
-                            <Link to={``}>{item.name}</Link>
+                            <a href={`institution/${item.id}`}>{item.name}</a>
                           </p>
                         </div>
                         <div className="post-date">
@@ -61,7 +61,7 @@ class Institutions extends Component {
                             {item.City.name}
                           </p>
                         </div>
-                        <div className="post-category">
+                        <div className="post-date">
                           <p>
                             <i class="fas fa-graduation-cap"></i>{" "}
                             {item.Courses.length} courses
@@ -76,15 +76,15 @@ class Institutions extends Component {
                     </div>
                   ))}
                 </Col>
-                <Col lg="3" md="4" sm="5">
-                  {/* <BlogSidebar /> */}
-                </Col>
+                {/* <Col lg="3" md="4" sm="5">
+                  <PopularCourse />
+                </Col> */}
               </Row>
             </Container>
           </section>
 
-          {/* Footer 2 */}
-          <Footer />
+          {/* FooterTwo 2 */}
+          <FooterTwo />
         </div>
       </Styles>
     );

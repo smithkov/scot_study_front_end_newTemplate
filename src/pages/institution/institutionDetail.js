@@ -8,7 +8,7 @@ import HeaderTwo from "../../components/HeaderTwo";
 import { BreadcrumbBox } from "../../components/common/Breadcrumb";
 import PopularCourse from "../courses/components/PopularCourse";
 import CourseTag from "../courses/components/CourseTag";
-import Footer from "../../components/Footer";
+import FooterTwo from "../../components/FooterTwo";
 import SchoolAbout from "../../components/widgets/schoolAbout";
 import { Styles } from "./styles/eventDetails.js";
 import clientService from "../../services/clientService";
@@ -291,7 +291,7 @@ class InstitutionDetail extends Component {
                 </Row>
               </Container>
             </section>
-            <Footer />
+            <FooterTwo />
           </Styles2>
         </div>
       </>

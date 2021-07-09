@@ -5,7 +5,7 @@ import { BreadcrumbBox } from "../../components/common/Breadcrumb";
 import ReviewForm from "./components/ReviewForm";
 import PopularCourse from "./components/PopularCourse";
 import CourseTag from "./components/CourseTag";
-import Footer from "../../components/Footer";
+import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/course.js";
 import clientService from "../../services/clientService";
 
@@ -284,8 +284,8 @@ function CourseDetails(props) {
         )}
       </Styles>
 
-      {/* Footer 2 */}
-      <Footer />
+      {/* FooterTwo 2 */}
+      <FooterTwo />
     </div>
   );
 }

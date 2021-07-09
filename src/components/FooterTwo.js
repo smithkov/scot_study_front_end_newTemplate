@@ -6,6 +6,7 @@ import BackToTop from "./common/BackToTop";
 import { Styles } from "./styles/footerTwo.js";
 
 function FooterTwo() {
+  const d = new Date();
   useEffect(() => {
     const form = document.getElementById("form4");
     const email = document.getElementById("email4");
@@ -62,8 +63,9 @@ function FooterTwo() {
                   className="img-fluid"
                 />
                 <p>
-                  Lorem ipsum dolor sit amet, consectet adipisicing elit. Saepe
-                  porro neque a nam null quos.
+                  OUR ALL-IN-ONE PLATFORM HELPS YOU MONITOR AND SECURE
+                  ADMISSION, GUIDES YOU THROUGH VISA PROCESSES AND SETTLES YOUR
+                  ACCOMMODATION.
                 </p>
                 <ul className="list-unstyled">
                   <li>
@@ -85,27 +87,32 @@ function FooterTwo() {
                 <ul className="list-unstyled">
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/"}>
-                      <i className="las la-angle-right"></i>General Information
+                      <i className="las la-angle-right"></i>Home
                     </Link>
                   </li>
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/"}>
-                      <i className="las la-angle-right"></i>Help Center
+                      <i className="las la-angle-right"></i>Institutions
                     </Link>
                   </li>
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/"}>
-                      <i className="las la-angle-right"></i>Our Services
+                      <i className="las la-angle-right"></i>Courses
                     </Link>
                   </li>
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/"}>
-                      <i className="las la-angle-right"></i>Privacy Policy
+                      <i className="las la-angle-right"></i>Compare
                     </Link>
                   </li>
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/"}>
-                      <i className="las la-angle-right"></i>Online Support
+                      <i className="las la-angle-right"></i>Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "/"}>
+                      <i className="las la-angle-right"></i>About Us
                     </Link>
                   </li>
                 </ul>
@@ -152,7 +159,7 @@ function FooterTwo() {
             <Col md="3">
               <div className="f-newsletter">
                 <h5>Newsletter</h5>
-                <p>Lorem ipsum dolor sit amet, consectet adipisicing elit.</p>
+                <p>Subscribe To The Newsletter</p>
 
                 <form id="form4" className="form">
                   <p className="form-control">
@@ -170,40 +177,37 @@ function FooterTwo() {
             <Col md="12">
               <div className="copytext-area text-center">
                 <p>
-                  Copyright &copy; 2017 | Designed With{" "}
-                  <i className="las la-heart"></i> by{" "}
-                  <a
-                    href={process.env.PUBLIC_URL + "/"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    SnazzyTheme
-                  </a>
+                  Scotia World Limited &copy; {d.getFullYear()}, All Rights
+                  Reserved.
                 </p>
                 <ul className="social list-unstyled list-inline">
                   <li className="list-inline-item">
-                    <a href={process.env.PUBLIC_URL + "/"}>
+                    <a
+                      target="_blank"
+                      href="https://www.facebook.com/Scot-study-107271957506468/"
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href={process.env.PUBLIC_URL + "/"}>
+                    <a
+                      target="_blank"
+                      href="https://twitter.com/scotstudy?lang=en"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href={process.env.PUBLIC_URL + "/"}>
+                    <a href={""}>
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href={process.env.PUBLIC_URL + "/"}>
+                    <a
+                      target="_blank"
+                      href="https://www.youtube.com/channel/UC9ItAoglSWFBcxHsiJ0QX9g"
+                    >
                       <i className="fab fa-youtube"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href={process.env.PUBLIC_URL + "/"}>
-                      <i className="fab fa-dribbble"></i>
                     </a>
                   </li>
                 </ul>

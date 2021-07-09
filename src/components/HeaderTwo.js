@@ -38,62 +38,25 @@ class HeaderTwo extends Component {
                     <li className="list-inline-item">
                       <Dropdown>
                         <Dropdown.Toggle>
-                          <img
-                            src={
-                              process.env.PUBLIC_URL + "/assets/images/us.png"
-                            }
-                            alt=""
-                          />
+                          <img src={"/assets/images/us.png"} alt="" />
                           English<i className="las la-angle-down"></i>
                         </Dropdown.Toggle>
                         <Dropdown.Menu as="ul">
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/assets/images/us.png"
-                              }
-                              alt=""
-                            />{" "}
-                            English
+                            <img src={"/assets/images/us.png"} alt="" /> English
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/fra.png"
-                              }
-                              alt=""
-                            />{" "}
-                            French
+                            <img src={"/assets/images/fra.png"} alt="" /> French
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/ger.png"
-                              }
-                              alt=""
-                            />{" "}
-                            German
+                            <img src={"/assets/images/ger.png"} alt="" /> German
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/spa.png"
-                              }
-                              alt=""
-                            />{" "}
+                            <img src={"/assets/images/spa.png"} alt="" />{" "}
                             Spanish
                           </Dropdown.Item>
                           <Dropdown.Item as="li">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                "/assets/images/bra.png"
-                              }
-                              alt=""
-                            />{" "}
+                            <img src={"/assets/images/bra.png"} alt="" />{" "}
                             Brazilian
                           </Dropdown.Item>
                         </Dropdown.Menu>
@@ -102,22 +65,22 @@ class HeaderTwo extends Component {
                   </ul>
                   <ul className="list-unstyled list-inline bar-social">
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a href={"/"}>
                         <i className="fab fa-facebook-f"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a href={"/"}>
                         <i className="fab fa-twitter"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a href={"/"}>
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a href={"/"}>
                         <i className="fab fa-instagram"></i>
                       </a>
                     </li>
@@ -140,12 +103,9 @@ class HeaderTwo extends Component {
             <Row>
               <Col md="3">
                 <div className="logo">
-                  <Link to={process.env.PUBLIC_URL + "/"}>
-                    <img
-                      src={process.env.PUBLIC_URL + "/assets/images/logo.png"}
-                      alt=""
-                    />
-                  </Link>
+                  <a href="/">
+                    <img src={"/assets/images/logo.png"} alt="" />
+                  </a>
                 </div>
               </Col>
               <Col md="9">
