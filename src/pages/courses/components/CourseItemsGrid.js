@@ -18,7 +18,7 @@ class CourseItemGrid extends Component {
         {courses.map((item, i) => (
           <Col lg={isForInstitution ? 4 : 6} md={12} key={i}>
             <div className="course-item">
-              <a href={`/course-details/${item.id}`}>
+              <Link to={`/course-details/${item.id}`}>
                 <div
                   className="course-image"
                   style={{
@@ -38,7 +38,7 @@ class CourseItemGrid extends Component {
                     <p>{item.fee}</p>
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className="course-content">
                 <h6 className="heading">
                   <Link to={``}>{item.name}</Link>
@@ -57,7 +57,7 @@ class CourseItemGrid extends Component {
                   <div className="student">
                     <p>
                       <i className="las la-chair"></i>
-                      {item.DegreeType.name}
+                      {item.DegreeType ? item.DegreeType.name : ""}
                     </p>
                   </div>
                 </div>

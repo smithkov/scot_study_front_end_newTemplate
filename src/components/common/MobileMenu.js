@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { Styles } from "./styles/mobileMenu.js";
+import clientService from "../../services/clientService";
 
 function MobileMenu() {
+  const [institution, setInstitution] = useState([]);
+
   useEffect(() => {
     // Mobile Menu
+    (async () => {
+      const result = await clientService.institutionsLighter();
+      setInstitution(result.data.data);
+    })();
     const hmBtn = document.getElementById("mb-sidebar-btn");
 
     if (hmBtn) {
@@ -48,7 +55,7 @@ function MobileMenu() {
         }
       });
     });
-  });
+  }, []);
 
   return (
     <Styles>
@@ -132,55 +139,22 @@ function MobileMenu() {
                 Home <i className="las la-plus"></i>
               </p>
             </button>
-            {/* <div className="mb-menu-content show">
-              <ul className="list-unstyled">
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/"}>Home Style 1</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-two"}>
-                    Home Style 2
-                  </Link>
-                </li>
-              </ul>
-            </div> */}
           </div>
           <div className="mb-menu-item">
             <button className="mb-menu-button active">
               <p>
-                Pages <i className="las la-plus"></i>
+                Intitutions <i className="las la-plus"></i>
               </p>
             </button>
             <div className="mb-menu-content show">
               <ul className="list-unstyled">
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/about"}>About Us</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/gallery"}>Gallery</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/login"}>Log In</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/registration"}>
-                    Registration
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/contact"}>Contact</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/faq"}>Faq</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/404"}>404</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/coming-soon"}>
-                    Coming Soon
-                  </Link>
-                </li>
+                {institution.map((item) => {
+                  return (
+                    <li>
+                      <Link to={`/institution/${item.id}`}>{item.name}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -193,19 +167,7 @@ function MobileMenu() {
             <div className="mb-menu-content show">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/course-grid"}>
-                    Course Grid
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/course-list"}>
-                    Course List
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/course-details"}>
-                    Course Details
-                  </Link>
+                  <Link to={"/courses"}>Course List</Link>
                 </li>
               </ul>
             </div>
@@ -213,20 +175,13 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
-                Instructor <i className="las la-plus"></i>
+                Compare <i className="las la-plus"></i>
               </p>
             </button>
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/instructor"}>
-                    Instructors
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/instructor-details"}>
-                    Instructor Details
-                  </Link>
+                  <Link to={``}>Compare Courses</Link>
                 </li>
               </ul>
             </div>
@@ -234,18 +189,13 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
-                Event <i className="las la-plus"></i>
+                Contact <i className="las la-plus"></i>
               </p>
             </button>
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/events"}>Events</Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/event-details"}>
-                    Event Details
-                  </Link>
+                  <Link to={`/contact`}>Contact Us</Link>
                 </li>
               </ul>
             </div>
@@ -253,25 +203,13 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
-                Blog <i className="las la-plus"></i>
+                About <i className="las la-plus"></i>
               </p>
             </button>
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/blog-classic"}>
-                    Blog Classic
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/blog-grid"}>
-                    Blog Grid
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/blog-details"}>
-                    Blog Details
-                  </Link>
+                  <Link to={`/about`}>About Us</Link>
                 </li>
               </ul>
             </div>
@@ -279,23 +217,13 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
-                Shop <i className="las la-plus"></i>
+                E-Pay <i className="las la-plus"></i>
               </p>
             </button>
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={process.env.PUBLIC_URL + "/products"}>
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/product-details"}>
-                    Product Details
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/cart"}>Cart</Link>
+                  <Link to={``}>Make Payment</Link>
                 </li>
               </ul>
             </div>

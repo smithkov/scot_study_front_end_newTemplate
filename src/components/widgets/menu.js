@@ -5,31 +5,36 @@ import clientService from "../../services/clientService";
 
 function Menu(props) {
   const [institutions, setInstitutions] = useState([]);
-  useEffect(async () => {
-    const result = await clientService.institutions();
-    setInstitutions(result.data.data);
-    // window.addEventListener("scroll", () => {
-    //   const stickyMenu = document.querySelector(".sticky-menu");
-
-    //   if (window.scrollY > 160) {
-    //     stickyMenu.classList.add("sticky");
-    //   } else {
-    //     stickyMenu.classList.remove("sticky");
-    //   }
-    // });
+  const [hasData, setHasData] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const stickyMenu = document.querySelector(".sticky-menu");
+      if (stickyMenu) {
+        if (window.scrollY > 160) {
+          stickyMenu.classList.add("sticky");
+        } else {
+          stickyMenu.classList.remove("sticky");
+        }
+      }
+    });
+    (async () => {
+      const result = await clientService.institutionsLighter();
+      setInstitutions(result.data.data);
+      setHasData(true);
+    })();
   }, []);
 
   return (
     <div className="menu-box d-flex justify-content-end">
       <ul className="nav menu-nav">
         <li className="nav-item dropdown active">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href="/"
+            to="/"
             data-toggle="dropdown"
           >
             Home <i className="las"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item dropdown">
           <Link
@@ -41,29 +46,31 @@ function Menu(props) {
           </Link>
           <ul className="dropdown list-unstyled">
             <li key={3} className="nav-item">
-              <a className="nav-link" href={`/institutions`}>
+              <Link className="nav-link" to={`/institutions`}>
                 All Institutions
-              </a>
+              </Link>
             </li>
-            {institutions.map((item) => {
-              return (
-                <li key={item.id} className="nav-item">
-                  <a className="nav-link" href={`/institution/${item.id}`}>
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
+            {hasData
+              ? institutions.map((item) => {
+                  return (
+                    <li key={item.id} className="nav-item">
+                      <Link className="nav-link" to={`/institution/${item.id}`}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  );
+                })
+              : ""}
           </ul>
         </li>
         <li className="nav-item dropdown">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href="/courses"
+            to="/courses"
             data-toggle="dropdown"
           >
             Courses <i className="las"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item dropdown">
           <Link
@@ -75,22 +82,22 @@ function Menu(props) {
           </Link>
         </li>
         <li className="nav-item dropdown">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href={"/contact"}
+            to={"/contact"}
             data-toggle="dropdown"
           >
             Contact <i className="las"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item dropdown">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href="/about"
+            to="/about"
             data-toggle="dropdown"
           >
             About Us <i className="las"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item dropdown">
           <Link
@@ -104,7 +111,7 @@ function Menu(props) {
       </ul>
       {props.showBtn ? (
         <div className="apply-btn">
-          <Link to={process.env.PUBLIC_URL + "/registration"}>
+          <Link to={"/register"}>
             <i className="las la-clipboard-list"></i>Apply Now
           </Link>
         </div>

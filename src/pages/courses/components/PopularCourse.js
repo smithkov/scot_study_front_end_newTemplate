@@ -28,7 +28,7 @@ class PopularCourse extends Component {
             {courses.map((item) => (
               <div className="item-box d-flex" key={item.id}>
                 <div className="item-img">
-                  <Link to="">
+                  <Link to={`/course-details/${item.id}`}>
                     <img src={item.CoursePhoto.url} alt="" />
                   </Link>
                 </div>

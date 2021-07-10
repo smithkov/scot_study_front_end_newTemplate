@@ -16,11 +16,12 @@ function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  useEffect(() => {}, []);
 
-  const login = async (e) => {
+  const loginHandler = async (e) => {
+    e.preventDefault();
     setLoading(true);
     const response = await clientService.signIn({ email, password });
+
     const { message, error } = response.data;
 
     if (error) {
@@ -35,7 +36,7 @@ function Login(props) {
         JSON.stringify(data)
       );
       let { from } = props.location.state || {
-        from: { pathname: isAdmin ? `admin_dashboard` : `/dashboard` },
+        from: { pathname: isAdmin ? `/admin_dashboard` : `/dashboard` },
       };
       props.history.replace(from);
     }
@@ -70,7 +71,22 @@ function Login(props) {
                   <div className="login-title text-center">
                     <h3>Log In</h3>
                   </div>
-                  <form id="form_login" className="form">
+                  {isShowMessage ? (
+                    <div
+                      style={{ textAlign: "center" }}
+                      class="alert alert-warning"
+                      role="alert"
+                    >
+                      {errorMessage}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <form
+                    onSubmit={loginHandler}
+                    id="form_login"
+                    className="form"
+                  >
                     <p className="form-control">
                       <label htmlFor="login_user">Email</label>
                       <input
@@ -93,7 +109,7 @@ function Login(props) {
                       />
                       <span className="login_input-msg"></span>
                     </p>
-                    <button onClick={login}>Log In</button>
+                    <button type="submit">Log In</button>
                     <div className="save-forget-password d-flex justify-content-between">
                       <div className="save-passowrd">
                         <label htmlFor="save_password">

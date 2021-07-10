@@ -30,16 +30,17 @@ function Register(props) {
   const [errorMessage, setErrorMessage] = useState("");
   let [selectedCountry, setSelectedCountry] = useState("");
   const [countries, setCountries] = useState([]);
-  useEffect(async () => {
-    const result = await clientService.countries();
+  useEffect(() => {
+    (async () => {
+      const result = await clientService.countries();
 
-    setCountries(result.data.data);
+      setCountries(result.data.data);
+    })();
   }, []);
 
-  const onChangeDropdown = async (e, data) => {
-    const name = data.name;
-    const value = data.value;
-    let courseResult;
+  const onChangeDropdown = async (e) => {
+    const name = e.target.name;
+    const value = e.value;
 
     if (name == "selectedGender") {
       setSelectedGender(value);
@@ -90,6 +91,7 @@ function Register(props) {
   };
 
   const register = async (e) => {
+    e.preventDefault();
     if (password == confirmPassword) {
       setLoading(true);
       const response = await clientService.signUp({
@@ -152,7 +154,22 @@ function Register(props) {
                   <div className="registration-title text-center">
                     <h3>Registration</h3>
                   </div>
-                  <form id="form_registration" className="form">
+                  {isShowMessage ? (
+                    <div
+                      style={{ textAlign: "center" }}
+                      class="alert alert-warning"
+                      role="alert"
+                    >
+                      {errorMessage}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <form
+                    onSubmit={register}
+                    id="form_registration"
+                    className="form"
+                  >
                     {/* <p className="form-control">
                                             <label htmlFor="registration_fname">First Name</label>
                                             <input type="text" placeholder="First name" id="registration_fname" />
@@ -329,7 +346,7 @@ function Register(props) {
                       />
                       <span className="registration_input-msg"></span>
                     </p>
-                    <button onClick={register}>Register Now</button>
+                    <button type="submit">Register Now</button>
                   </form>
                   <div className="have_account-btn text-center">
                     <p>

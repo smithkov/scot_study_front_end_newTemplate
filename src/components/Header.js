@@ -10,15 +10,15 @@ import { Styles } from "./styles/header.js";
 import clientService from "../services/clientService";
 
 class Header extends Component {
-  state = {
-    institutions: [],
-  };
-  componentDidMount = async () => {
-    const result = await clientService.institutions();
-    this.setState({
-      institutions: result.data.data,
-    });
-  };
+  // state = {
+  //   institutions: [],
+  // };
+  // componentDidMount = async () => {
+  //   const result = await clientService.institutions();
+  //   this.setState({
+  //     institutions: result.data.data,
+  //   });
+  // };
   render() {
     return (
       <Styles>
@@ -45,39 +45,39 @@ class Header extends Component {
                 <div className="bar-right d-flex justify-content-end">
                   <ul className="list-unstyled list-inline bar-social">
                     <li className="list-inline-item">
-                      <a
+                      <Link
                         target="_blank"
-                        href="https://www.facebook.com/Scot-study-107271957506468/"
+                        to="https://www.facebook.com/Scot-study-107271957506468/"
                       >
                         <i className="fab fa-facebook-f"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a
+                      <Link
                         target="_blank"
-                        href="https://twitter.com/scotstudy?lang=en"
+                        to="https://twitter.com/scotstudy?lang=en"
                       >
                         <i className="fab fa-twitter"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a target="_blank" href={process.env.PUBLIC_URL + "/"}>
+                      <Link target="_blank" to={process.env.PUBLIC_URL + "/"}>
                         <i className="fab fa-linkedin-in"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a
+                      <Link
                         target="_blank"
-                        href="https://www.instagram.com/scotstudy_/?hl=en-gb"
+                        to="https://www.instagram.com/scotstudy_/?hl=en-gb"
                       >
                         <i className="fab fa-instagram"></i>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                   <ul className="list-unstyled list-inline bar-lang">
                     <li className="list-inline-item">
                       <Dropdown>
-                        <Dropdown.Toggle as="a">
+                        <Dropdown.Toggle as="Link">
                           <img src={"/assets/images/us.png"} alt="" />
                           English<i className="las la-angle-down"></i>
                         </Dropdown.Toggle>
@@ -105,14 +105,14 @@ class Header extends Component {
                   </ul>
                   <ul className="list-unstyled list-inline bar-login">
                     <li className="list-inline-item">
-                      <a href="/login">
+                      <Link to="/login">
                         <i className="las la-user"></i>Log In
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="/registration">
+                      <Link to="/registration">
                         <i className="las la-user-edit"></i>Register
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -127,7 +127,7 @@ class Header extends Component {
             <Row>
               <Col md="3">
                 <div className="logo">
-                  <a href="/">
+                  <a to="/">
                     <img src={"/assets/images/logo.png"} alt="" />
                   </a>
                 </div>
@@ -153,9 +153,9 @@ class Header extends Component {
                     </div>
                   </div>
                   <div className="apply-btn">
-                    <a href="/register">
+                    <Link to="/register">
                       <i className="las la-clipboard-list"></i>Apply Now
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Col>

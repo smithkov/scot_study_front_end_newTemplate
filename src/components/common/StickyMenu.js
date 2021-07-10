@@ -7,18 +7,20 @@ import Menu from "../widgets/menu.js";
 
 function StickyMenu() {
   const [institutions, setInstitutions] = useState([]);
-  useEffect(async () => {
-    const result = await clientService.institutions();
-    setInstitutions(result.data.data);
-    // window.addEventListener("scroll", () => {
-    //   const stickyMenu = document.querySelector(".sticky-menu");
+  useEffect(() => {
+    (async () => {
+      const result = await clientService.institutions();
+      setInstitutions(result.data.data);
+      // window.addEventListener("scroll", () => {
+      //   const stickyMenu = document.querySelector(".sticky-menu");
 
-    //   if (window.scrollY > 160) {
-    //     stickyMenu.classList.add("sticky");
-    //   } else {
-    //     stickyMenu.classList.remove("sticky");
-    //   }
-    // });
+      //   if (window.scrollY > 160) {
+      //     stickyMenu.classList.add("sticky");
+      //   } else {
+      //     stickyMenu.classList.remove("sticky");
+      //   }
+      // });
+    })();
   }, []);
 
   return (

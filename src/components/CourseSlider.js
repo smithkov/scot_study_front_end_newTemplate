@@ -77,7 +77,7 @@ class CourseSlider extends Component {
 
                       return (
                         <div className="course-item" key={i}>
-                          <a href={`/faculty-courses/${item.id}`}>
+                          <Link to={`/faculty-courses/${item.id}`}>
                             <div
                               className="course-image"
                               style={{
@@ -99,7 +99,7 @@ class CourseSlider extends Component {
                             <p>{data.price}</p>
                           </div> */}
                             </div>
-                          </a>
+                          </Link>
                           <div className="course-content">
                             <h6 className="heading">
                               <Link to="">{item.name}</Link>

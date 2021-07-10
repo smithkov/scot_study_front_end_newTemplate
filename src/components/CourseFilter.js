@@ -9,11 +9,13 @@ function CourseFilter() {
   const [courses, setCourses] = useState([]);
   const [faculty, setFaculty] = useState([]);
 
-  useEffect(async () => {
-    const courses = await clientService.coursesForHome();
-    const faculty = await clientService.faculties();
-    setFaculty(faculty.data.data);
-    setCourses(courses.data.data);
+  useEffect(() => {
+    (async () => {
+      const courses = await clientService.coursesForHome();
+      const faculty = await clientService.faculties();
+      setFaculty(faculty.data.data);
+      setCourses(courses.data.data);
+    })();
   }, []);
 
   return (

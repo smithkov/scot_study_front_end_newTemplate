@@ -14,10 +14,12 @@ function CourseDetails(props) {
 
   const [course, setCourse] = useState({});
   const [hasData, setHasData] = useState(false);
-  useEffect(async () => {
-    const result = await clientService.findCourseById(courseId);
-    setCourse(result.data.data);
-    setHasData(true);
+  useEffect(() => {
+    (async () => {
+      const result = await clientService.findCourseById(courseId);
+      setCourse(result.data.data);
+      setHasData(true);
+    })();
   }, []);
 
   return (
