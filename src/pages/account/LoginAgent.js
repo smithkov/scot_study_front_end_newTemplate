@@ -127,7 +127,7 @@ function LoginAgent(props) {
                     <div className="not_account-btn text-center">
                       <p>
                         Haven't Any Account Yet?{" "}
-                        <a href="register">Click Here</a>
+                        <a href="/agent-registration">Click Here</a>
                       </p>
                     </div>
                   </form>

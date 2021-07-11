@@ -97,14 +97,24 @@ const CourseUpdate = React.lazy(() =>
   import("./admin/containers/admin/course/update")
 );
 
-const BannerList = React.lazy(() =>
-  import("./admin/containers/admin/banner/list")
+const CoursePhotoList = React.lazy(() =>
+  import("./admin/containers/admin/coursePhoto/list")
 );
-const BannerForm = React.lazy(() =>
-  import("./admin/containers/admin/banner/create")
+const CoursePhotoUpload = React.lazy(() =>
+  import("./admin/containers/admin/coursePhoto/create")
 );
-const BannerUpdate = React.lazy(() =>
-  import("./admin/containers/admin/banner/update")
+const CoursePhotoUpdate = React.lazy(() =>
+  import("./admin/containers/admin/coursePhoto/update")
+);
+
+const GalleryList = React.lazy(() =>
+  import("./admin/containers/admin/gallery/list")
+);
+const GalleryUpload = React.lazy(() =>
+  import("./admin/containers/admin/gallery/create")
+);
+const GalleryUpdate = React.lazy(() =>
+  import("./admin/containers/admin/gallery/update")
 );
 
 const InstitutionList = React.lazy(() =>
@@ -192,10 +202,7 @@ function App() {
             path={`${process.env.PUBLIC_URL + "/instructor-details"}`}
             component={InstructorDetails}
           />
-          <Route
-            path={`${process.env.PUBLIC_URL + "/gallery"}`}
-            component={Gallery}
-          />
+          <Route path={"/gallery"} component={Gallery} />
           {/* <Route
           path={`${process.env.PUBLIC_URL + "/events"}`}
           component={Events}
@@ -273,27 +280,44 @@ function App() {
             component={ProtectedRoute(CourseForm)}
           />
           <Route
-            path="/banner_list"
-            name="Home"
-            component={ProtectedRoute(BannerList)}
-            // render={(props) => <CourseList {...props} />}
-          />
-          <Route
             path="/allAgents"
             name="Home"
             component={ProtectedRoute(AllAgents)}
             // render={(props) => <CourseList {...props} />}
           />
           <Route
-            path="/banner_update/:id"
+            path="/course_photo_list"
             name="Home"
-            component={ProtectedRoute(BannerUpdate)}
+            component={ProtectedRoute(CoursePhotoList)}
+            // render={(props) => <CourseList {...props} />}
+          />
+          <Route
+            path="/course_photo_update/:id"
+            name="Home"
+            component={ProtectedRoute(CoursePhotoUpdate)}
             //render={(props) => <CourseUpdate {...props} />}
           />
           <Route
-            path="/banner_save"
+            path="/course_photo_upload"
             name="Home"
-            component={ProtectedRoute(BannerForm)}
+            component={ProtectedRoute(CoursePhotoUpload)}
+          />
+          <Route
+            path="/gallery_list"
+            name="Home"
+            component={ProtectedRoute(GalleryList)}
+            // render={(props) => <CourseList {...props} />}
+          />
+          <Route
+            path="/gallery_update/:id"
+            name="Home"
+            component={ProtectedRoute(GalleryUpdate)}
+            //render={(props) => <CourseUpdate {...props} />}
+          />
+          <Route
+            path="/gallery_upload"
+            name="Home"
+            component={ProtectedRoute(GalleryUpload)}
           />
           <Route path="/dashboard" component={ProtectedRoute(Dashboard)} />
           <Route

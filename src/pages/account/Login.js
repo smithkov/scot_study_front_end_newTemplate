@@ -128,7 +128,7 @@ function Login(props) {
                     <div className="not_account-btn text-center">
                       <p>
                         Haven't Any Account Yet?{" "}
-                        <a href="register">Click Here</a>
+                        <a href="/register">Click Here</a>
                       </p>
                     </div>
                   </form>

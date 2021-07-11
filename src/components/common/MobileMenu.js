@@ -217,6 +217,20 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
+                Gallery <i className="las la-plus"></i>
+              </p>
+            </button>
+            <div className="mb-menu-content">
+              <ul className="list-unstyled">
+                <li>
+                  <Link to={`/gallery`}>Our Gallery</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mb-menu-item">
+            <button className="mb-menu-button">
+              <p>
                 E-Pay <i className="las la-plus"></i>
               </p>
             </button>

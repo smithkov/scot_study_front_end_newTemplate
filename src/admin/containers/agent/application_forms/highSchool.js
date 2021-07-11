@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AgentSidebar, TheFooter, TheHeaderAgent } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import { years } from "../../../utility/constants";
 import HighestQualification from "../../../containers/highestQualification";
 

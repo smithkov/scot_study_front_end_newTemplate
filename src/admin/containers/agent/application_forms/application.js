@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TheContent, TheSidebar, TheFooter, TheHeaderAgent } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
 import { Link, Redirect } from "react-router-dom";
 import { CCard, CCardBody, CCardFooter, CCardHeader } from "@coreui/react";

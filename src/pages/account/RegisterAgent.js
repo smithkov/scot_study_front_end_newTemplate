@@ -233,7 +233,7 @@ function RegisterAgent(props) {
                   <div className="have_account-btn text-center">
                     <p>
                       Already have an account?{" "}
-                      <Link to="/login">Login Here</Link>
+                      <Link to="/agent-login">Login Here</Link>
                     </p>
                   </div>
                 </div>

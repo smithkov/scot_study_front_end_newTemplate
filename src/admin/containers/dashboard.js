@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
-import clientService from "../services/clientService";
+import clientService from "../../services/clientService";
 
 import { asyncLocalStorage, TOKEN, USER, PENDING } from "../utility/global";
 import {

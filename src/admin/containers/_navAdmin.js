@@ -87,19 +87,37 @@ const _nav = [
 
   {
     _tag: "CSidebarNavDropdown",
-    name: "Banners",
+    name: "Course Photos",
     route: "/base",
     icon: "cil-chevron-right",
     _children: [
       {
         _tag: "CSidebarNavItem",
         name: "List",
-        to: "/banner_list",
+        to: "/course_photo_list",
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Create",
-        to: "/banner_save",
+        name: "Upload",
+        to: "/course_photo_upload",
+      },
+    ],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Gallery",
+    route: "/base",
+    icon: "cil-chevron-right",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "List",
+        to: "/gallery_list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Upload",
+        to: "/gallery_upload",
       },
     ],
   },

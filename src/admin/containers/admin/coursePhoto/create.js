@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import Moment from "react-moment";
 import { imageStyles, tinyApiKey } from "../../../utility/constants";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
@@ -36,74 +36,80 @@ import {
   Flag,
   TextArea,
 } from "semantic-ui-react";
-
 const WidgetsDropdown = lazy(() =>
   import("../../../views/widgets/WidgetsDropdown.js")
 );
 
-const BannerUpdate = (props) => {
+const CoursePhotoUpload = (props) => {
   const [loading, setLoading] = useState(false);
 
   let [userId, setUserId] = useState("");
   let [title, setTitle] = useState("");
+  let [photoPreview, setPhotoPreview] = useState("");
   let [id, setId] = useState("");
   let [url, setUrl] = useState("");
-  let [bannerPreview, setBannerPreview] = useState("");
 
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  let [selectedFaculty, setSelectedFaculty] = useState("");
+  const [faculties, setFaculties] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const bannerId = props.match.params.id;
+      const getUser = await asyncLocalStorage.getUser();
+      const userId = getUser.id;
+      setUserId(userId);
 
-      const findBannerResult = await clientService.findBannerById({
-        id: bannerId,
+      const facultyResult = await clientService.faculties();
+      let facultyData = facultyResult.data.data.map((item) => {
+        return {
+          key: item.id,
+          value: item.id,
+          text: item.name,
+        };
       });
-
-      const bannerData = findBannerResult.data.data;
-      if (bannerData) {
-        const { id, title, url } = bannerData;
-        setId(id);
-        setUrl(url);
-        setTitle(title);
-        setBannerPreview(url);
-      }
+      setFaculties(facultyData);
     })();
   }, []);
 
-  const bannerChangedHandler = (event) => {
+  const photoChangedHandler = (event) => {
     setUrl(event.target.files[0]);
 
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      setBannerPreview(reader.result);
+      setPhotoPreview(reader.result);
     };
 
     reader.readAsDataURL(event.target.files[0]);
   };
 
-  const onChange = async (e) => {
-    const value = e.target.value;
+  const onChangeDropdown = async (e, data) => {
+    const value = data.value;
 
-    setUrl(value);
+    setSelectedFaculty(value);
   };
   const update = async (e) => {
-    setLoading(true);
-    let formData = new FormData();
-    formData.append("id", id);
-    formData.append("title", title);
-    formData.append("url", url);
+    if (selectedFaculty != "") {
+      e.preventDefault();
+      setLoading(true);
+      let formData = new FormData();
+      formData.append("facultyId", selectedFaculty);
+      formData.append("url", url);
+      formData.append("id", "");
 
-    const save = await clientService.saveBanner(formData, id);
-    if (!save.data.error) {
-      props.history.push("/banner_list");
+      const save = await clientService.uploadCoursePhoto(formData);
+      if (!save.data.error) {
+        props.history.push("/course_photo_list");
+      } else {
+        setIsShowMessage(true);
+        setErrorMessage("Could not be saved");
+      }
+      setLoading(false);
     } else {
       setIsShowMessage(true);
-      setErrorMessage("Could not be saved");
+      setErrorMessage("Faculty is required!");
     }
-    setLoading(false);
   };
   return (
     <div className="c-app c-default-layout">
@@ -128,24 +134,32 @@ const BannerUpdate = (props) => {
               <>
                 <Form onSubmit={update}>
                   <Form.Field required>
-                    <label>Title </label>
-                    <TextArea
-                      onChange={onChange}
-                      name="title"
-                      value={title}
-                      placeholder="Title"
+                    <label>Faculty</label>
+                    <Dropdown
+                      required
+                      fluid
+                      selection
+                      search
+                      name="selectedFaculty"
+                      label="Faculty"
+                      placeholder={"Faculty"}
+                      options={faculties}
+                      onChange={onChangeDropdown}
                     />
                   </Form.Field>
 
                   <Form.Field>
                     <label>
-                      {" "}
-                      Banner (Dimension Width:1679px x Height:503px){" "}
+                      {/* Banner (Dimension Width:1679px x Height:503px) */}
                     </label>
-                    <input type="file" onChange={bannerChangedHandler} />
+                    <input
+                      name="photo"
+                      type="file"
+                      onChange={photoChangedHandler}
+                    />
                   </Form.Field>
                   <br />
-                  <Image style={imageStyles(200)} src={bannerPreview} />
+                  <Image style={imageStyles(200)} src={photoPreview} />
 
                   <hr />
 
@@ -166,4 +180,4 @@ const BannerUpdate = (props) => {
   );
 };
 
-export default BannerUpdate;
+export default CoursePhotoUpload;

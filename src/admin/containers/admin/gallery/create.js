@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import Moment from "react-moment";
 import { imageStyles, tinyApiKey } from "../../../utility/constants";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
@@ -40,14 +40,15 @@ const WidgetsDropdown = lazy(() =>
   import("../../../views/widgets/WidgetsDropdown.js")
 );
 
-const BannerForm = (props) => {
+const GalleryUpload = (props) => {
   const [loading, setLoading] = useState(false);
 
   let [userId, setUserId] = useState("");
-  let [title, setTitle] = useState("");
-  let [bannerPreview, setBannerPreview] = useState("");
+
+  let [photoPreview, setPhotoPreview] = useState("");
   let [id, setId] = useState("");
   let [url, setUrl] = useState("");
+
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -59,33 +60,28 @@ const BannerForm = (props) => {
     })();
   }, []);
 
-  const bannerChangedHandler = (event) => {
+  const photoChangedHandler = (event) => {
     setUrl(event.target.files[0]);
 
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      setBannerPreview(reader.result);
+      setPhotoPreview(reader.result);
     };
 
     reader.readAsDataURL(event.target.files[0]);
   };
 
-  const onChange = async (e) => {
-    const value = e.target.value;
-
-    setTitle(value);
-  };
   const update = async (e) => {
+    e.preventDefault();
     setLoading(true);
     let formData = new FormData();
-    formData.append("title", title);
     formData.append("url", url);
     formData.append("id", "");
 
-    const save = await clientService.saveBanner(formData);
+    const save = await clientService.uploadGallery(formData);
     if (!save.data.error) {
-      props.history.push("/banner_list");
+      props.history.push("/gallery_list");
     } else {
       setIsShowMessage(true);
       setErrorMessage("Could not be saved");
@@ -114,24 +110,18 @@ const BannerForm = (props) => {
               )}
               <>
                 <Form onSubmit={update}>
-                  <Form.Field required>
-                    <label>Title </label>
-                    <TextArea
-                      onChange={onChange}
-                      name="title"
-                      value={title}
-                      placeholder="Title"
-                    />
-                  </Form.Field>
-
                   <Form.Field>
                     <label>
-                      Banner (Dimension Width:1679px x Height:503px)
+                      {/* Banner (Dimension Width:1679px x Height:503px) */}
                     </label>
-                    <input type="file" onChange={bannerChangedHandler} />
+                    <input
+                      name="photo"
+                      type="file"
+                      onChange={photoChangedHandler}
+                    />
                   </Form.Field>
                   <br />
-                  <Image style={imageStyles(200)} src={bannerPreview} />
+                  <Image style={imageStyles(200)} src={photoPreview} />
 
                   <hr />
 
@@ -152,4 +142,4 @@ const BannerForm = (props) => {
   );
 };
 
-export default BannerForm;
+export default GalleryUpload;

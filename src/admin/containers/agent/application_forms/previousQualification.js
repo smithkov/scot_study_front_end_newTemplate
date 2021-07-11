@@ -5,7 +5,7 @@ import {
   TheFooter,
   TheHeaderAgent,
 } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import PreviousQualification from "../../../containers/previousQualification";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
 import { years } from "../../../utility/constants";

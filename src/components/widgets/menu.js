@@ -99,6 +99,28 @@ function Menu(props) {
             About Us <i className="las"></i>
           </Link>
         </li>
+        {!props.showBtn ? (
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={"/gallery"}
+              data-toggle="dropdown"
+            >
+              Gallery <i className="las"></i>
+            </Link>
+          </li>
+        ) : (
+          ""
+        )}
+        {/* <li className="nav-item dropdown">
+          <Link
+            className="nav-link dropdown-toggle"
+            to="/gallery"
+            data-toggle="dropdown"
+          >
+            Gallery <i className="las"></i>
+          </Link>
+        </li> */}
         <li className="nav-item dropdown">
           <Link
             className="nav-link dropdown-toggle"

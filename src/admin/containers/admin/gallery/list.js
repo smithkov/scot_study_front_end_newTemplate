@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import Moment from "react-moment";
 import { imageStyles } from "../../../utility/constants";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
@@ -37,23 +37,21 @@ import {
   TextArea,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-const WidgetsDropdown = lazy(() =>
-  import("../../../views/widgets/WidgetsDropdown.js")
-);
 
-const InstitutionList = (props) => {
+const GalleryList = (props) => {
   const [loading, setLoading] = useState(false);
   const [hasData, setHasData] = useState(false);
 
-  let [banners, setBanners] = useState([]);
+  let [galleries, setGalleries] = useState([]);
 
   useEffect(() => {
     (async () => {
       const getUser = await asyncLocalStorage.getUser();
       const userId = getUser.id;
 
-      const bannerResult = await clientService.banners();
-      setBanners(bannerResult.data.data);
+      const result = await clientService.findAllGalleries();
+
+      setGalleries(result.data.data);
       setHasData(true);
     })();
   }, []);
@@ -72,26 +70,22 @@ const InstitutionList = (props) => {
               <>
                 <CCard accentColor="primary">
                   <CCardHeader>
-                    <h4>Banner List</h4>
+                    <h4>Gallery</h4>
                   </CCardHeader>
                   <CCardBody>
                     {hasData ? (
                       <Table singleLine>
                         <Table.Header>
                           <Table.Row>
-                            <Table.HeaderCell>Title</Table.HeaderCell>
                             <Table.HeaderCell></Table.HeaderCell>
                             <Table.HeaderCell>Edit</Table.HeaderCell>
                           </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
-                          {banners.map((item) => {
+                          {galleries.map((item) => {
                             return (
                               <Table.Row>
-                                <Table.Cell>
-                                  <h4>{item.title}</h4>
-                                </Table.Cell>
                                 <Table.Cell>
                                   <Image
                                     style={imageStyles(100)}
@@ -100,7 +94,7 @@ const InstitutionList = (props) => {
                                 </Table.Cell>
 
                                 <Table.Cell>
-                                  <Link to={`/banner_update/${item.id}`}>
+                                  <Link to={`/gallery_update/${item.id}`}>
                                     <Icon color="blue" name="edit" />
                                   </Link>
                                 </Table.Cell>
@@ -125,4 +119,4 @@ const InstitutionList = (props) => {
   );
 };
 
-export default InstitutionList;
+export default GalleryList;

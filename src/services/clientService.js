@@ -176,6 +176,13 @@ class ClientService {
   findAllAgents = async (data) => {
     return http.post(`${SERVER_URL}/findAllAgents`, data);
   };
+  findAllCoursesPhotos = async () => {
+    return http.post(`${SERVER_URL}/coursePhotos`);
+  };
+
+  findAllGalleries = async () => {
+    return http.post(`${SERVER_URL}/galleries`);
+  };
 
   allUsers = async () => {
     return http.post(`${SERVER_URL}/allUsers`);
@@ -193,8 +200,25 @@ class ClientService {
     return http.post(`${SERVER_URL}/banners`);
   };
 
-  findBannerById = async (data) => {
-    return http.post(`${SERVER_URL}/findBannerById`, data);
+  uploadCoursePhoto = async (data) => {
+    return http.post(`${SERVER_URL}/uploadCoursePhoto`, data);
+  };
+
+  uploadGallery = async (data) => {
+    return http.post(`${SERVER_URL}/uploadGallery`, data);
+  };
+
+  //Below router reassigns course photos
+  autoRunCoursePhotoUpdate = async () => {
+    return http.post(`${SERVER_URL}/autoCoursePhotoUpdate`);
+  };
+
+  findCoursePhotoById = async (data) => {
+    return http.post(`${SERVER_URL}/findCoursePhotoById`, data);
+  };
+
+  findGalleryById = async (data) => {
+    return http.post(`${SERVER_URL}/findGalleryById`, data);
   };
 
   findApplicationsByUser = async (data) => {
@@ -236,11 +260,11 @@ class ClientService {
   findInstitutionById = async (data) => {
     return http.post(`${SERVER_URL}/findInstitutionById`, data);
   };
-  findFacultyPhotos = async (data) => {
-    return http.post(`${SERVER_URL}/findFacultyPhotos`, data);
-  };
-  findAllPhotos = async () => {
-    return http.post(`${SERVER_URL}/findAllPhotos`);
-  };
+  // findFacultyPhotos = async (data) => {
+  //   return http.post(`${SERVER_URL}/findFacultyPhotos`, data);
+  // };
+  // findAllPhotos = async () => {
+  //   return http.post(`${SERVER_URL}/findAllPhotos`);
+  // };
 }
 export default new ClientService();

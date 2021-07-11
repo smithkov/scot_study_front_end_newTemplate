@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import Moment from "react-moment";
 import { imageStyles, tinyApiKey } from "../../../utility/constants";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";

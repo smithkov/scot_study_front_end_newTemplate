@@ -51,53 +51,64 @@ class Footer extends Component {
                   <ul className="list-unstyled">
                     <li>
                       <Link to={"/"}>
-                        <i className="las la-angle-right"></i>General Info
+                        <i className="las la-angle-right"></i>Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/institutions"}>
+                        <i className="las la-angle-right"></i>Institutions
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to={"/courses"}>
+                        <i className="las la-angle-right"></i>Courses
                       </Link>
                     </li>
                     <li>
                       <Link to={"/"}>
-                        <i className="las la-angle-right"></i>Help Center
+                        <i className="las la-angle-right"></i>Compare
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
-                        <i className="las la-angle-right"></i>Our Services
+                      <Link to={"/contact"}>
+                        <i className="las la-angle-right"></i>Contact
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
-                        <i className="las la-angle-right"></i>Privacy Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={"/"}>
-                        <i className="las la-angle-right"></i>Online Support
+                      <Link to={"/about"}>
+                        <i className="las la-angle-right"></i>About Us
                       </Link>
                     </li>
                   </ul>
                   <ul className="list-unstyled">
                     <li>
-                      <Link to={"/"}>
-                        <i className="las la-angle-right"></i>General Info
+                      <Link to="/gallery">
+                        <i className="las la-angle-right"></i>Gallery
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
+                      <Link to={"/contact"}>
                         <i className="las la-angle-right"></i>Help Center
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
+                      <Link to={"/about"}>
                         <i className="las la-angle-right"></i>Our Services
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
+                      <a
+                        target="_blank"
+                        href={
+                          "https://www.freeprivacypolicy.com/live/7b6cada2-2648-4ac4-af00-fbdd6aacdc3b"
+                        }
+                      >
                         <i className="las la-angle-right"></i>Privacy Policy
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/"}>
+                      <Link to={"/"}>
                         <i className="las la-angle-right"></i>Online Support
                       </Link>
                     </li>

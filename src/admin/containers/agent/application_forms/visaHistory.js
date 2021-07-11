@@ -5,7 +5,7 @@ import {
   TheFooter,
   TheHeaderAgent,
 } from "../../index";
-import clientService from "../../../services/clientService";
+import clientService from "../../../../services/clientService";
 import { CCard, CCardBody, CCardFooter, CCardHeader } from "@coreui/react";
 
 import {

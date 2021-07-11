@@ -86,32 +86,37 @@ function FooterTwo() {
                 <h5>Useful Links</h5>
                 <ul className="list-unstyled">
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to={"/"}>
                       <i className="las la-angle-right"></i>Home
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to={"/institutions"}>
                       <i className="las la-angle-right"></i>Institutions
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to="gallery">
+                      <i className="las la-angle-right"></i>Gallery
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/courses"}>
                       <i className="las la-angle-right"></i>Courses
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to={"/"}>
                       <i className="las la-angle-right"></i>Compare
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to={"/contact"}>
                       <i className="las la-angle-right"></i>Contact
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/"}>
+                    <Link to={"/about"}>
                       <i className="las la-angle-right"></i>About Us
                     </Link>
                   </li>
