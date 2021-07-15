@@ -31,7 +31,7 @@ function StickyMenu() {
           <Row>
             <Col md="3">
               <div className="logo">
-                <Link to={process.env.PUBLIC_URL + "/"}>
+                <Link to={"/"}>
                   <img
                     src={process.env.PUBLIC_URL + "/assets/images/logo.png"}
                     alt=""

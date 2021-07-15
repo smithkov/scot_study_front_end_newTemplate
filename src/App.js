@@ -9,12 +9,14 @@ import CourseGrid from "./pages/courses/CourseGrid";
 import CourseFaculty from "./pages/courses/CourseFaculty";
 import CourseList from "./pages/courses/CourseList";
 import CourseDetails from "./pages/courses/CourseDetails";
+import Compare from "./pages/courses/Compare";
 import Instructor from "./pages/instructor/Instructors";
 import InstructorDetails from "./pages/instructor/InstructorDetails";
 import Gallery from "./pages/gallery/Gallery";
 //import Events from "./pages/institution/Events";
 import InstitutionDetail from "./pages/institution/institutionDetail";
 import Institutions from "./pages/institution/institutions";
+import PhdApplication from "./pages/account/phdApplication";
 import Login from "./pages/account/Login";
 import Register from "./pages/account/Register";
 import LoginAgent from "./pages/account/LoginAgent";
@@ -117,6 +119,16 @@ const GalleryUpdate = React.lazy(() =>
   import("./admin/containers/admin/gallery/update")
 );
 
+const TestimoniallList = React.lazy(() =>
+  import("./admin/containers/admin/testimonial/list")
+);
+const TestimonialCreate = React.lazy(() =>
+  import("./admin/containers/admin/testimonial/create")
+);
+const TestimonialUpdate = React.lazy(() =>
+  import("./admin/containers/admin/testimonial/update")
+);
+
 const InstitutionList = React.lazy(() =>
   import("./admin/containers/admin/institution/list")
 );
@@ -133,6 +145,10 @@ const InstitutionUpdate = React.lazy(() =>
 
 const AdminDashboard = React.lazy(() =>
   import("./admin/containers/admin/adminDashboard")
+);
+
+const PhdApplicationList = React.lazy(() =>
+  import("./admin/containers/admin/phdApplicationList")
 );
 
 const AgentDashboard = React.lazy(() =>
@@ -192,6 +208,7 @@ function App() {
           <Route path={`/faculty-courses/:id`} component={CourseFaculty} />
           <Route path="/course-list" component={CourseList} />
           <Route path="/course-details/:id" component={CourseDetails} />
+          <Route path="/compare" component={Compare} />
           <Route
             path={`${process.env.PUBLIC_URL + "/instructor"}`}
             component={Instructor}
@@ -207,6 +224,7 @@ function App() {
           path={`${process.env.PUBLIC_URL + "/events"}`}
           component={Events}
         /> */}
+          <Route path="/phd_application" component={PhdApplication} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/agent-login" component={LoginAgent} />
@@ -319,11 +337,33 @@ function App() {
             name="Home"
             component={ProtectedRoute(GalleryUpload)}
           />
+          <Route
+            path="/testimonial_list"
+            name="Home"
+            component={ProtectedRoute(TestimoniallList)}
+            // render={(props) => <CourseList {...props} />}
+          />
+          <Route
+            path="/testimonial_update/:id"
+            name="Home"
+            component={ProtectedRoute(TestimonialUpdate)}
+            //render={(props) => <CourseUpdate {...props} />}
+          />
+          <Route
+            path="/testimonial_create"
+            name="Home"
+            component={ProtectedRoute(TestimonialCreate)}
+          />
           <Route path="/dashboard" component={ProtectedRoute(Dashboard)} />
           <Route
             path="/admin_dashboard"
             name="Home"
             component={ProtectedRoute(AdminDashboard)}
+          />
+          <Route
+            path="/phd_application_list"
+            name="Home"
+            component={ProtectedRoute(PhdApplicationList)}
           />
           <Route
             path="/agent_dashboard"

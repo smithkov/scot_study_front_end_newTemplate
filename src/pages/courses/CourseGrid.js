@@ -68,12 +68,12 @@ class CourseGrid extends Component {
     let totalLoadLength = totalLoad.length;
 
     this.setState({
+      courses: result.data.data,
       totalLoad,
       isLoading: false,
       isEmpty: totalLoadLength > 0 ? false : true,
       isDisablePrev: offset < initialLimit ? true : false,
       isDisableNext: initialLimit > totalLoadLength ? true : false,
-      courses: result.data.data,
     });
   };
 

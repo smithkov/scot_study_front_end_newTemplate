@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import BackToTop from "./common/BackToTop";
 import { Styles } from "./styles/footerOne.js";
+import { social, contact } from "../utility/constants";
 
 class Footer extends Component {
   render() {
@@ -33,14 +34,16 @@ class Footer extends Component {
                   </p>
                   <ul className="list-unstyled">
                     <li>
-                      <i className="las la-map-marker"></i>121 Giles Street,
-                      Edinburgh EH6 6BZ, CA 94107
+                      <i className="las la-map-marker"></i>
+                      {contact.address},{`${contact.city} ${contact.postcode}`}
                     </li>
                     <li>
-                      <i className="las la-envelope"></i>info@scotstudy.co.uk
+                      <i className="las la-envelope"></i>
+                      {contact.email}
                     </li>
                     <li>
-                      <i className="las la-phone"></i>(234) 802 666 8008
+                      <i className="las la-phone"></i>
+                      {contact.phone1}
                     </li>
                   </ul>
                 </div>

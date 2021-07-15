@@ -4,14 +4,14 @@
     "uniqClass": "box-icon box1",
     "boxIcon": "flaticon-thumbs-like",
     "title": "Compare",
-    "subTitle": "You have the opportunity to compare courses, tuition fees, scholarships, and course start. "
+    "subTitle": "You have the opportunity to compare courses, tuition fees. "
   },
   {
     "id": "2",
     "uniqClass": "box-icon box2",
     "boxIcon": "flaticon-reading",
     "title": "Monitor your progression",
-    "subTitle": "You can easily track your application."
+    "subTitle": "You can easily track your application in no time."
   },
   {
     "id": "3",

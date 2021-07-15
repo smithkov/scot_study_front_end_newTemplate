@@ -5,6 +5,7 @@ import { BreadcrumbBox } from "../../components/common/Breadcrumb";
 import GoogleMap from "./GoogleMap";
 import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/contact.js";
+import { contact, social } from "../../utility/constants";
 
 function Contact() {
   useEffect(() => {
@@ -92,7 +93,7 @@ function Contact() {
                   </div>
                   <div className="box-content">
                     <h5>Our Location</h5>
-                    <p>121 Giles Street, Edinburgh EH6 6BZ.</p>
+                    <p>{`${contact.address}, ${contact.city} ${contact.postcode}`}</p>
                   </div>
                 </div>
                 <div className="contact-icon-box d-flex">
@@ -102,9 +103,9 @@ function Contact() {
                   <div className="box-content">
                     <h5>Email Address</h5>
                     <p>
-                      info@scotstudy.co.uk
+                      {contact.email}
                       <br />
-                      admissions@scotstudy.co.uk
+                      {contact.email2}
                     </p>
                   </div>
                 </div>
@@ -115,37 +116,32 @@ function Contact() {
                   <div className="box-content">
                     <h5>Phone Number</h5>
                     <p>
-                      +(234) 802 666 8008
+                      {contact.phone1}
                       <br />
-                      +(44) 758 677 0652
+                      {contact.phone2}
                     </p>
                   </div>
                 </div>
                 <div className="contact-social">
                   <ul className="social list-unstyled list-inline">
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a target="_blank" href={social.facebook}>
                         <i className="fab fa-facebook-f"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a target="_blank" href={social.twitter}>
                         <i className="fab fa-twitter"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a target="_blank" href={social.linkedIn}>
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
+                      <a target="_blank" href={social.youtube}>
                         <i className="fab fa-youtube"></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a href={process.env.PUBLIC_URL + "/"}>
-                        <i className="fab fa-dribbble"></i>
                       </a>
                     </li>
                   </ul>

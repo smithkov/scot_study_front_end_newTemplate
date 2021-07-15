@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Styles } from "./styles/sidebar.js";
+import { contact, social } from "../../utility/constants";
 
 function Sidebar() {
   useEffect(() => {
@@ -53,7 +54,7 @@ function Sidebar() {
             </Link>
           </div>
           <div>
-            <a href={process.env.PUBLIC_URL + "/"} id="close-sidebar">
+            <a href={"/"} id="close-sidebar">
               <i className="las la-times"></i>
             </a>
           </div>
@@ -135,39 +136,35 @@ function Sidebar() {
           <h5>Contact Us</h5>
           <ul className="list-unstyled">
             <li>
-              <i className="las la-map-marker"></i>121 Giles Street, Edinburgh
-              EH6 6BZ
+              <i className="las la-map-marker"></i>
+              {`${contact.address}, ${contact.city} ${contact.postcode}`}
             </li>
             <li>
-              <i className="las la-phone"></i>(234) 802 666 8008 Contact Us
-              info@scotstudy.co.uk
+              <i className="las la-phone"></i>${contact.phone1} Contact Us
+              {contact.email}
             </li>
           </ul>
         </div>
         <div className="side-social">
           <ul className="list-unstyled list-inline">
             <li className="list-inline-item">
-              <a href={process.env.PUBLIC_URL + "/"}>
+              <a href={social.facebook}>
                 <i className="fab fa-facebook-f"></i>
               </a>
             </li>
             <li className="list-inline-item">
-              <a href={process.env.PUBLIC_URL + "/"}>
+              <a target="_blank" href={social.twitter}>
                 <i className="fab fa-twitter"></i>
               </a>
             </li>
+
             <li className="list-inline-item">
-              <a href={process.env.PUBLIC_URL + "/"}>
-                <i className="fab fa-google"></i>
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href={process.env.PUBLIC_URL + "/"}>
+              <a href={social.linkedIn}>
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </li>
             <li className="list-inline-item">
-              <a href={process.env.PUBLIC_URL + "/"}>
+              <a href={social.instagram}>
                 <i className="fab fa-instagram"></i>
               </a>
             </li>

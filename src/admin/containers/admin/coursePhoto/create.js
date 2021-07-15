@@ -149,9 +149,7 @@ const CoursePhotoUpload = (props) => {
                   </Form.Field>
 
                   <Form.Field>
-                    <label>
-                      {/* Banner (Dimension Width:1679px x Height:503px) */}
-                    </label>
+                    <label>Photo (Dimension: Width:360px x Height:433px)</label>
                     <input
                       name="photo"
                       type="file"

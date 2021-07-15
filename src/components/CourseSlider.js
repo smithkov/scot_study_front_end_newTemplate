@@ -6,6 +6,7 @@ import Swiper from "react-id-swiper";
 import { Styles } from "./styles/courseSlider.js";
 import clientService from "../services/clientService";
 import Loading from "../components/widgets/loading";
+import { myRoutes } from "../utility/constants";
 
 class CourseSlider extends Component {
   state = {
@@ -77,7 +78,7 @@ class CourseSlider extends Component {
 
                       return (
                         <div className="course-item" key={i}>
-                          <Link to={`/faculty-courses/${item.id}`}>
+                          <Link to={myRoutes.facultyCourses(item.id)}>
                             <div
                               className="course-image"
                               style={{
@@ -90,20 +91,18 @@ class CourseSlider extends Component {
                                 <div className="img">
                                   <img src="" alt="" />
                                 </div>
-                                {/* <div className="title">
-                              <p>{data.authorName}</p>
-                              <span>{data.authorCourses}</span>
-                            </div> */}
                               </div>
-                              {/* <div className="course-price">
-                            <p>{data.price}</p>
-                          </div> */}
                             </div>
                           </Link>
-                          <div className="course-content">
-                            <h6 className="heading">
-                              <Link to="">{item.name}</Link>
-                            </h6>
+                          <div
+                            style={{ textAlign: "center" }}
+                            className="course-content"
+                          >
+                            <h4 className="heading">
+                              <Link to={myRoutes.facultyCourses(item.id)}>
+                                {item.name}
+                              </Link>
+                            </h4>
                             {/* <p className="desc">{data.courseDesc}</p> */}
                             {/* <div className="course-face d-flex justify-content-between">
                           <div className="duration">

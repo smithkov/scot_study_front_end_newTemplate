@@ -15,6 +15,13 @@ const _nav = [
     to: "/allAgents",
     icon: "cil-grid",
   },
+
+  {
+    _tag: "CSidebarNavItem",
+    name: "PhD Applications",
+    to: "/phd_application_list",
+    icon: "cil-grid",
+  },
   // {
   //   _tag: "CSidebarNavItem",
   //   name: "Academic Background",
@@ -51,7 +58,7 @@ const _nav = [
     _tag: "CSidebarNavDropdown",
     name: "Institutions",
     route: "/base",
-    icon: "cil-grid",
+    icon: "cil-chevron-right",
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -118,6 +125,25 @@ const _nav = [
         _tag: "CSidebarNavItem",
         name: "Upload",
         to: "/gallery_upload",
+      },
+    ],
+  },
+
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Testimonial",
+    route: "/base",
+    icon: "cil-chevron-right",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "List",
+        to: "/testimonial_list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Upload",
+        to: "/testimonial_create",
       },
     ],
   },

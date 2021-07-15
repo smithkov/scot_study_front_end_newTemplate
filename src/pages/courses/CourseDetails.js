@@ -15,8 +15,10 @@ function CourseDetails(props) {
   const [course, setCourse] = useState({});
   const [hasData, setHasData] = useState(false);
   useEffect(() => {
+    alert(JSON.stringify(courseId));
     (async () => {
       const result = await clientService.findCourseById(courseId);
+
       setCourse(result.data.data);
       setHasData(true);
     })();

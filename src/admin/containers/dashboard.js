@@ -210,7 +210,7 @@ const Dashboard = (props) => {
                 ) : (
                   ""
                 )}
-                <Button as="a" href="/application" fluid positive>
+                <Button as="a" href="/edu_background" fluid positive>
                   {hasApplied ? "Start a new application" : "Apply"}
                 </Button>
               </>

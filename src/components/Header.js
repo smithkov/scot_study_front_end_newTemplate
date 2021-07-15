@@ -7,6 +7,7 @@ import StickyMenu from "./common/StickyMenu";
 import Menu from "../components/widgets/menu.js";
 import MobileMenu from "./common/MobileMenu";
 import { Styles } from "./styles/header.js";
+import { contact, social } from "../utility/constants";
 import clientService from "../services/clientService";
 
 class Header extends Component {
@@ -23,21 +24,17 @@ class Header extends Component {
     return (
       <Styles>
         {/* Topbar */}
-        <section className="top-bar">
+        {/* <section className="top-bar">
           <Container>
             <Row>
               <Col lg="6" md="5">
                 <div className="bar-left">
                   <ul className="list-unstyled list-inline">
                     <li className="list-inline-item">
-                      <i className="las la-map-marker"></i>121 Giles Street,
-                      Edinburgh EH6 6BZ Avenue, CA 94107.
+                      <i className="las la-map-marker"></i>
+                      {`${contact.address}, ${contact.city}, ${contact.postcode} `}
                     </li>
-                    <li className="list-inline-item">
-                      <Link to={process.env.PUBLIC_URL + "/faq"}>
-                        Have Questions
-                      </Link>
-                    </li>
+                  
                   </ul>
                 </div>
               </Col>
@@ -45,31 +42,22 @@ class Header extends Component {
                 <div className="bar-right d-flex justify-content-end">
                   <ul className="list-unstyled list-inline bar-social">
                     <li className="list-inline-item">
-                      <Link
-                        target="_blank"
-                        to="https://www.facebook.com/Scot-study-107271957506468/"
-                      >
+                      <Link target="_blank" to={social.facebook}>
                         <i className="fab fa-facebook-f"></i>
                       </Link>
                     </li>
                     <li className="list-inline-item">
-                      <Link
-                        target="_blank"
-                        to="https://twitter.com/scotstudy?lang=en"
-                      >
+                      <Link target="_blank" to={social.twitter}>
                         <i className="fab fa-twitter"></i>
                       </Link>
                     </li>
                     <li className="list-inline-item">
-                      <Link target="_blank" to={process.env.PUBLIC_URL + "/"}>
+                      <Link target="_blank" to={social.linkedIn}>
                         <i className="fab fa-linkedin-in"></i>
                       </Link>
                     </li>
                     <li className="list-inline-item">
-                      <Link
-                        target="_blank"
-                        to="https://www.instagram.com/scotstudy_/?hl=en-gb"
-                      >
+                      <Link target="_blank" to={social.instagram}>
                         <i className="fab fa-instagram"></i>
                       </Link>
                     </li>
@@ -110,7 +98,7 @@ class Header extends Component {
                       </Link>
                     </li>
                     <li className="list-inline-item">
-                      <Link to="/registration">
+                      <Link to="/register">
                         <i className="las la-user-edit"></i>Register
                       </Link>
                     </li>
@@ -119,41 +107,25 @@ class Header extends Component {
               </Col>
             </Row>
           </Container>
-        </section>
+        </section> */}
 
         {/* Logo Area */}
-        <section className="logo-area">
+        {/* <section className="logo-area">
           <Container>
             <Row>
               <Col md="3">
                 <div className="logo">
                   <a to="/">
-                    <img src={"/assets/images/logo.png"} alt="" />
+                    <img src={"/assets/images/logoMain.png"} alt="" />
                   </a>
                 </div>
               </Col>
               <Col md="9">
                 <div className="logo-contact-box d-flex justify-content-end">
-                  <div className="emcontact-box d-flex">
-                    <div className="box-icon">
-                      <i className="flaticon-phone-call"></i>
-                    </div>
-                    <div className="box-content">
-                      <p>Call Us Now</p>
-                      <span>(234) 802 666 8008</span>
-                    </div>
-                  </div>
-                  <div className="emcontact-box d-flex">
-                    <div className="box-icon">
-                      <i className="flaticon-envelope"></i>
-                    </div>
-                    <div className="box-content">
-                      <p>Contact</p>
-                      <span>info@scotstudy.co.uk</span>
-                    </div>
+                  <div className="emcontact-box d-flex">               
                   </div>
                   <div className="apply-btn">
-                    <Link to="/register">
+                    <Link to="/login">
                       <i className="las la-clipboard-list"></i>Apply Now
                     </Link>
                   </div>
@@ -161,7 +133,7 @@ class Header extends Component {
               </Col>
             </Row>
           </Container>
-        </section>
+        </section> */}
 
         {/* Navbar */}
         <section className="main-menu">

@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "backgroundImage": "slider-1.jpg",
+    "backgroundImage": "slider1.png",
     "uniqClass": "slider-box slider-box1",
     "title": "Welcome To Scot-Study.",
     "desc": "Best University In This Region Join With Us Today",
@@ -10,7 +10,7 @@
   },
   {
     "id": "2",
-    "backgroundImage": "slider-2.jpg",
+    "backgroundImage": "slider2.png",
     "uniqClass": "slider-box slider-box2 text-right",
     "title": "Welcome To Scot-Study.",
     "desc": "Best University In This Region Join With Us Today",

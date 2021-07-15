@@ -63,29 +63,29 @@ const English = (props) => {
     }
   };
   const update = async () => {
-    if (selectedName != "") {
-      setLoading(true);
+    // if (selectedName != "") {
+    setLoading(true);
 
-      const updateUser = await clientService.saveEnglishTest({
-        score: score,
-        name: selectedName,
-        userId: userId,
-      });
+    const updateUser = await clientService.saveEnglishTest({
+      score: score,
+      name: selectedName,
+      userId: userId,
+    });
 
-      const result = updateUser.data;
-      if (!result.error) {
-        setIsShowMessage(true);
-        setErrorMessage(result.message);
-      }
-      setLoading(false);
-      if (!hasApplied) {
-        props.history.push("/sponsorship");
-      }
-    } else {
+    const result = updateUser.data;
+    if (!result.error) {
       setIsShowMessage(true);
-      setErrorMessage("Please select test type");
+      setErrorMessage(result.message);
     }
-    window.scrollTo(500, 0);
+    setLoading(false);
+    if (!hasApplied) {
+      props.history.push("/sponsorship");
+    }
+    // } else {
+    //   setIsShowMessage(true);
+    //   setErrorMessage("Please select test type");
+    // }
+    //window.scrollTo(500, 0);
   };
   const onChange = async (e) => {
     const value = e.target.value;
@@ -120,7 +120,7 @@ const English = (props) => {
                     ""
                   )}
                   <Form onSubmit={update}>
-                    <Form.Field required>
+                    <Form.Field>
                       <label>Test type</label>
                       <Dropdown
                         selection
@@ -134,13 +134,12 @@ const English = (props) => {
                       />
                     </Form.Field>
 
-                    <Form.Field required>
+                    <Form.Field>
                       <label>Score</label>
                       <input
                         name="score"
                         value={score}
                         placeholder="Score"
-                        required
                         onChange={onChange}
                       />
                     </Form.Field>

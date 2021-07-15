@@ -54,6 +54,7 @@ function InstitutionDetail(props) {
 
   useEffect(() => {
     (async () => {
+      setInstitution(id);
       const result = await clientService.findInstitutionById({ id });
       const facultyResult = await clientService.facultiesLight();
       const degreeTypeResult = await clientService.degreeTypes();
@@ -159,18 +160,8 @@ function InstitutionDetail(props) {
                       <div className="event-icon">
                         <ul className="list-unstyled list-inline">
                           <li className="list-inline-item">
-                            <i className="las la-calendar"></i> 19 February,
-                            2021
-                          </li>
-                          <li className="list-inline-item">
-                            <i className="las la-clock"></i> 10:30am
-                          </li>
-                          <li className="list-inline-item">
-                            <i className="las la-map-marker"></i> 121 Giles
-                            Street, Edinburgh EH6 6BZ, CA
-                          </li>
-                          <li className="list-inline-item">
-                            <i className="las la-copy"></i> Social Science
+                            <i className="las la-map-marker"></i>{" "}
+                            {institution.City ? institution.City.name : ""}
                           </li>
                         </ul>
                       </div>

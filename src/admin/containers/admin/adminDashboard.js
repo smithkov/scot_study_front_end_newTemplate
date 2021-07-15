@@ -83,7 +83,7 @@ const Dashboard = (props) => {
             <Grid.Column width={14}>
               <>
                 {/* <WidgetsDropdown /> */}
-                <CRow>
+                {/* <CRow>
                   <WidgetsDropdown
                     title={"Home"}
                     icon={"cil-home"}
@@ -104,7 +104,7 @@ const Dashboard = (props) => {
                     icon={"cil-inbox"}
                     color="success"
                   />
-                </CRow>
+                </CRow> */}
                 <Segment textAlign="center" color="blue">
                   <h3>Applications</h3>
                 </Segment>

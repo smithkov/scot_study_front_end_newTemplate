@@ -7,6 +7,7 @@ import StickyMenu from "./common/StickyMenu";
 import MobileMenu from "./common/MobileMenu";
 import { Styles } from "./styles/headerTwo.js";
 import Menu from "./widgets/menu";
+import { contact, social } from "../utility/constants";
 
 class HeaderTwo extends Component {
   render() {
@@ -20,14 +21,16 @@ class HeaderTwo extends Component {
                 <div className="bar-left">
                   <ul className="list-unstyled list-inline">
                     <li className="list-inline-item">
-                      <i className="las la-phone"></i>(234) 802 666 8008
+                      <i className="las la-phone"></i>
+                      {contact.phone1}
                     </li>
                     <li className="list-inline-item">
-                      <i className="las la-envelope"></i>info@scotstudy.co.uk
+                      <i className="las la-envelope"></i>
+                      {contact.email}
                     </li>
                     <li className="list-inline-item">
-                      <i className="las la-map-marker"></i>121 Giles Street, EH6
-                      6BZ, CA
+                      <i className="las la-map-marker"></i>
+                      {`${contact.address}, ${contact.city} ${contact.postcode}`}
                     </li>
                   </ul>
                 </div>
@@ -65,22 +68,22 @@ class HeaderTwo extends Component {
                   </ul>
                   <ul className="list-unstyled list-inline bar-social">
                     <li className="list-inline-item">
-                      <a href={"/"}>
-                        <i className="fab fa-facebook-f"></i>
+                      <a href={social.facebook}>
+                        <i target="_blank" className="fab fa-facebook-f"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={"/"}>
+                      <a target="_blank" href={social.twitter}>
                         <i className="fab fa-twitter"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={"/"}>
+                      <a target="_blank" href={social.linkedIn}>
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </li>
                     <li className="list-inline-item">
-                      <a href={"/"}>
+                      <a target="_blank" href={social.instagram}>
                         <i className="fab fa-instagram"></i>
                       </a>
                     </li>
@@ -104,7 +107,7 @@ class HeaderTwo extends Component {
               <Col md="3">
                 <div className="logo">
                   <a href="/">
-                    <img src={"/assets/images/logo.png"} alt="" />
+                    <img src={"/assets/images/logoMain.png"} alt="" />
                   </a>
                 </div>
               </Col>

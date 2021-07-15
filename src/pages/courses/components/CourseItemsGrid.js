@@ -3,6 +3,7 @@ import Datas from "../../../data/course/item.json";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import Pagination from "./../../../components/Pagination";
+import { myRoutes } from "../../../utility/constants";
 
 class CourseItemGrid extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class CourseItemGrid extends Component {
         {courses.map((item, i) => (
           <Col lg={isForInstitution ? 4 : 6} md={12} key={i}>
             <div className="course-item">
-              <Link to={`/course-details/${item.id}`}>
+              <Link to={myRoutes.courseDetail(item.id)}>
                 <div
                   className="course-image"
                   style={{
@@ -41,10 +42,18 @@ class CourseItemGrid extends Component {
               </Link>
               <div className="course-content">
                 <h6 className="heading">
-                  <Link to={``}>{item.name}</Link>
+                  <Link to={myRoutes.courseDetail(item.id)}>{item.name}</Link>
                 </h6>
                 <p className="desc">
-                  {item.isPopular ? "Popular" : item.intake}
+                  {item.intake}
+                  {item.isPopular ? (
+                    <span style={{ color: "green" }}> {` (Popular)`}</span>
+                  ) : (
+                    ""
+                  )}
+                  <span style={{ float: "right" }}>
+                    {item.scholarshipAmount != 0 ? "Scholarship available" : ""}
+                  </span>
                 </p>
                 <div className="course-face d-flex justify-content-between">
                   <div className="duration">
@@ -56,7 +65,7 @@ class CourseItemGrid extends Component {
 
                   <div className="student">
                     <p>
-                      <i className="las la-chair"></i>
+                      <i className="las la-graduation-cap"></i>
                       {item.DegreeType ? item.DegreeType.name : ""}
                     </p>
                   </div>

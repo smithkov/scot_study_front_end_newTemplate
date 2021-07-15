@@ -40,7 +40,7 @@ function Register(props) {
 
   const onChangeDropdown = async (e) => {
     const name = e.target.name;
-    const value = e.value;
+    const value = e.target.value;
 
     if (name == "selectedGender") {
       setSelectedGender(value);
@@ -231,7 +231,7 @@ function Register(props) {
                       <input
                         onChange={onChange}
                         type="email"
-                        name="email"
+                        name="contactEmail"
                         placeholder="Contact Email"
                         id="registration_email"
                       />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import clientService from "../../services/clientService";
+import { myRoutes } from "../../utility/constants";
 
 function Menu(props) {
   const [institutions, setInstitutions] = useState([]);
@@ -18,101 +19,102 @@ function Menu(props) {
       }
     });
     (async () => {
-      const result = await clientService.institutionsLighter();
+      const result = await clientService.institutionsForMenu();
       setInstitutions(result.data.data);
       setHasData(true);
     })();
   }, []);
 
   return (
-    <div className="menu-box d-flex justify-content-end">
-      <ul className="nav menu-nav">
-        <li className="nav-item dropdown active">
-          <Link
-            className="nav-link dropdown-toggle"
-            to="/"
-            data-toggle="dropdown"
-          >
-            Home <i className="las"></i>
-          </Link>
-        </li>
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to={process.env.PUBLIC_URL + "/"}
-            data-toggle="dropdown"
-          >
-            Institutions <i className="las la-angle-down"></i>
-          </Link>
-          <ul className="dropdown list-unstyled">
-            <li key={3} className="nav-item">
-              <Link className="nav-link" to={`/institutions`}>
-                All Institutions
-              </Link>
-            </li>
-            {hasData
-              ? institutions.map((item) => {
-                  return (
-                    <li key={item.id} className="nav-item">
-                      <Link className="nav-link" to={`/institution/${item.id}`}>
-                        {item.name}
-                      </Link>
-                    </li>
-                  );
-                })
-              : ""}
-          </ul>
-        </li>
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to="/courses"
-            data-toggle="dropdown"
-          >
-            Courses <i className="las"></i>
-          </Link>
-        </li>
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to={process.env.PUBLIC_URL + "/"}
-            data-toggle="dropdown"
-          >
-            Compare <i className="las"></i>
-          </Link>
-        </li>
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to={"/contact"}
-            data-toggle="dropdown"
-          >
-            Contact <i className="las"></i>
-          </Link>
-        </li>
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to="/about"
-            data-toggle="dropdown"
-          >
-            About Us <i className="las"></i>
-          </Link>
-        </li>
-        {!props.showBtn ? (
+    <>
+      <div className="menu-box d-flex justify-content-center">
+        <ul className="nav menu-nav">
+          <li className="nav-item dropdown active">
+            <Link
+              className="nav-link dropdown-toggle"
+              to="/"
+              data-toggle="dropdown"
+            >
+              Home <i className="las"></i>
+            </Link>
+          </li>
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
-              to={"/gallery"}
+              to={process.env.PUBLIC_URL + "/"}
+              data-toggle="dropdown"
+            >
+              Institutions <i className="las la-angle-down"></i>
+            </Link>
+            <ul className="dropdown list-unstyled">
+              {hasData
+                ? institutions.map((item) => {
+                    return (
+                      <li key={item.id} className="nav-item">
+                        <Link
+                          className="nav-link"
+                          to={
+                            item.isForMore
+                              ? myRoutes.institutions
+                              : myRoutes.institution(item.id)
+                          }
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    );
+                  })
+                : ""}
+            </ul>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={myRoutes.courses}
+              data-toggle="dropdown"
+            >
+              Courses <i className="las"></i>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={process.env.PUBLIC_URL + "/"}
+              data-toggle="dropdown"
+            >
+              Compare <i className="las"></i>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={myRoutes.contact}
+              data-toggle="dropdown"
+            >
+              Contact <i className="las"></i>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={myRoutes.about}
+              data-toggle="dropdown"
+            >
+              About Us <i className="las"></i>
+            </Link>
+          </li>
+
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={myRoutes.gallery}
               data-toggle="dropdown"
             >
               Gallery <i className="las"></i>
             </Link>
           </li>
-        ) : (
-          ""
-        )}
-        {/* <li className="nav-item dropdown">
+
+          {/* <li className="nav-item dropdown">
           <Link
             className="nav-link dropdown-toggle"
             to="/gallery"
@@ -121,26 +123,44 @@ function Menu(props) {
             Gallery <i className="las"></i>
           </Link>
         </li> */}
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to={process.env.PUBLIC_URL + "/"}
-            data-toggle="dropdown"
-          >
-            e-Pay <i className="las"></i>
-          </Link>
-        </li>
-      </ul>
-      {props.showBtn ? (
-        <div className="apply-btn">
-          <Link to={"/register"}>
-            <i className="las la-clipboard-list"></i>Apply Now
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
-    </div>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={process.env.PUBLIC_URL + "/"}
+              data-toggle="dropdown"
+            >
+              e-Pay <i className="las"></i>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link className="nav-link dropdown-toggle" data-toggle="dropdown">
+              Login <i className="las la-angle-down"></i>
+            </Link>
+            <ul className="dropdown list-unstyled">
+              <li key={1} className="nav-item">
+                <Link className="nav-link" to={`/login`}>
+                  User login
+                </Link>
+              </li>
+              <li key={2} className="nav-item">
+                <Link className="nav-link" to={`/agent-login`}>
+                  Agent login
+                </Link>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {/* {props.showBtn ? (
+          <div className="apply-btn">
+            <Link to={"/register"}>
+              <i className="las la-clipboard-list"></i>Apply Now
+            </Link>
+          </div>
+        ) : (
+          ""
+        )} */}
+      </div>
+    </>
   );
 }
 

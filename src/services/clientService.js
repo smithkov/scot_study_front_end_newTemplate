@@ -257,9 +257,46 @@ class ClientService {
     return http.post(`${SERVER_URL}/institutionsLighter`);
   };
 
+  institutionsForMenu = async () => {
+    return http.post(`${SERVER_URL}/institutionsForMenu`);
+  };
+
   findInstitutionById = async (data) => {
     return http.post(`${SERVER_URL}/findInstitutionById`, data);
   };
+
+  saveTestimonial = async (data) => {
+    return http.post(`${SERVER_URL}/testimonial`, data);
+  };
+
+  findAllTestimonial = async () => {
+    return http.post(`${SERVER_URL}/testimonials`);
+  };
+
+  findTestimonialById = async (data) => {
+    return http.post(`${SERVER_URL}/findTestimonialById`, data);
+  };
+
+  deleteTestimonial = async (id) => {
+    return http.delete(`${SERVER_URL}/testimonial/${id}`);
+  };
+
+  savePhdApplication = async (data) => {
+    return http.post(`${SERVER_URL}/savePhdApplication`, data);
+  };
+
+  findAllPhdApplications = async () => {
+    return http.post(`${SERVER_URL}/findPhdApplications`);
+  };
+
+  findAllPhdById = async (data) => {
+    return http.post(`${SERVER_URL}/findPhdApplicationById`, data);
+  };
+
+  findPhdQualifications = async () => {
+    return http.post(`${SERVER_URL}/findPhdQualifications`);
+  };
+
   // findFacultyPhotos = async (data) => {
   //   return http.post(`${SERVER_URL}/findFacultyPhotos`, data);
   // };

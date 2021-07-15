@@ -5,7 +5,7 @@ import "semantic-ui-css/semantic.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import { icons } from "./admin/assets/icons";
 
 import * as serviceWorker from "./serviceWorker";

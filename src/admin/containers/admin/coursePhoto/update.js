@@ -163,7 +163,9 @@ const CoursePhotoUpdate = (props) => {
                   <Form.Field>
                     <label>
                       {" "}
-                      {/* Banner (Dimension Width:1679px x Height:503px){" "} */}
+                      <label>
+                        Photo (Dimension: Width:360px x Height:433px)
+                      </label>
                     </label>
                     <input type="file" onChange={photoChangedHandler} />
                   </Form.Field>

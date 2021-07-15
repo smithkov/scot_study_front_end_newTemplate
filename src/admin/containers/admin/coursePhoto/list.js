@@ -55,7 +55,11 @@ const CoursePhotoList = (props) => {
       setHasData(true);
     })();
   }, []);
-
+  const autoRun = async () => {
+    setLoading(true);
+    const result = await clientService.autoRunCoursePhotoUpdate();
+    setLoading(false);
+  };
   return (
     <div className="c-app c-default-layout">
       <AdminSidebar />
@@ -68,10 +72,20 @@ const CoursePhotoList = (props) => {
             <Grid.Column width={1}></Grid.Column>
             <Grid.Column width={14}>
               <>
+                <Button
+                  type="button"
+                  loading={loading}
+                  onClick={autoRun}
+                  color="orange"
+                >
+                  Run Auto Update
+                </Button>
+                <br /> <br />
                 <CCard accentColor="primary">
                   <CCardHeader>
                     <h4>Photo List</h4>
                   </CCardHeader>
+
                   <CCardBody>
                     {hasData ? (
                       <Table singleLine>

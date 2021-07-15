@@ -86,41 +86,41 @@ const Application = (props) => {
       const userId = getUser.id;
       setUserId(userId);
 
-      const highestQuali = await clientService.findHighestQualification({
-        userId,
-      });
-      if (!highestQuali.data.data) {
-        props.history.push("/edu_background");
-      }
+      // const highestQuali = await clientService.findHighestQualification({
+      //   userId,
+      // });
+      // if (!highestQuali.data.data) {
+      //   props.history.push("/edu_background");
+      // }
 
-      const highSchool = await clientService.findHighSchool({
-        userId,
-      });
+      // const highSchool = await clientService.findHighSchool({
+      //   userId,
+      // });
 
-      if (!highSchool.data.data) {
-        props.history.push("/highSchool");
-      }
+      // if (!highSchool.data.data) {
+      //   props.history.push("/highSchool");
+      // }
 
-      const englishTest = await clientService.findEnglish({
-        userId,
-      });
+      // const englishTest = await clientService.findEnglish({
+      //   userId,
+      // });
 
-      if (!englishTest.data.data) {
-        props.history.push("/english_test");
-      }
+      // if (!englishTest.data.data) {
+      //   props.history.push("/english_test");
+      // }
 
-      const sponsor = await clientService.findSponsor({
-        userId,
-      });
-      if (!sponsor.data.data) {
-        props.history.push("/sponsorship");
-      }
-      const visaHistory = await clientService.findVisa({
-        userId,
-      });
-      if (!visaHistory.data.data) {
-        props.history.push("/visa_history");
-      }
+      // const sponsor = await clientService.findSponsor({
+      //   userId,
+      // });
+      // if (!sponsor.data.data) {
+      //   props.history.push("/sponsorship");
+      // }
+      // const visaHistory = await clientService.findVisa({
+      //   userId,
+      // });
+      // if (!visaHistory.data.data) {
+      //   props.history.push("/visa_history");
+      // }
 
       const findApplications = await clientService.findApplicationsByUser({
         userId,

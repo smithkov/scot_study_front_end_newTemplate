@@ -47,9 +47,9 @@ class CourseSidebar extends Component {
                     onChange={this.props.onChange}
                     type="text"
                     name="search"
-                    placeholder="Search Here"
+                    placeholder="Search course"
                   />
-                  <button type="submit">
+                  <button type="button">
                     <i className="las la-search"></i>
                   </button>
                 </form>
