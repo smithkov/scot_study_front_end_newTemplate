@@ -79,7 +79,7 @@ function Menu(props) {
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
-              to={process.env.PUBLIC_URL + "/"}
+              to={`/compare`}
               data-toggle="dropdown"
             >
               Compare <i className="las"></i>

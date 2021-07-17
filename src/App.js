@@ -7,7 +7,7 @@ import HomeTwo from "./HomeTwo";
 import About from "./pages/about/About";
 import CourseGrid from "./pages/courses/CourseGrid";
 import CourseFaculty from "./pages/courses/CourseFaculty";
-import CourseList from "./pages/courses/CourseList";
+// import CourseList from "./pages/courses/CourseList";
 import CourseDetails from "./pages/courses/CourseDetails";
 import Compare from "./pages/courses/Compare";
 import Instructor from "./pages/instructor/Instructors";
@@ -206,7 +206,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/courses" component={CourseGrid} />
           <Route path={`/faculty-courses/:id`} component={CourseFaculty} />
-          <Route path="/course-list" component={CourseList} />
+          {/* <Route path="/course-list" component={CourseList} /> */}
           <Route path="/course-details/:id" component={CourseDetails} />
           <Route path="/compare" component={Compare} />
           <Route
@@ -231,7 +231,7 @@ function App() {
           <Route path="/agent-registration" component={RegisterAgent} />
           <Route path="/contact" component={Contact} />
           <Route path={`${process.env.PUBLIC_URL + "/faq"}`} component={Faq} />
-          <Route
+          {/* <Route
             path={`${process.env.PUBLIC_URL + "/coming-soon"}`}
             component={ComingSoon}
           />
@@ -246,8 +246,8 @@ function App() {
           <Route
             path={`${process.env.PUBLIC_URL + "/blog-details"}`}
             component={BlogDetails}
-          />
-          <Route
+          /> */}
+          {/* <Route
             path={`${process.env.PUBLIC_URL + "/products"}`}
             component={Product}
           />
@@ -258,7 +258,7 @@ function App() {
           <Route
             path={`${process.env.PUBLIC_URL + "/cart"}`}
             component={Cart}
-          />
+          /> */}
           {/* Admin related routes */}
           <Route
             path="/institution_list"

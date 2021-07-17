@@ -9,20 +9,18 @@ import Loading from "../components/widgets/loading";
 import { myRoutes } from "../utility/constants";
 
 class CourseSlider extends Component {
-  state = {
-    faculties: [],
-    isLoading: true,
-  };
-  componentDidMount = async () => {
-    const result = await clientService.facultiesLight();
+  // state = {
+  //   faculties: [],
+  //   isLoading: true,
+  // };
+  // componentDidMount = async () => {
 
-    this.setState({
-      faculties: result.data.data,
-      isLoading: false,
-    });
-  };
+  //   this.setState({
+  //     faculties: result.data.data,
+  //     isLoading: false,
+  //   });
+  // };
   render() {
-    const { faculties } = this.state;
     const settings = {
       slidesPerView: 3,
       loop: true,
@@ -60,7 +58,7 @@ class CourseSlider extends Component {
           style={{ backgroundColor: "#F6F9FF" }}
           className="course-slider-area"
         >
-          {!this.state.isLoading ? (
+          {!this.props.isLoading ? (
             <Container>
               <Row>
                 <Col md="12">
@@ -70,7 +68,7 @@ class CourseSlider extends Component {
                 </Col>
                 <Col md="12" className="course-slider">
                   <Swiper {...settings}>
-                    {faculties.map((item, i) => {
+                    {this.props.faculties.map((item, i) => {
                       const photos = item.CoursePhotos;
                       const length = photos.length - 1;
                       const rand =

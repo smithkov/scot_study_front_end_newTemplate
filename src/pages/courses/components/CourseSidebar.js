@@ -20,17 +20,7 @@ class CourseSidebar extends Component {
     institutions: [],
   };
 
-  componentDidMount = async () => {
-    const result = await clientService.faculties();
-    const degreeTypeResult = await clientService.degreeTypes();
-    const institutionResult = await clientService.institutions();
-
-    this.setState({
-      faculties: result.data.data,
-      degreeTypes: degreeTypeResult.data.data,
-      institutions: institutionResult.data.data,
-    });
-  };
+  componentDidMount = async () => {};
   render() {
     const { institutions, faculties, degreeTypes } = this.state;
     return (
@@ -67,7 +57,7 @@ class CourseSidebar extends Component {
                   aria-label=".form-select-lg example"
                 >
                   <option selected>Select Institution</option>
-                  {institutions.map((item) => (
+                  {this.props.institutions.map((item) => (
                     <>
                       <option key={item.id} value={item.id}>
                         {item.name}
@@ -85,7 +75,7 @@ class CourseSidebar extends Component {
                       aria-label=".form-select-lg example"
                     >
                       <option selected>Select faculty</option>
-                      {faculties.map((item) => (
+                      {this.props.faculties.map((item) => (
                         <>
                           <option key={item.id} value={item.id}>
                             {item.name}
@@ -108,7 +98,7 @@ class CourseSidebar extends Component {
                   aria-label=".form-select-lg example"
                 >
                   <option selected>Select degree</option>
-                  {degreeTypes.map((item) => (
+                  {this.props.degreeTypes.map((item) => (
                     <>
                       <option key={item.id} value={item.id}>
                         {item.name}

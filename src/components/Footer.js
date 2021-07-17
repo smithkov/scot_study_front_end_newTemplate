@@ -69,7 +69,7 @@ class Footer extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/"}>
+                      <Link to={"/compare"}>
                         <i className="las la-angle-right"></i>Compare
                       </Link>
                     </li>

@@ -19,7 +19,6 @@ const initialLimit = 12;
 const initialOffset = 1;
 
 function InstitutionDetail(props) {
-  const id = props.match.params.id;
   const [institution, setInstitution] = useState({});
   const [courses, setCourses] = useState([]);
   const [faculties, setFaculties] = useState([]);
@@ -28,7 +27,7 @@ function InstitutionDetail(props) {
   const [limit, setLimit] = useState(initialLimit);
   const [selectedFaculty, setSelectedFaculty] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
-  const [institutionId, setInstitutionId] = useState(id);
+  const [institutionId, setInstitutionId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isEmpty, setIsEmpty] = useState(true);
   const [totalLoad, setTotalLoad] = useState(initialLimit);
@@ -51,20 +50,21 @@ function InstitutionDetail(props) {
   //   isDisableNext: false,
   //   isDisablePrev: true,
   // };
+  const id = props.match.params.id;
 
   useEffect(() => {
+    setInstitutionId(id);
     (async () => {
-      setInstitution(id);
       const result = await clientService.findInstitutionById({ id });
-      const facultyResult = await clientService.facultiesLight();
-      const degreeTypeResult = await clientService.degreeTypes();
+
       setInstitution(result.data.data);
+      await schoolCourse(selectedFaculty, offset, limit, selectedDegree, id);
+      const facultyResult = await clientService.facultiesLight();
       setFaculties(facultyResult.data.data);
+      const degreeTypeResult = await clientService.degreeTypes();
       setDegreeTypes(degreeTypeResult.data.data);
 
       // const { selectedFaculty, offset, limit, selectedDegree } = this.state;
-
-      schoolCourse(selectedFaculty, offset, limit, selectedDegree);
     })();
   }, [id]);
   // componentDidMount = async () => {
@@ -85,7 +85,13 @@ function InstitutionDetail(props) {
   // };
 
   //api function
-  async function schoolCourse(selectedFaculty, offset, limit, selectedDegree) {
+  async function schoolCourse(
+    selectedFaculty,
+    offset,
+    limit,
+    selectedDegree,
+    institutionId
+  ) {
     const result = await clientService.findCourseByInstitution({
       institutionId: institutionId,
       facultyId: selectedFaculty,
@@ -105,15 +111,22 @@ function InstitutionDetail(props) {
   }
   const onChangeFaculty = async (e) => {
     const faculty = e.target.value;
+
     setSelectedFaculty(faculty);
 
-    await schoolCourse(faculty, offset, limit, selectedDegree);
+    await schoolCourse(faculty, offset, limit, selectedDegree, institutionId);
   };
   const onChangeDegree = async (e) => {
     const selectedDegree = e.target.value;
 
     setSelectedDegree(selectedDegree);
-    await schoolCourse(selectedFaculty, offset, limit, selectedDegree);
+    await schoolCourse(
+      selectedFaculty,
+      offset,
+      limit,
+      selectedDegree,
+      institutionId
+    );
   };
 
   const next = async (e) => {
@@ -122,7 +135,13 @@ function InstitutionDetail(props) {
       setIsDisablePrev(false);
       setOffset(newOffset);
 
-      await schoolCourse(selectedFaculty, newOffset, limit, selectedDegree);
+      await schoolCourse(
+        selectedFaculty,
+        newOffset,
+        limit,
+        selectedDegree,
+        institutionId
+      );
     }
   };
 
@@ -132,7 +151,13 @@ function InstitutionDetail(props) {
       setIsDisableNext(false);
       setOffset(newOffset);
 
-      await schoolCourse(selectedFaculty, newOffset, limit, selectedDegree);
+      await schoolCourse(
+        selectedFaculty,
+        newOffset,
+        limit,
+        selectedDegree,
+        institutionId
+      );
     }
   };
 
@@ -197,6 +222,7 @@ function InstitutionDetail(props) {
                   <Row>
                     <Col lg="12" md="12" sm="12">
                       <select
+                        name="selectedFaculty"
                         onChange={onChangeFaculty}
                         class="form-select form-select-lg mb-3"
                         aria-label=".form-select-lg example"

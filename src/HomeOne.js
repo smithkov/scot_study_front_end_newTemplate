@@ -16,8 +16,21 @@ import Datas from "./data/event/events.json";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Styles } from "./styles/event.js";
+import clientService from "./services/clientService";
 
 export default class HomeOne extends Component {
+  state = {
+    faculties: [],
+    isLoading: true,
+  };
+  async componentDidMount() {
+    const result = await clientService.facultiesLight();
+
+    this.setState({
+      isLoading: false,
+      faculties: result.data.data,
+    });
+  }
   render() {
     return (
       <div className="main-wrapper">
@@ -130,7 +143,10 @@ export default class HomeOne extends Component {
             </section>
           </div>
         </Styles>
-        <CourseSlider />
+        <CourseSlider
+          faculties={this.state.faculties}
+          isLoading={this.state.isLoading}
+        />
         {/* Testimonial Slider */}
         <TestimonialSlider />
 

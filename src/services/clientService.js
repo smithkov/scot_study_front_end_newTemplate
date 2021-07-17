@@ -237,6 +237,14 @@ class ClientService {
     return http.post(`${SERVER_URL}/allCoursesSearch`, data);
   };
 
+  compare = async (data) => {
+    return http.post(`${SERVER_URL}/compare`, data);
+  };
+
+  relatedCourses = async (data) => {
+    return http.post(`${SERVER_URL}/relatedCourses`, data);
+  };
+
   findCourseByInstitution = async (data) => {
     return http.post(`${SERVER_URL}/findCourseByInstitution`, data);
   };

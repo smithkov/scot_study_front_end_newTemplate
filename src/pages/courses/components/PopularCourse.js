@@ -22,7 +22,7 @@ class PopularCourse extends Component {
       <Styles>
         {/* Popular Course */}
         <div className="popular-course">
-          <h5>Popular Course</h5>
+          <h5>Popular Courses</h5>
 
           <div className="popular-items">
             {courses.map((item) => (
@@ -36,7 +36,7 @@ class PopularCourse extends Component {
                   <p className="title">
                     <Link to="">{item.name}</Link>
                   </p>
-                  <ul className="list-unstyled list-inline rating">
+                  {/* <ul className="list-unstyled list-inline rating">
                     <li className="list-inline-item">
                       <i className="las la-star"></i>
                     </li>
@@ -52,7 +52,7 @@ class PopularCourse extends Component {
                     <li className="list-inline-item">
                       <i className="las la-star"></i>
                     </li>
-                  </ul>
+                  </ul> */}
                   <p className="price">{item.fee}</p>
                 </div>
               </div>

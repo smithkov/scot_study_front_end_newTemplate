@@ -64,7 +64,7 @@ function MobileMenu() {
         <Container>
           <Row>
             <Col md="0" sm="12">
-              <div className="mb-topbar d-flex justify-content-between">
+              {/* <div className="mb-topbar d-flex justify-content-between">
                 <div className="topbar-item">
                   <p>
                     <i className="las la-phone"></i>(234) 802 666 8008
@@ -83,7 +83,7 @@ function MobileMenu() {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="mb-logo-area d-flex justify-content-between">
                 <div className="mb-logo-box d-flex">
                   <div className="hm-button">
@@ -102,7 +102,7 @@ function MobileMenu() {
                     </Link>
                   </div>
                 </div>
-                <div className="mb-search-box">
+                {/* <div className="mb-search-box">
                   <form action="#">
                     <input
                       type="text"
@@ -113,7 +113,7 @@ function MobileMenu() {
                       <i className="las la-search"></i>
                     </button>
                   </form>
-                </div>
+                </div> */}
               </div>
             </Col>
           </Row>
@@ -181,7 +181,7 @@ function MobileMenu() {
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={``}>Compare Courses</Link>
+                  <Link to={`/compare`}>Compare Courses</Link>
                 </li>
               </ul>
             </div>

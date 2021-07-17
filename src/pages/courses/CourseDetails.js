@@ -3,7 +3,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import HeaderTwo from "../../components/HeaderTwo";
 import { BreadcrumbBox } from "../../components/common/Breadcrumb";
 import ReviewForm from "./components/ReviewForm";
-import PopularCourse from "./components/PopularCourse";
+import RelatedCourse from "./components/RelatedCourse";
 import CourseTag from "./components/CourseTag";
 import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/course.js";
@@ -13,13 +13,16 @@ function CourseDetails(props) {
   const courseId = props.match.params.id;
 
   const [course, setCourse] = useState({});
+  const [facultyId, setFacultyId] = useState({});
   const [hasData, setHasData] = useState(false);
   useEffect(() => {
-    alert(JSON.stringify(courseId));
     (async () => {
       const result = await clientService.findCourseById(courseId);
-
-      setCourse(result.data.data);
+      const data = result.data.data;
+      if (data) {
+        setFacultyId(data.facultyId);
+      }
+      setCourse(data);
       setHasData(true);
     })();
   }, []);
@@ -233,8 +236,8 @@ function CourseDetails(props) {
                           <ul className="list-unstyled feature-list">
                             {course.scholarshipAmount ? (
                               <li>
-                                <i className="las la-calendar"></i> Start Date:{" "}
-                                <span>{course.scholarshipAmount}</span>
+                                <i className="fa fa-money"></i> Scholarship
+                                Amount: <span>£{course.scholarshipAmount}</span>
                               </li>
                             ) : (
                               ""
@@ -269,13 +272,15 @@ function CourseDetails(props) {
                               ""
                             )}
                           </ul>
-                          <button type="button" className="enroll-btn">
-                            Apply
-                          </button>
+                          <a href={`/login`}>
+                            <button type="button" className="enroll-btn">
+                              Apply
+                            </button>
+                          </a>
                         </div>
                       </Col>
                       <Col md="12">
-                        <PopularCourse />
+                        <RelatedCourse facultyId={facultyId} />
                       </Col>
                     </Row>
                   </div>

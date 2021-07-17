@@ -1,5 +1,5 @@
-export const ENDPOINT = "http://localhost:8000/";
-//export const ENDPOINT = "https://serverdev.scotstudy.co.uk/";
+//export const ENDPOINT = "http://localhost:8000/";
+export const ENDPOINT = "https://serverdev.scotstudy.co.uk/";
 export const SERVER_URL = `${ENDPOINT}api`;
 export const TOKEN = "tk-cookie";
 export const USER = "tk-user";

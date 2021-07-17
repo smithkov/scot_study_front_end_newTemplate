@@ -14,6 +14,9 @@ const initialOffset = 1;
 class CourseFaculty extends Component {
   state = {
     courses: [],
+    faculties: [],
+    degreeTypes: [],
+    institutions: [],
     isLoading: true,
     selectedFaculty: "",
     selectedDegreeType: "",
@@ -44,6 +47,20 @@ class CourseFaculty extends Component {
       selectedInstitution,
       search
     );
+
+    const facultyResult = await clientService.faculties();
+    this.setState({
+      faculties: facultyResult.data.data,
+    });
+    const degreeTypeResult = await clientService.degreeTypes();
+    this.setState({
+      degreeTypes: degreeTypeResult.data.data,
+    });
+    const institutionResult = await clientService.institutions();
+
+    this.setState({
+      institutions: institutionResult.data.data,
+    });
   };
 
   //api function
@@ -241,6 +258,9 @@ class CourseFaculty extends Component {
       search,
       isDisableNext,
       isDisablePrev,
+      institutions,
+      degreeTypes,
+      faculties,
     } = this.state;
     return (
       <div className="main-wrapper course-page">
@@ -264,6 +284,9 @@ class CourseFaculty extends Component {
                     onChangeDegreeType={this.onChangeDegreeType}
                     onChangeInstitution={this.onChangeInstitution}
                     reset={this.reset}
+                    faculties={faculties}
+                    institutions={institutions}
+                    degreeTypes={degreeTypes}
                   />
                 </Col>
                 <Col lg="9" md="8" sm="7">
