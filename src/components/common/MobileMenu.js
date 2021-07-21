@@ -186,6 +186,7 @@ function MobileMenu() {
               </ul>
             </div>
           </div>
+
           <div className="mb-menu-item">
             <button className="mb-menu-button">
               <p>
@@ -237,7 +238,21 @@ function MobileMenu() {
             <div className="mb-menu-content">
               <ul className="list-unstyled">
                 <li>
-                  <Link to={``}>Make Payment</Link>
+                  <Link to={`/payment`}>Make Payment</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mb-menu-item">
+            <button className="mb-menu-button">
+              <p>
+                Exchange <i className="las la-plus"></i>
+              </p>
+            </button>
+            <div className="mb-menu-content">
+              <ul className="list-unstyled">
+                <li>
+                  <Link to={`/exchange`}>Exchange Rate</Link>
                 </li>
               </ul>
             </div>

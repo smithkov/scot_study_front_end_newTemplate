@@ -93,7 +93,7 @@ function Contact() {
                   </div>
                   <div className="box-content">
                     <h5>Our Location</h5>
-                    <p>{`${contact.address}, ${contact.city} ${contact.postcode}`}</p>
+                    <p>{contact.fullAddress()}</p>
                   </div>
                 </div>
                 <div className="contact-icon-box d-flex">

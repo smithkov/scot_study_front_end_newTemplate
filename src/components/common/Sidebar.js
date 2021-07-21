@@ -66,7 +66,7 @@ function Sidebar() {
             GUIDES YOU THROUGH VISA PROCESSES AND SETTLES YOUR ACCOMMODATION.
           </p>
         </div>
-        <div className="side-post">
+        {/* <div className="side-post">
           <h5>Recent Post</h5>
           <div className="post-box d-flex">
             <div className="post-img">
@@ -104,8 +104,8 @@ function Sidebar() {
               <span>March 12, 2020</span>
             </div>
           </div>
-        </div>
-        <div className="side-gallery">
+        </div> */}
+        {/* <div className="side-gallery">
           <h5>Gallery</h5>
           <img
             src={process.env.PUBLIC_URL + "/assets/images/gallery-01.jpg"}
@@ -131,13 +131,13 @@ function Sidebar() {
             src={process.env.PUBLIC_URL + "/assets/images/gallery-06.jpg"}
             alt=""
           />
-        </div>
+        </div> */}
         <div className="side-contact">
           <h5>Contact Us</h5>
           <ul className="list-unstyled">
             <li>
               <i className="las la-map-marker"></i>
-              {`${contact.address}, ${contact.city} ${contact.postcode}`}
+              {contact.fullAddress()}
             </li>
             <li>
               <i className="las la-phone"></i>${contact.phone1} Contact Us

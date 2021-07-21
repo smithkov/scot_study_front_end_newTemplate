@@ -25,7 +25,7 @@ function CourseDetails(props) {
       setCourse(data);
       setHasData(true);
     })();
-  }, []);
+  }, [courseId]);
 
   return (
     <div className="main-wrapper course-details-page">

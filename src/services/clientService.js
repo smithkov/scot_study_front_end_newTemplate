@@ -233,6 +233,20 @@ class ClientService {
     return http.post(`${SERVER_URL}/degreeTypes`, data);
   };
 
+  currencyConverter = async (data) => {
+    return http.get(
+      `https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_EXCHANGE_KEY}/pair/GBP/${data.target}/${data.amount}`,
+      data
+    );
+  };
+
+  supportedCodes = async (data) => {
+    return http.get(
+      `https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_EXCHANGE_KEY}/codes`,
+      data
+    );
+  };
+
   allCoursesSearch = async (data) => {
     return http.post(`${SERVER_URL}/allCoursesSearch`, data);
   };
@@ -297,6 +311,22 @@ class ClientService {
     return http.post(`${SERVER_URL}/findPhdApplications`);
   };
 
+  findAllPayments = async () => {
+    return http.post(`${SERVER_URL}/findAllPayments`);
+  };
+
+  findUserPayments = async (data) => {
+    return http.post(`${SERVER_URL}/findUserPayments`, data);
+  };
+
+  updatePayment = async (data) => {
+    return http.post(`${SERVER_URL}/updatePayment`, data);
+  };
+
+  stripeSessionStatus = async (data) => {
+    return http.post(`${SERVER_URL}/stripeSessionStatus`, data);
+  };
+
   findAllPhdById = async (data) => {
     return http.post(`${SERVER_URL}/findPhdApplicationById`, data);
   };
@@ -305,7 +335,10 @@ class ClientService {
     return http.post(`${SERVER_URL}/findPhdQualifications`);
   };
 
-  // findFacultyPhotos = async (data) => {
+  makePayment = async (data) => {
+    return http.post(`${SERVER_URL}/make_payment`, data);
+  };
+
   //   return http.post(`${SERVER_URL}/findFacultyPhotos`, data);
   // };
   // findAllPhotos = async () => {

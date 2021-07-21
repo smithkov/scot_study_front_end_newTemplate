@@ -18,9 +18,9 @@ export default function ProtectedRoute(ComponentToProtect) {
       try {
         const result = await clientService.hasAuth();
 
-        const error = result.data.error;
+        const data = result.data.data;
 
-        if (!error) {
+        if (data) {
           this.setState({ loading: false });
         } else {
           this.setState({ loading: false, redirect: true });

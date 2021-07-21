@@ -70,16 +70,37 @@ function Footer() {
             <Grid.Column width={2}>
               <Header inverted as="h4" content="Quick Link" />
               <List>
-                <List.Item as="a">Home</List.Item>
-                <List.Item as="a">Institutions</List.Item>
-                <List.Item as="a">Courses</List.Item>
-                <List.Item as="a">Compare</List.Item>
-                <List.Item as="a">Institutions</List.Item>
-                <List.Item as="a">Contact Us</List.Item>
-                <List.Item as="a">About Us</List.Item>
-                <List.Item as="a">Login</List.Item>
-                <List.Item as="a">e-Pay</List.Item>
-                <List.Item as="a">Forum</List.Item>
+                <List.Item href="" as="a">
+                  Home
+                </List.Item>
+                <List.Item href="/institutions" as="a">
+                  Institutions
+                </List.Item>
+                <List.Item href="/courses" as="a">
+                  Courses
+                </List.Item>
+                <List.Item href="/compare" as="a">
+                  Compare
+                </List.Item>
+
+                <List.Item href="/contact" as="a">
+                  Contact Us
+                </List.Item>
+                <List.Item href="/about" as="a">
+                  About Us
+                </List.Item>
+                <List.Item href="/exchange" as="a">
+                  Exchange Rate
+                </List.Item>
+                <List.Item href="/login" as="a">
+                  Login
+                </List.Item>
+                <List.Item href="/payment" as="a">
+                  e-Pay
+                </List.Item>
+                <List.Item href="" as="a">
+                  Forum
+                </List.Item>
               </List>
             </Grid.Column>
           </Grid>

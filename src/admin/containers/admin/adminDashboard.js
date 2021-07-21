@@ -126,7 +126,7 @@ const Dashboard = (props) => {
                       return (
                         <Table.Row>
                           <Table.Cell>
-                            <h5>{item.refNo}</h5>
+                            <h6>{item.refNo}</h6>
                           </Table.Cell>
                           <Table.Cell>
                             <>{`${item.User.firstname}  ${item.User.lastname}`}</>

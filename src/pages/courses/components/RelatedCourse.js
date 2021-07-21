@@ -3,6 +3,7 @@ import Datas from "../../../data/course/popular.json";
 import { Link } from "react-router-dom";
 import { Styles } from "../styles/popularCourse.js";
 import clientService from "../../../services/clientService";
+import { myRoutes } from "../../../utility/constants";
 
 class RelatedCourse extends Component {
   state = {
@@ -30,13 +31,13 @@ class RelatedCourse extends Component {
             {courses.map((item) => (
               <div className="item-box d-flex" key={item.id}>
                 <div className="item-img">
-                  <Link to={`/course-details/${item.id}`}>
+                  <Link to={myRoutes.courseDetail(item.id)}>
                     <img src={item.CoursePhoto.url} alt="" />
                   </Link>
                 </div>
                 <div className="item-content">
                   <p className="title">
-                    <Link to="">{item.name}</Link>
+                    <Link to={myRoutes.courseDetail(item.id)}>{item.name}</Link>
                   </p>
                   {/* <ul className="list-unstyled list-inline rating">
                     <li className="list-inline-item">

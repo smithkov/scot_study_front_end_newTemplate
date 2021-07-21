@@ -71,7 +71,7 @@ function FooterTwo() {
                 <ul className="list-unstyled">
                   <li>
                     <i className="las la-map-marker"></i>
-                    {`${contact.address}, ${contact.city} ${contact.postcode}`}
+                    {contact.fullAddress()}
                   </li>
                   <li>
                     <i className="las la-envelope"></i>
@@ -98,18 +98,14 @@ function FooterTwo() {
                       <i className="las la-angle-right"></i>Institutions
                     </Link>
                   </li>
-                  <li>
-                    <Link to="gallery">
-                      <i className="las la-angle-right"></i>Gallery
-                    </Link>
-                  </li>
+
                   <li>
                     <Link to={"/courses"}>
                       <i className="las la-angle-right"></i>Courses
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/"}>
+                    <Link to={"/compare"}>
                       <i className="las la-angle-right"></i>Compare
                     </Link>
                   </li>
@@ -121,6 +117,16 @@ function FooterTwo() {
                   <li>
                     <Link to={"/about"}>
                       <i className="las la-angle-right"></i>About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/gallery">
+                      <i className="las la-angle-right"></i>Gallery
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/exchange">
+                      <i className="las la-angle-right"></i>Exchange Rate
                     </Link>
                   </li>
                 </ul>
@@ -190,31 +196,22 @@ function FooterTwo() {
                 </p>
                 <ul className="social list-unstyled list-inline">
                   <li className="list-inline-item">
-                    <a
-                      target="_blank"
-                      href="https://www.facebook.com/Scot-study-107271957506468/"
-                    >
+                    <a target="_blank" href={social.facebook}>
                       <i className="fab fa-facebook-f"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      target="_blank"
-                      href="https://twitter.com/scotstudy?lang=en"
-                    >
+                    <a target="_blank" href={social.twitter}>
                       <i className="fab fa-twitter"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href={""}>
+                    <a href={social.linkedIn}>
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      target="_blank"
-                      href="https://www.youtube.com/channel/UC9ItAoglSWFBcxHsiJ0QX9g"
-                    >
+                    <a target="_blank" href={social.youtube}>
                       <i className="fab fa-youtube"></i>
                     </a>
                   </li>

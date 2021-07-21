@@ -135,7 +135,7 @@ function MainMenu(props) {
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href="#">
+                <MDBNavbarLink href="/payment">
                   e-Pay <MDBIcon icon="credit-card" fas />
                 </MDBNavbarLink>
               </MDBNavbarItem>

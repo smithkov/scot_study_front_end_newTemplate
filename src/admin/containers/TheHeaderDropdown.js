@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "semantic-ui-react";
+import { asyncLocalStorage } from "../../utility/global";
 import {
   CBadge,
   CDropdown,
@@ -11,7 +12,8 @@ import {
 import CIcon from "@coreui/icons-react";
 import { Route, withRouter } from "react-router-dom";
 const TheHeaderDropdown = (props) => {
-  const logout = () => {
+  const logout = async () => {
+    await asyncLocalStorage.logout();
     props.history.push("/login");
   };
   return (

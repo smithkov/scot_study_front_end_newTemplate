@@ -30,7 +30,7 @@ class HeaderTwo extends Component {
                     </li>
                     <li className="list-inline-item">
                       <i className="las la-map-marker"></i>
-                      {`${contact.address}, ${contact.city} ${contact.postcode}`}
+                      {contact.fullAddress()}
                     </li>
                   </ul>
                 </div>

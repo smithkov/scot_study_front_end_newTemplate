@@ -18,6 +18,7 @@ import InstitutionDetail from "./pages/institution/institutionDetail";
 import Institutions from "./pages/institution/institutions";
 import PhdApplication from "./pages/account/phdApplication";
 import Login from "./pages/account/Login";
+import Exchange from "./pages/exchange/Exchange";
 import Register from "./pages/account/Register";
 import LoginAgent from "./pages/account/LoginAgent";
 import RegisterAgent from "./pages/account/RegisterAgent";
@@ -79,6 +80,17 @@ const English = React.lazy(() => import("./admin/containers/english"));
 const HighSchool = React.lazy(() => import("./admin/containers/highSchool"));
 const Sponsor = React.lazy(() => import("./admin/containers/sponsorship"));
 const Application = React.lazy(() => import("./admin/containers/application"));
+const Payment = React.lazy(() => import("./admin/containers/payment"));
+const PaymentSuccess = React.lazy(() =>
+  import("./admin/containers/paymentSuccess")
+);
+
+const UserPaymentList = React.lazy(() =>
+  import("./admin/containers/userPaymentList")
+);
+const PaymentError = React.lazy(() =>
+  import("./admin/containers/paymentError")
+);
 
 const Qualification = React.lazy(() =>
   import("./admin/containers/qualification")
@@ -134,6 +146,9 @@ const InstitutionList = React.lazy(() =>
 );
 const InstitutionForm = React.lazy(() =>
   import("./admin/containers/admin/institution/create")
+);
+const PaymentList = React.lazy(() =>
+  import("./admin/containers/admin/paymentList/list")
 );
 
 const AllAgents = React.lazy(() =>
@@ -230,6 +245,7 @@ function App() {
           <Route path="/agent-login" component={LoginAgent} />
           <Route path="/agent-registration" component={RegisterAgent} />
           <Route path="/contact" component={Contact} />
+          <Route path="/exchange" component={Exchange} />
           <Route path={`${process.env.PUBLIC_URL + "/faq"}`} component={Faq} />
           {/* <Route
             path={`${process.env.PUBLIC_URL + "/coming-soon"}`}
@@ -439,6 +455,23 @@ function App() {
             path="/application"
             name="Home"
             component={ProtectedRoute(Application)}
+          />
+          <Route path="/payment" name="Home" component={Payment} />
+          <Route path="/paymentError" name="Home" component={PaymentError} />
+          <Route
+            path="/paymentSuccess"
+            name="Home"
+            component={PaymentSuccess}
+          />
+          <Route
+            path="/payment_list"
+            name="Home"
+            component={ProtectedRoute(PaymentList)}
+          />
+          <Route
+            path="/user_payment_list"
+            name="Home"
+            component={ProtectedRoute(UserPaymentList)}
           />
           <Route
             path="/edu_background"

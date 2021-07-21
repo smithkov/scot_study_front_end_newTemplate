@@ -22,6 +22,13 @@ const _nav = [
     to: "/phd_application_list",
     icon: "cil-grid",
   },
+
+  {
+    _tag: "CSidebarNavItem",
+    name: "Payments",
+    to: "/payment_list",
+    icon: "cil-grid",
+  },
   // {
   //   _tag: "CSidebarNavItem",
   //   name: "Academic Background",

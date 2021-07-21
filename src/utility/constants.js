@@ -8,6 +8,9 @@ export const contact = {
   phone1: "44(0)758-677-0652",
   phone2: "44(0)742-467-2038",
   address: "121 Giles Street",
+  fullAddress: function () {
+    return `${this.address}, ${this.city}, ${this.postcode}`;
+  },
   postcode: "EH6 6BZ",
   city: "Edinburgh",
 };

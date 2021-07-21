@@ -47,35 +47,41 @@ const _nav = [
     icon: "cil-file",
   },
 
-  {
-    _tag: "CSidebarNavDropdown",
-    name: "Messages",
-    route: "/base",
-    icon: "cil-envelope-letter",
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Inbox",
-        to: "/base/breadcrumbs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Sent",
-        to: "/base/cards",
-      },
-    ],
-  },
+  // {
+  //   _tag: "CSidebarNavDropdown",
+  //   name: "Messages",
+  //   route: "/base",
+  //   icon: "cil-envelope-letter",
+  //   _children: [
+  //     {
+  //       _tag: "CSidebarNavItem",
+  //       name: "Inbox",
+  //       to: "/base/breadcrumbs",
+  //     },
+  //     {
+  //       _tag: "CSidebarNavItem",
+  //       name: "Sent",
+  //       to: "/base/cards",
+  //     },
+  //   ],
+  // },
 
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Help",
+  //   to: "/#",
+  //   icon: "cil-phone",
+  // },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Checklist",
+  //   to: "/#",
+  //   icon: "cil-check-circle",
+  // },
   {
     _tag: "CSidebarNavItem",
-    name: "Help",
-    to: "/#",
-    icon: "cil-phone",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Checklist",
-    to: "/#",
+    name: "Payments",
+    to: "/user_payment_list",
     icon: "cil-check-circle",
   },
   // {

@@ -104,7 +104,7 @@ function Menu(props) {
             </Link>
           </li>
 
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
               to={myRoutes.gallery}
@@ -112,7 +112,7 @@ function Menu(props) {
             >
               Gallery <i className="las"></i>
             </Link>
-          </li>
+          </li> */}
 
           {/* <li className="nav-item dropdown">
           <Link
@@ -126,10 +126,19 @@ function Menu(props) {
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
-              to={process.env.PUBLIC_URL + "/"}
+              to={`/payment`}
               data-toggle="dropdown"
             >
               e-Pay <i className="las"></i>
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              className="nav-link dropdown-toggle"
+              to={`/exchange`}
+              data-toggle="dropdown"
+            >
+              Exchange Rate<i className="las"></i>
             </Link>
           </li>
           <li className="nav-item dropdown">
