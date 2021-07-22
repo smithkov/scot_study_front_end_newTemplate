@@ -193,9 +193,11 @@ const Sponsorship = (props) => {
                     </Form.Field>
 
                     <hr />
-
+                    <Button as="a" href="/english_test" type="submit">
+                      <Icon name="backward" /> Back
+                    </Button>
                     <Button loading={loading} color="blue" type="submit">
-                      Save
+                      <Icon name="save" /> Save
                     </Button>
                   </Form>
                 </CCardBody>

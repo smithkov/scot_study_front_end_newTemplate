@@ -15,37 +15,37 @@ const _nav = [
     to: "/profile",
     icon: "cil-user",
   },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Academic Background",
-    to: "/edu_background",
-    icon: "cil-scrubber",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "High School",
-    to: "/highSchool",
-    icon: "cil-options",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "English Test",
-    to: "/english_test",
-    icon: "cil-notes",
-  },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Academic Background",
+  //   to: "/edu_background",
+  //   icon: "cil-scrubber",
+  // },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "High School",
+  //   to: "/highSchool",
+  //   icon: "cil-options",
+  // },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "English Test",
+  //   to: "/english_test",
+  //   icon: "cil-notes",
+  // },
 
-  {
-    _tag: "CSidebarNavItem",
-    name: "Sponsorship",
-    to: "/sponsorship",
-    icon: "cil-lightbulb",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Visa History",
-    to: "/visa_history",
-    icon: "cil-file",
-  },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Sponsorship",
+  //   to: "/sponsorship",
+  //   icon: "cil-lightbulb",
+  // },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Visa History",
+  //   to: "/visa_history",
+  //   icon: "cil-file",
+  // },
 
   // {
   //   _tag: "CSidebarNavDropdown",

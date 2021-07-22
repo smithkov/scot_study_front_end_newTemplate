@@ -7,6 +7,7 @@ import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/account.js";
 import clientService from "../../services/clientService";
 import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
+import { Dropdown } from "semantic-ui-react";
 
 function Register(props) {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
@@ -34,7 +35,15 @@ function Register(props) {
     (async () => {
       const result = await clientService.countries();
 
-      setCountries(result.data.data);
+      const dataResult = result.data.data.map((data) => {
+        return {
+          key: data.id,
+          text: data.name,
+          value: data.id,
+          flag: data.code,
+        };
+      });
+      setCountries(dataResult);
     })();
   }, []);
 
@@ -49,6 +58,10 @@ function Register(props) {
     } else if (name == "selectedCountry") {
       setSelectedCountry(value);
     }
+  };
+
+  const onChangeDropdownCountry = async (e, data) => {
+    setSelectedCountry(data.value);
   };
   const onChange = async (e) => {
     const value = e.target.value;
@@ -281,9 +294,19 @@ function Register(props) {
                       />
                       <span className="registration_input-msg"></span>
                     </p>
-                    <p className="form-control">
+                    <p>
                       <label htmlFor="registration_user">Country</label>
-                      <select
+                      <Dropdown
+                        placeholder="Select Country"
+                        fluid
+                        search
+                        selection
+                        options={countries}
+                        //defaultValue={`Nigeria`}
+                        onChange={onChangeDropdownCountry}
+                        name="selectedCountry"
+                      />
+                      {/* <select
                         onChange={onChangeDropdown}
                         name="selectedCountry"
                         class="form-select form-select-lg"
@@ -293,7 +316,7 @@ function Register(props) {
                         {countries.map((item, i) => (
                           <option value={item.id}>{item.name}</option>
                         ))}
-                      </select>
+                      </select> */}
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">

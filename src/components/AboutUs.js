@@ -29,9 +29,7 @@ class AboutUs extends Component {
               <Col md="6">
                 <div className="about-image">
                   <img
-                    src={
-                      process.env.PUBLIC_URL + `/assets/images/imageHome.jpg`
-                    }
+                    src={`/assets/images/imageHome4.jpg`}
                     className="main-img"
                     alt=""
                   />
@@ -49,7 +47,7 @@ class AboutUs extends Component {
                     <ModalVideo
                       channel="youtube"
                       isOpen={this.state.isOpen}
-                      videoId="Tlyz-FOoOL0"
+                      videoId="my2R2grBo_k"
                       onClose={() => this.setState({ isOpen: false })}
                     />
                     <button onClick={this.openModal} className="play-button">

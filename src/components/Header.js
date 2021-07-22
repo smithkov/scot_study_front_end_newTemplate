@@ -32,9 +32,8 @@ class Header extends Component {
                   <ul className="list-unstyled list-inline">
                     <li className="list-inline-item">
                       <i className="las la-map-marker"></i>
-                      {`${contact.address}, ${contact.city}, ${contact.postcode} `}
+                      {contact.fullAddress()}
                     </li>
-                  
                   </ul>
                 </div>
               </Col>
@@ -107,9 +106,10 @@ class Header extends Component {
               </Col>
             </Row>
           </Container>
-        </section> */}
-
+        </section>{" "}
+         */}
         {/* Logo Area */}
+
         {/* <section className="logo-area">
           <Container>
             <Row>
@@ -122,8 +122,7 @@ class Header extends Component {
               </Col>
               <Col md="9">
                 <div className="logo-contact-box d-flex justify-content-end">
-                  <div className="emcontact-box d-flex">               
-                  </div>
+                  <div className="emcontact-box d-flex"></div>
                   <div className="apply-btn">
                     <Link to="/login">
                       <i className="las la-clipboard-list"></i>Apply Now
@@ -134,6 +133,46 @@ class Header extends Component {
             </Row>
           </Container>
         </section> */}
+        <section className="logo-area">
+          <Container>
+            <Row>
+              <Col md="3">
+                <div className="logo">
+                  <Link to={"/"}>
+                    <img src={"/assets/images/logoMain.png"} alt="" />
+                  </Link>
+                </div>
+              </Col>
+              <Col md="9">
+                <div className="logo-contact-box d-flex justify-content-end">
+                  <div className="emcontact-box d-flex">
+                    <div className="box-icon">
+                      <i className="flaticon-phone-call"></i>
+                    </div>
+                    <div className="box-content">
+                      <p>Call Us Now</p>
+                      <span>{contact.phone1}</span>
+                    </div>
+                  </div>
+                  <div className="emcontact-box d-flex">
+                    <div className="box-icon">
+                      <i className="flaticon-envelope"></i>
+                    </div>
+                    <div className="box-content">
+                      <p>Email At</p>
+                      <span>{contact.email}</span>
+                    </div>
+                  </div>
+                  <div className="apply-btn">
+                    <Link to={"/register"}>
+                      <i className="las la-clipboard-list"></i>Apply Now
+                    </Link>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
 
         {/* Navbar */}
         <section className="main-menu">
@@ -147,10 +186,8 @@ class Header extends Component {
             </Row>
           </Container>
         </section>
-
         {/* Sticky Menu */}
         <StickyMenu />
-
         {/* Mobile Menu */}
         <MobileMenu />
       </Styles>

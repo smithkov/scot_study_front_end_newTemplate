@@ -25,7 +25,7 @@ export const myRoutes = {
   about: () => `/about`,
   gallery: () => `/gallery`,
 };
-
+export const scrollUp = (id) => document.getElementById(id).scrollIntoView();
 export const social = {
   youtube: "https://www.youtube.com/channel/UC9ItAoglSWFBcxHsiJ0QX9g",
   linkedIn: "",

@@ -52,7 +52,17 @@ class CourseItemGrid extends Component {
                     ""
                   )}
                   <span style={{ float: "right" }}>
-                    {item.scholarshipAmount != 0 ? "Scholarship available" : ""}
+                    {item.scholarshipAmount != 0 ? (
+                      <>
+                        <i
+                          style={{ color: "green" }}
+                          class="fas fa-check-circle"
+                        ></i>{" "}
+                        {"Scholarship available"}
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </span>
                 </p>
                 <div className="course-face d-flex justify-content-between">

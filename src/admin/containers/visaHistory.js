@@ -248,14 +248,16 @@ const VisaHistory = (props) => {
                     </Form.Field>
 
                     <hr />
-
+                    <Button as="a" href="/sponsorship" type="submit">
+                      <Icon name="backward" /> Back
+                    </Button>
                     <Button
                       loading={loading}
                       onClick={update}
                       color="blue"
                       type="submit"
                     >
-                      Save
+                      <Icon name="save" /> Save
                     </Button>
                   </Form>
                 </CCardBody>

@@ -142,7 +142,7 @@ const Qualification = (props) => {
             color="blue"
             type="submit"
           >
-            Save
+            <Icon name="save" /> Save
           </Button>
         </Form>
         <br />

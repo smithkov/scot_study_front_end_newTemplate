@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import BackToTop from "./common/BackToTop";
 import { Styles } from "./styles/footerTwo.js";
 import { contact, social } from "../utility/constants";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 function FooterTwo() {
   const d = new Date();
@@ -12,7 +13,7 @@ function FooterTwo() {
     const form = document.getElementById("form4");
     const email = document.getElementById("email4");
 
-    form.addEventListener("submit", formSubmit);
+    // form.addEventListener("submit", formSubmit);
 
     function formSubmit(e) {
       e.preventDefault();
@@ -56,7 +57,7 @@ function FooterTwo() {
       >
         <Container>
           <Row>
-            <Col md="3">
+            <Col md="4">
               <div className="footer-logo-info">
                 <img
                   src={process.env.PUBLIC_URL + "/assets/images/f-logo.png"}
@@ -84,7 +85,7 @@ function FooterTwo() {
                 </ul>
               </div>
             </Col>
-            <Col md="3">
+            <Col md="2">
               <div className="f-links">
                 <h5>Useful Links</h5>
                 <ul className="list-unstyled">
@@ -132,45 +133,58 @@ function FooterTwo() {
                 </ul>
               </div>
             </Col>
-            <Col md="3">
-              <div className="f-post">
-                <h5>Twitter Post</h5>
-                <div className="post-box d-flex">
-                  <div className="po-icon">
-                    <i className="fab fa-twitter"></i>
-                  </div>
-                  <div className="po-content">
-                    <Link to={process.env.PUBLIC_URL + "/blog-details"}>
-                      Lorem ipsum dolor sit ...
+            <Col md="2">
+              <div className="f-links">
+                <h5></h5>
+                <br />
+                <br />
+                <ul className="list-unstyled">
+                  <li>
+                    <Link to="/gallery">
+                      <i className="las la-angle-right"></i>Gallery
                     </Link>
-                    <span>Mar 30, 2019</span>
-                  </div>
-                </div>
-                <div className="post-box d-flex">
-                  <div className="po-icon">
-                    <i className="fab fa-twitter"></i>
-                  </div>
-                  <div className="po-content">
-                    <Link to={process.env.PUBLIC_URL + "/blog-details"}>
-                      Lorem ipsum dolor sit ...
+                  </li>
+                  <li>
+                    <Link to={"/contact"}>
+                      <i className="las la-angle-right"></i>Help Center
                     </Link>
-                    <span>Mar 30, 2019</span>
-                  </div>
-                </div>
-                <div className="post-box d-flex">
-                  <div className="po-icon">
-                    <i className="fab fa-twitter"></i>
-                  </div>
-                  <div className="po-content">
-                    <Link to={process.env.PUBLIC_URL + "/blog-details"}>
-                      Lorem ipsum dolor sit ...
+                  </li>
+                  <li>
+                    <Link to={"/about"}>
+                      <i className="las la-angle-right"></i>Our Services
                     </Link>
-                    <span>Mar 30, 2019</span>
-                  </div>
-                </div>
+                  </li>
+                  <li>
+                    <Link to={"/exchange"}>
+                      <i className="las la-angle-right"></i>Exchange Rate
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      target="_blank"
+                      href={
+                        "https://www.freeprivacypolicy.com/live/7b6cada2-2648-4ac4-af00-fbdd6aacdc3b"
+                      }
+                    >
+                      <i className="las la-angle-right"></i>Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <Link to={"/"}>
+                      <i className="las la-angle-right"></i>Online Support
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </Col>
-            <Col md="3">
+            <Col md="4">
+              <TwitterTimelineEmbed
+                sourceType="profile"
+                screenName="ScotStudy"
+                options={{ height: 400 }}
+              />
+            </Col>
+            {/* <Col md="3">
               <div className="f-newsletter">
                 <h5>Newsletter</h5>
                 <p>Subscribe To The Newsletter</p>
@@ -187,7 +201,7 @@ function FooterTwo() {
                   <button>Submit</button>
                 </form>
               </div>
-            </Col>
+            </Col> */}
             <Col md="12">
               <div className="copytext-area text-center">
                 <p>

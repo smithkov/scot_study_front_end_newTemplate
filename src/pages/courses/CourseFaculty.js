@@ -9,6 +9,8 @@ import Loading from "../../components/widgets/loading";
 import Message from "../../components/widgets/message";
 import { Styles } from "./styles/course.js";
 import clientService from "../../services/clientService";
+import { Button, Segment, Dropdown, Grid, Label } from "semantic-ui-react";
+import { scrollUp } from "../../utility/constants";
 const initialLimit = 6;
 const initialOffset = 1;
 class CourseFaculty extends Component {
@@ -29,6 +31,8 @@ class CourseFaculty extends Component {
     isDisableNext: false,
     isDisablePrev: true,
     facultyName: "",
+    loadingNext: false,
+    loadingPrev: false,
   };
 
   componentDidMount = async () => {
@@ -208,6 +212,7 @@ class CourseFaculty extends Component {
       this.setState({
         isDisablePrev: false,
         offset: newOffset,
+        loadingNext: true,
       });
 
       await this.schoolCourse(
@@ -218,6 +223,11 @@ class CourseFaculty extends Component {
         selectedInstitution,
         search
       );
+
+      this.setState({
+        loadingNext: false,
+      });
+      scrollUp("wrapper");
     }
   };
 
@@ -237,6 +247,7 @@ class CourseFaculty extends Component {
       this.setState({
         isDisableNext: false,
         offset: newOffset,
+        loadingPrev: true,
       });
 
       await this.schoolCourse(
@@ -247,6 +258,11 @@ class CourseFaculty extends Component {
         selectedInstitution,
         search
       );
+
+      this.setState({
+        loadingPrev: false,
+      });
+      scrollUp("wrapper");
     }
   };
 
@@ -261,6 +277,8 @@ class CourseFaculty extends Component {
       institutions,
       degreeTypes,
       faculties,
+      loadingNext,
+      loadingPrev,
     } = this.state;
     return (
       <div className="main-wrapper course-page">
@@ -272,7 +290,7 @@ class CourseFaculty extends Component {
 
         <Styles>
           {/* Course Grid */}
-          <section className="course-grid-area">
+          <section id="wrapper" className="course-grid-area">
             <Container>
               <Row>
                 <Col lg="3" md="4" sm="5">
@@ -306,24 +324,28 @@ class CourseFaculty extends Component {
                     ""
                   ) : (
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button
+                      <Button
                         disabled={isDisablePrev}
+                        loading={loadingPrev}
+                        color="blue"
                         type="button"
                         class="btn btn-primary"
                         onClick={this.prev}
                       >
                         <i class="fas fa-arrow-circle-left"></i> Back
-                      </button>
+                      </Button>
                       <div style={{ width: 20 }}></div>
-                      <button
+                      <Button
                         disabled={isDisableNext}
+                        color="blue"
+                        loading={loadingNext}
                         float="right"
                         type="button"
                         class="btn btn-primary"
                         onClick={this.next}
                       >
-                        <i class="fas fa-arrow-circle-right"></i> Next
-                      </button>
+                        Next <i class="fas fa-arrow-circle-right"></i>
+                      </Button>
                     </div>
                   )}
                   <hr />

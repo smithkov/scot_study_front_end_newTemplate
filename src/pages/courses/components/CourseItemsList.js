@@ -4,18 +4,62 @@ import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import Pagination from "./../../../components/Pagination";
 import { myRoutes } from "../../../utility/constants";
+import { Dropdown, Checkbox, Table } from "semantic-ui-react";
 
 class CourseItemList extends Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const { hasSelectedCourse, hasSelectedFee, hasSelectedScholar } =
+      this.props;
+    console.log(this.props.selections);
     return (
       <Fragment>
         {/* Course Item */}
-        {this.props.courses.map((item, i) => (
-          <Col md="12" key={i}>
-            <div className="course-item d-flex">
+        <Col md="12">
+          <Table color={this.props.color} fixed compact striped>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Name</Table.HeaderCell>
+                <Table.HeaderCell>Fee</Table.HeaderCell>
+                <Table.HeaderCell>Scholarship</Table.HeaderCell>
+                <Table.HeaderCell>Faculty</Table.HeaderCell>
+                <Table.HeaderCell>Degree</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body style={{ fontSize: 15 }}>
+              {this.props.courses.map((item, i) => (
+                <Table.Row>
+                  <Table.Cell active={hasSelectedCourse}>
+                    <strong>
+                      {" "}
+                      <Link to={myRoutes.courseDetail(item.id)}>
+                        {item.name}
+                      </Link>
+                    </strong>
+                  </Table.Cell>
+                  <Table.Cell collapsing active={hasSelectedFee}>
+                    {item.fee}
+                  </Table.Cell>
+                  <Table.Cell collapsing active={hasSelectedScholar}>
+                    {item.scholarshipAmount > 0 || item.scholarshipAmount ? (
+                      <>
+                        <i
+                          style={{ color: "green" }}
+                          class="fas fa-check-circle"
+                        ></i>
+                        {` £${item.scholarshipAmount}`}
+                      </>
+                    ) : (
+                      "None"
+                    )}
+                  </Table.Cell>
+                  <Table.Cell collapsing>{item.Faculty.name}</Table.Cell>
+                  <Table.Cell collapsing>{item.DegreeType.name}</Table.Cell>
+                </Table.Row>
+                /*{ <div className="course-item d-flex">
               <div className="course-image-box">
                 <div
                   className="course-image"
@@ -37,26 +81,7 @@ class CourseItemList extends Component {
                 <h4 style={{ wordWrap: "break-word" }} className="heading">
                   <Link to={myRoutes.courseDetail(item.id)}>{item.name}</Link>
                 </h4>
-                {/* <div className="rating">
-                  <ul className="list-unstyled list-inline">
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star-half-alt"></i>
-                    </li>
-                    <li className="list-inline-item">(4.5)</li>
-                  </ul>
-                </div> */}
+
                 <p>
                   <strong>{item.Institution.name}</strong>
                 </p>
@@ -84,12 +109,16 @@ class CourseItemList extends Component {
                 </Link>
               </div>
             </div>
-          </Col>
-        ))}
+         } */
+              ))}
 
-        {/* <Col md="12" className="text-center">
+              {/* <Col md="12" className="text-center">
           <Pagination />
         </Col> */}
+            </Table.Body>
+          </Table>
+          <hr />
+        </Col>
       </Fragment>
     );
   }

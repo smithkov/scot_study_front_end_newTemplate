@@ -56,7 +56,7 @@ class CourseSidebar extends Component {
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
-                  <option selected>Select Institution</option>
+                  <option value="">All</option>
                   {this.props.institutions.map((item) => (
                     <>
                       <option key={item.id} value={item.id}>
@@ -74,7 +74,7 @@ class CourseSidebar extends Component {
                       class="form-select form-select-lg mb-3"
                       aria-label=".form-select-lg example"
                     >
-                      <option selected>Select faculty</option>
+                      <option value="">All</option>
                       {this.props.faculties.map((item) => (
                         <>
                           <option key={item.id} value={item.id}>
@@ -97,7 +97,7 @@ class CourseSidebar extends Component {
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
-                  <option selected>Select degree</option>
+                  <option value="">All</option>
                   {this.props.degreeTypes.map((item) => (
                     <>
                       <option key={item.id} value={item.id}>

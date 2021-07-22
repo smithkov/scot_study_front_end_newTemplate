@@ -456,12 +456,20 @@ function App() {
             name="Home"
             component={ProtectedRoute(Application)}
           />
-          <Route path="/payment" name="Home" component={Payment} />
-          <Route path="/paymentError" name="Home" component={PaymentError} />
+          <Route
+            path="/payment"
+            name="Home"
+            component={ProtectedRoute(Payment)}
+          />
+          <Route
+            path="/paymentError"
+            name="Home"
+            component={ProtectedRoute(PaymentError)}
+          />
           <Route
             path="/paymentSuccess"
             name="Home"
-            component={PaymentSuccess}
+            component={ProtectedRoute(PaymentSuccess)}
           />
           <Route
             path="/payment_list"

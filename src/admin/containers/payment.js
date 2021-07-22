@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
 import clientService from "../../services/clientService";
-import { asyncLocalStorage } from "../../utility/global";
+import { asyncLocalStorage, roles } from "../../utility/global";
 import { Link, Redirect } from "react-router-dom";
 import { CCard, CCardBody, CCardFooter, CCardHeader } from "@coreui/react";
 
@@ -25,6 +25,12 @@ import {
   Modal,
 } from "semantic-ui-react";
 const Payment = (props) => {
+  // const getRole = await asyncLocalStorage.getRole();
+
+  // if (getRole != roles.admin) {
+  //   setIsRender(false);
+  // }
+
   const [loading, setLoading] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
   let [userId, setUserId] = useState("");

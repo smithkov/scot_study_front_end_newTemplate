@@ -305,7 +305,7 @@ const Profile = () => {
                       }}
                       type="submit"
                     >
-                      Edit
+                      <Icon name="edit" /> Edit
                     </Button>
                     <Button
                       loading={loading}
@@ -313,7 +313,7 @@ const Profile = () => {
                       color="blue"
                       type="submit"
                     >
-                      Update
+                      <Icon name="save" /> Update
                     </Button>
                   </Form>
                 </CCardBody>

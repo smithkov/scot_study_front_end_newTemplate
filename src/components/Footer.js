@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import BackToTop from "./common/BackToTop";
 import { Styles } from "./styles/footerOne.js";
 import { social, contact } from "../utility/constants";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 class Footer extends Component {
   render() {
@@ -124,7 +125,12 @@ class Footer extends Component {
                 </div>
               </Col>
               <Col md="4">
-                <div className="f-post">
+                <TwitterTimelineEmbed
+                  sourceType="profile"
+                  screenName="ScotStudy"
+                  options={{ height: 400 }}
+                />
+                {/* <div className="f-post">
                   <h5>Recent Post</h5>
                   <div className="post-box d-flex">
                     <div className="post-img">
@@ -151,6 +157,7 @@ class Footer extends Component {
                     </div>
                   </div>
                 </div>
+               */}
               </Col>
             </Row>
           </Container>

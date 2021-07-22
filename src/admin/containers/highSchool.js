@@ -155,8 +155,12 @@ const Profile = (props) => {
 
                     <hr />
 
+                    <Button as="a" href="/edu_background" type="submit">
+                      <Icon name="backward" /> Back
+                    </Button>
+
                     <Button loading={loading} color="blue" type="submit">
-                      Save
+                      <Icon name="save" /> Save
                     </Button>
                   </Form>
                 </CCardBody>

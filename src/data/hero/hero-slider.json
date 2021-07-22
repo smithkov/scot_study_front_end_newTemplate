@@ -4,7 +4,7 @@
     "backgroundImage": "slider1.png",
     "uniqClass": "slider-box slider-box1",
     "title": "Welcome To Scot-Study.",
-    "desc": "Best University In This Region Join With Us Today",
+    "desc": "The UK is the 2nd most popular destination in the world for international students to study",
     "btnOneLink": "course-grid",
     "btnTwoLink": "contact"
   },
@@ -13,7 +13,7 @@
     "backgroundImage": "slider2.png",
     "uniqClass": "slider-box slider-box2 text-right",
     "title": "Welcome To Scot-Study.",
-    "desc": "Best University In This Region Join With Us Today",
+    "desc": "276,889 students were granted a sponsored study visa in 2019, which is a 16% increase from the previous year.",
     "btnOneLink": "course-grid",
     "btnTwoLink": "contact"
   }

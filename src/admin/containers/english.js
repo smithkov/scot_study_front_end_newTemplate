@@ -127,6 +127,7 @@ const English = (props) => {
                         onChange={onChangeDropdown}
                         name="selectedName"
                         options={[
+                          { key: 1, text: "NONE", value: "NONE" },
                           { key: 1, text: "TOEFL", value: "TOEFL" },
                           { key: 2, text: "IELTS", value: "IELTS" },
                         ]}
@@ -145,9 +146,11 @@ const English = (props) => {
                     </Form.Field>
 
                     <hr />
-
+                    <Button as="a" href="/highSchool" type="submit">
+                      <Icon name="backward" /> Back
+                    </Button>
                     <Button loading={loading} color="blue" type="submit">
-                      Save
+                      <Icon name="save" /> Save
                     </Button>
                   </Form>
                 </CCardBody>
