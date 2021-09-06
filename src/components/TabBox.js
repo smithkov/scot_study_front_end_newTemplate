@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { Styles } from "./styles/tabBox.js";
+import { Styles2 } from "./styles/teamStyle.js";
+import { Link } from "react-router-dom";
+import Datas from "../data/instructor/instructor.json";
+import TeamSlider from "../components/TeamSlider";
 
 class TabBox extends Component {
   render() {
@@ -26,6 +30,11 @@ class TabBox extends Component {
                     <Nav.Item>
                       <Nav.Link eventKey="vision">
                         <i className="las la-arrow-right"></i> About Scotland
+                      </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="team">
+                        <i className="las la-arrow-right"></i> Meet the team
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
@@ -170,6 +179,38 @@ class TabBox extends Component {
                         skills and knowledge, before it was expanded to other
                         parts of the United Kingdom and was later scrapped off.
                       </p>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="team">
+                      <h4 className="tab-title">Meet the team</h4>
+                      <Styles2>
+                        <div className="main-wrapper instructor-page">
+                          <section className="instructor-area">
+                            <Container>
+                              <Row>
+                                {Datas.map((data, i) => (
+                                  <Col lg="4" md="4" sm="6" key={i}>
+                                    <div className="instructor-item">
+                                      <img
+                                        src={`/images/team/${data.personImage}`}
+                                        alt=""
+                                        className="img-fluid"
+                                      />
+
+                                      <div
+                                        style={{ height: 100 }}
+                                        className="img-content text-center"
+                                      >
+                                        <h5>{data.personName}</h5>
+                                        <p>{data.personTitle}</p>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                ))}
+                              </Row>
+                            </Container>
+                          </section>
+                        </div>
+                      </Styles2>
                     </Tab.Pane>
                   </Tab.Content>
                 </Col>

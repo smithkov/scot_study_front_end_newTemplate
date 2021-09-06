@@ -156,7 +156,7 @@ const CoursePhotoUpdate = (props) => {
                   <Form.Field required>
                     <label>Content </label>
                     <textarea
-                      maxlength="170"
+                      maxlength="2000"
                       name="content"
                       placeholder="Content"
                       required

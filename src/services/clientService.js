@@ -169,6 +169,10 @@ class ClientService {
     return http.post(`${SERVER_URL}/allApplications`);
   };
 
+  allApplicationsForDash = async () => {
+    return http.post(`${SERVER_URL}/findAllForDashboard`);
+  };
+
   cities = async () => {
     return http.post(`${SERVER_URL}/allCities`);
   };
@@ -186,6 +190,10 @@ class ClientService {
 
   allUsers = async () => {
     return http.post(`${SERVER_URL}/allUsers`);
+  };
+
+  allUsersForDash = async () => {
+    return http.post(`${SERVER_URL}/findAllUserForDash`);
   };
 
   saveApplication = async (data) => {
@@ -247,6 +255,9 @@ class ClientService {
     );
   };
 
+  findAllPaymentPurpose = async () => {
+    return http.post(`${SERVER_URL}/findAllPaymentPurpose`);
+  };
   allCoursesSearch = async (data) => {
     return http.post(`${SERVER_URL}/allCoursesSearch`, data);
   };
@@ -277,6 +288,9 @@ class ClientService {
 
   institutionsLighter = async () => {
     return http.post(`${SERVER_URL}/institutionsLighter`);
+  };
+  visaApplyStatuses = async () => {
+    return http.post(`${SERVER_URL}/visaApplyStatuses`);
   };
 
   institutionsForMenu = async () => {
@@ -337,6 +351,18 @@ class ClientService {
 
   makePayment = async (data) => {
     return http.post(`${SERVER_URL}/make_payment`, data);
+  };
+
+  forgotPassword = async (data) => {
+    return http.post(`${SERVER_URL}/forgotPassword`, data);
+  };
+
+  resetPassword = async (data) => {
+    return http.post(`${SERVER_URL}/resetPassword`, data);
+  };
+
+  resetPasswordPost = async (data) => {
+    return http.post(`${SERVER_URL}/resetPasswordPost`, data);
   };
 
   //   return http.post(`${SERVER_URL}/findFacultyPhotos`, data);

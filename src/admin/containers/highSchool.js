@@ -84,9 +84,9 @@ const Profile = (props) => {
       if (!result.error) {
         setIsShowMessage(true);
         setErrorMessage(result.message);
-        if (!hasApplied) {
-          props.history.push("/english_test");
-        }
+        //if (!hasApplied) {
+        props.history.push("/english_test");
+        //}
       }
 
       setLoading(false);

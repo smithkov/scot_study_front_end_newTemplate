@@ -15,6 +15,19 @@ const _nav = [
     to: "/allAgents",
     icon: "cil-grid",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Applications",
+    to: "/allApplications",
+    icon: "cil-grid",
+  },
+
+  {
+    _tag: "CSidebarNavItem",
+    name: "Users",
+    to: "/allUsers",
+    icon: "cil-grid",
+  },
 
   {
     _tag: "CSidebarNavItem",

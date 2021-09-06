@@ -20,6 +20,9 @@ import PhdApplication from "./pages/account/phdApplication";
 import Login from "./pages/account/Login";
 import Exchange from "./pages/exchange/Exchange";
 import Register from "./pages/account/Register";
+import ResetPassword from "./pages/account/ResetPassword";
+import ResetPasswordSuccess from "./pages/account/ResetPasswordSuccess";
+import ForgotPassword from "./pages/account/ForgotPassword";
 import LoginAgent from "./pages/account/LoginAgent";
 import RegisterAgent from "./pages/account/RegisterAgent";
 import Contact from "./pages/contact/Contact";
@@ -80,6 +83,9 @@ const English = React.lazy(() => import("./admin/containers/english"));
 const HighSchool = React.lazy(() => import("./admin/containers/highSchool"));
 const Sponsor = React.lazy(() => import("./admin/containers/sponsorship"));
 const Application = React.lazy(() => import("./admin/containers/application"));
+const ApplicationSuccess = React.lazy(() =>
+  import("./admin/containers/applicationSuccess")
+);
 const Payment = React.lazy(() => import("./admin/containers/payment"));
 const PaymentSuccess = React.lazy(() =>
   import("./admin/containers/paymentSuccess")
@@ -153,6 +159,12 @@ const PaymentList = React.lazy(() =>
 
 const AllAgents = React.lazy(() =>
   import("./admin/containers/admin/allAgents")
+);
+
+const AllUsers = React.lazy(() => import("./admin/containers/admin/allUsers"));
+
+const AllApplications = React.lazy(() =>
+  import("./admin/containers/admin/allApplicants")
 );
 const InstitutionUpdate = React.lazy(() =>
   import("./admin/containers/admin/institution/update")
@@ -242,6 +254,12 @@ function App() {
           <Route path="/phd_application" component={PhdApplication} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/reset-password/:token" component={ResetPassword} />
+          <Route
+            path="/reset-password-success"
+            component={ResetPasswordSuccess}
+          />
           <Route path="/agent-login" component={LoginAgent} />
           <Route path="/agent-registration" component={RegisterAgent} />
           <Route path="/contact" component={Contact} />
@@ -317,6 +335,18 @@ function App() {
             path="/allAgents"
             name="Home"
             component={ProtectedRoute(AllAgents)}
+            // render={(props) => <CourseList {...props} />}
+          />
+          <Route
+            path="/allUsers"
+            name="Home"
+            component={ProtectedRoute(AllUsers)}
+            // render={(props) => <CourseList {...props} />}
+          />
+          <Route
+            path="/allApplications"
+            name="Home"
+            component={ProtectedRoute(AllApplications)}
             // render={(props) => <CourseList {...props} />}
           />
           <Route
@@ -455,6 +485,11 @@ function App() {
             path="/application"
             name="Home"
             component={ProtectedRoute(Application)}
+          />
+          <Route
+            path="/applicationSuccess"
+            name="Home"
+            component={ProtectedRoute(ApplicationSuccess)}
           />
           <Route
             path="/payment"

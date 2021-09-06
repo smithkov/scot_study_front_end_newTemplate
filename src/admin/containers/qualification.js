@@ -198,9 +198,9 @@ const Qualification = (props) => {
 
     if (!result.error) {
       setErrorMessage(result.message);
-      if (!hasApplied) {
-        props.history.push("/highSchool");
-      }
+      //if (!hasApplied) {
+      props.history.push("/highSchool");
+      // }
     } else {
       setErrorMessage(result.message);
     }

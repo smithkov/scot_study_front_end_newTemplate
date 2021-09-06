@@ -14,6 +14,7 @@ import { Styles } from "./styles/eventDetails.js";
 import clientService from "../../services/clientService";
 import Loading from "../../components/widgets/loading";
 import Message from "../../components/widgets/message";
+import { Dropdown, Grid, Segment, Input } from "semantic-ui-react";
 
 const initialLimit = 12;
 const initialOffset = 1;
@@ -26,6 +27,7 @@ function InstitutionDetail(props) {
   const [offset, setOffset] = useState(initialOffset);
   const [limit, setLimit] = useState(initialLimit);
   const [selectedFaculty, setSelectedFaculty] = useState("");
+  const [search, setSearch] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
   const [institutionId, setInstitutionId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +60,14 @@ function InstitutionDetail(props) {
       const result = await clientService.findInstitutionById({ id });
 
       setInstitution(result.data.data);
-      await schoolCourse(selectedFaculty, offset, limit, selectedDegree, id);
+      await schoolCourse(
+        selectedFaculty,
+        offset,
+        limit,
+        selectedDegree,
+        id,
+        search
+      );
       const facultyResult = await clientService.facultiesLight();
       setFaculties(facultyResult.data.data);
       const degreeTypeResult = await clientService.degreeTypes();
@@ -90,7 +99,8 @@ function InstitutionDetail(props) {
     offset,
     limit,
     selectedDegree,
-    institutionId
+    institutionId,
+    search
   ) {
     const result = await clientService.findCourseByInstitution({
       institutionId: institutionId,
@@ -98,6 +108,7 @@ function InstitutionDetail(props) {
       offset,
       limit,
       degreeTypeId: selectedDegree,
+      search,
     });
     let totalLoad = result.data.data;
     let totalLoadLength = totalLoad.length;
@@ -114,7 +125,29 @@ function InstitutionDetail(props) {
 
     setSelectedFaculty(faculty);
 
-    await schoolCourse(faculty, offset, limit, selectedDegree, institutionId);
+    await schoolCourse(
+      faculty,
+      offset,
+      limit,
+      selectedDegree,
+      institutionId,
+      search
+    );
+  };
+
+  const onSearch = async (e) => {
+    const search = e.target.value;
+
+    setSearch(search);
+
+    await schoolCourse(
+      selectedFaculty,
+      offset,
+      limit,
+      selectedDegree,
+      institutionId,
+      search
+    );
   };
   const onChangeDegree = async (e) => {
     const selectedDegree = e.target.value;
@@ -125,7 +158,8 @@ function InstitutionDetail(props) {
       offset,
       limit,
       selectedDegree,
-      institutionId
+      institutionId,
+      search
     );
   };
 
@@ -140,7 +174,8 @@ function InstitutionDetail(props) {
         newOffset,
         limit,
         selectedDegree,
-        institutionId
+        institutionId,
+        search
       );
     }
   };
@@ -156,7 +191,8 @@ function InstitutionDetail(props) {
         newOffset,
         limit,
         selectedDegree,
-        institutionId
+        institutionId,
+        search
       );
     }
   };
@@ -219,44 +255,55 @@ function InstitutionDetail(props) {
             <Container>
               <Row>
                 <Col lg="12" md="12" sm="12">
-                  <Row>
-                    <Col lg="12" md="12" sm="12">
-                      <select
-                        name="selectedFaculty"
-                        onChange={onChangeFaculty}
-                        class="form-select form-select-lg mb-3"
-                        aria-label=".form-select-lg example"
-                      >
-                        <option selected>Select Faculty</option>
-                        {faculties.map((item) => (
-                          <>
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>{" "}
-                            <br /> <br />
-                          </>
-                        ))}
-                      </select>
-                    </Col>
-
-                    <Col lg="12" md="12" sm="12">
-                      <select
-                        onChange={onChangeDegree}
-                        class="form-select form-select-lg mb-3"
-                        aria-label=".form-select-lg example"
-                      >
-                        <option selected>Select Degree</option>
-                        {degreeTypes.map((item) => (
-                          <>
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>{" "}
-                            <br /> <br />
-                          </>
-                        ))}
-                      </select>
-                    </Col>
-                  </Row>
+                  <Segment>
+                    <Grid stackable columns="equal">
+                      <Grid.Column>
+                        <Input
+                          placeholder="Search course"
+                          onChange={onSearch}
+                          fluid
+                          name="search"
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <select
+                          name="selectedFaculty"
+                          onChange={onChangeFaculty}
+                          class="form-select form-select-lg mb-3"
+                          aria-label=".form-select-lg example"
+                        >
+                          <option selected>Select Faculty</option>
+                          {faculties.map((item) => (
+                            <>
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>{" "}
+                              <br /> <br />
+                            </>
+                          ))}
+                        </select>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <select
+                          onChange={onChangeDegree}
+                          class="form-select form-select-lg mb-3"
+                          aria-label=".form-select-lg example"
+                        >
+                          <option selected>Select Degree</option>
+                          {degreeTypes.map((item) => (
+                            <>
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>{" "}
+                              <br /> <br />
+                            </>
+                          ))}
+                        </select>
+                      </Grid.Column>
+                    </Grid>
+                  </Segment>
+                  <br />
+                  <br />
                 </Col>
                 <Col lg="12" md="12" sm="12">
                   {isLoading ? (

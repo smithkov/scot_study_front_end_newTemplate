@@ -13,6 +13,7 @@ import { scrollUp } from "../../utility/constants";
 import { Button, Segment, Dropdown, Grid, Label } from "semantic-ui-react";
 
 const initialLimit = 6;
+const all = "All";
 const initialOffset = 1;
 const tables = {
   first: "FIRST_TABLE",
@@ -22,8 +23,8 @@ const tables = {
 const compareArray = [
   {
     key: 0,
-    text: "None",
-    value: "",
+    text: all,
+    value: "all",
   },
   {
     key: 2,
@@ -43,6 +44,13 @@ const compareArray = [
   },
 ];
 class Compare extends Component {
+  constructor(props) {
+    super(props);
+    this.myDegree = React.createRef();
+    this.myFaculty = React.createRef();
+    this.myInstitution1 = React.createRef();
+    this.myInstitution2 = React.createRef();
+  }
   state = {
     courses: [],
     courses2: [],
@@ -219,6 +227,60 @@ class Compare extends Component {
         break;
       }
 
+      case "all": {
+        const offset = initialOffset,
+          offset2 = initialOffset,
+          selectedInstitution = "",
+          selectedInstitution2 = "",
+          selectedDegree = "",
+          selectedFaculty = "",
+          search = "",
+          isChecked = false,
+          limit = initialLimit;
+        this.myInstitution1.current.clearValue();
+        this.myInstitution2.current.clearValue();
+        this.myFaculty.current.clearValue();
+        this.myDegree.current.clearValue();
+        this.setState({
+          institutionOneCaption: all,
+          institutionTwoCaption: all,
+          offset: initialOffset,
+          offset2: initialOffset,
+          selectedDegree,
+          selectedFaculty,
+          selectedInstitution,
+          selectedInstitution2,
+          hasSelectedScholar: false,
+          hasSelectedCourse: false,
+          hasSelectedFee: false,
+          isChecked,
+          limit,
+          search,
+        });
+        await this.compare(
+          selectedFaculty,
+          offset,
+          limit,
+          selectedDegree,
+          selectedInstitution,
+          search,
+          isChecked,
+          tables.first
+        );
+
+        await this.compare(
+          selectedFaculty,
+          offset2,
+          limit,
+          selectedDegree,
+          selectedInstitution2,
+          search,
+          isChecked,
+          tables.second
+        );
+        break;
+      }
+
       case "scholarship": {
         const checked = true;
         this.setState({
@@ -265,7 +327,40 @@ class Compare extends Component {
           hasSelectedScholar: false,
           hasSelectedCourse: false,
           hasSelectedFee: false,
+          institutionOneCaption: all,
+          institutionTwoCaption: all,
         });
+
+        const selectedFaculty = "",
+          offset = initialOffset,
+          offset2 = initialOffset,
+          selectedInstitution = "",
+          selectedInstitution2 = "",
+          selectedDegree = "",
+          search = "",
+          limit = initialLimit;
+        const checked = false;
+        await this.compare(
+          selectedFaculty,
+          offset,
+          limit,
+          selectedDegree,
+          selectedInstitution,
+          search,
+          checked,
+          tables.first
+        );
+
+        await this.compare(
+          selectedFaculty,
+          offset2,
+          limit,
+          selectedDegree,
+          selectedInstitution2,
+          search,
+          checked,
+          tables.second
+        );
         break;
       }
     }
@@ -350,7 +445,7 @@ class Compare extends Component {
   onChangeInstitution = async (e, data) => {
     const newInstitution = data.value;
     this.setState({
-      institutionOneCaption: e.target.textContent,
+      institutionOneCaption: e ? e.target.textContent : all,
     });
 
     const {
@@ -378,7 +473,7 @@ class Compare extends Component {
   onChangeInstitution2 = async (e, data) => {
     const newInstitution = data.value;
     this.setState({
-      institutionTwoCaption: e.target.textContent,
+      institutionTwoCaption: e ? e.target.textContent : all,
     });
     const {
       selectedFaculty,
@@ -470,7 +565,7 @@ class Compare extends Component {
       );
 
       this.setState({ loadingNext: false });
-      scrollUp(tables.all);
+      scrollUp(tables.first);
     }
   };
 
@@ -505,7 +600,7 @@ class Compare extends Component {
       );
     }
     this.setState({ loadingNext2: false });
-    scrollUp(tables.all);
+    scrollUp(tables.second);
   };
 
   prev = async (e) => {
@@ -540,7 +635,7 @@ class Compare extends Component {
       );
     }
     this.setState({ loadingPrev: false });
-    scrollUp(tables.all);
+    scrollUp(tables.first);
   };
 
   prev2 = async (e) => {
@@ -575,7 +670,7 @@ class Compare extends Component {
       );
     }
     this.setState({ loadingPrev2: false });
-    scrollUp(tables.all);
+    scrollUp(tables.second);
   };
   reset = async (e) => {
     window.location.reload(false);
@@ -639,6 +734,7 @@ class Compare extends Component {
                       <Grid.Column>
                         <Dropdown
                           name="selectedInstitution"
+                          ref={this.myInstitution1}
                           onChange={this.onChangeInstitution}
                           placeholder="Select Institution One"
                           fluid
@@ -651,6 +747,7 @@ class Compare extends Component {
                       <Grid.Column>
                         <Dropdown
                           name="selectedInstitution2"
+                          ref={this.myInstitution2}
                           onChange={this.onChangeInstitution2}
                           placeholder="Select Institution Two"
                           fluid
@@ -664,6 +761,7 @@ class Compare extends Component {
                         <Dropdown
                           onChange={this.onChangeFaculty}
                           name="selectedFaculty"
+                          ref={this.myFaculty}
                           placeholder="Select Faculty"
                           fluid
                           search
@@ -676,6 +774,7 @@ class Compare extends Component {
                         <Dropdown
                           onChange={this.onChangeDegreeType}
                           name="selectedDegree"
+                          ref={this.myDegree}
                           placeholder="Select Degree"
                           fluid
                           search
@@ -689,22 +788,8 @@ class Compare extends Component {
                   <br />
                   <br />
                 </Col>
-                {/* <Col lg="3" md="4" sm="5">
-                  <CourseSidebarForCompare
-                    onChangeInstitution={this.onChangeInstitution}
-                    onChangeFaculty={this.onChangeFaculty}
-                    onChangeDegreeType={this.onChangeDegreeType}
-                    canShowFaculty={true}
-                    reset={this.reset}
-                    onChange={this.onChange}
-                    institutions={institutions}
-                    faculties={faculties}
-                    degreeTypes={degreeTypes}
-                    onChangeCheck={this.onChangeCheck}
-                    isChecked={isChecked}
-                  />
-                </Col> */}
-                <Col id={tables.all} lg="6" md="6" sm="6">
+
+                <Col id={tables.first} lg="6" md="6" sm="6">
                   {isLoading ? (
                     <Loading />
                   ) : isEmpty ? (
@@ -713,9 +798,7 @@ class Compare extends Component {
                     <div className="course-items2">
                       <Segment textAlign="center" stacked>
                         <Label size="large" color="blue">
-                          {institutionOneCaption
-                            ? institutionOneCaption
-                            : "All"}
+                          {institutionOneCaption ? institutionOneCaption : all}
                         </Label>
                       </Segment>
                       <Row>
@@ -733,7 +816,7 @@ class Compare extends Component {
                   {isEmpty || isLoading ? (
                     ""
                   ) : (
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-flex flex-row">
                       <Button
                         color="blue"
                         loading={loadingPrev}
@@ -760,7 +843,7 @@ class Compare extends Component {
                   )}
                   <hr />
                 </Col>
-                <Col lg="6" md="6" sm="6">
+                <Col id={tables.second} lg="6" md="6" sm="6">
                   {isLoading2 ? (
                     <Loading />
                   ) : isEmpty2 ? (
@@ -769,9 +852,7 @@ class Compare extends Component {
                     <div className="course-items2">
                       <Segment textAlign="center" stacked>
                         <Label size="large" color="blue">
-                          {institutionTwoCaption
-                            ? institutionTwoCaption
-                            : "All"}
+                          {institutionTwoCaption ? institutionTwoCaption : all}
                         </Label>
                       </Segment>
                       <Row>
@@ -789,7 +870,7 @@ class Compare extends Component {
                   {isEmpty2 || isLoading2 ? (
                     ""
                   ) : (
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-flex flex-row">
                       <Button
                         color="blue"
                         loading={loadingPrev2}

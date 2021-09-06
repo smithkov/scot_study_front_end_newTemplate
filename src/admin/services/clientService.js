@@ -158,8 +158,8 @@ class ClientService {
   allInstitutions = async () => {
     return http.post(`${SERVER_URL}/allInstitutions`);
   };
-  allApplications = async () => {
-    return http.post(`${SERVER_URL}/allApplications`);
+  allApplications = async (data) => {
+    return http.post(`${SERVER_URL}/allApplications`, data);
   };
 
   cities = async () => {
@@ -170,8 +170,8 @@ class ClientService {
     return http.post(`${SERVER_URL}/findAllAgents`, data);
   };
 
-  allUsers = async () => {
-    return http.post(`${SERVER_URL}/allUsers`);
+  allUsers = async (data) => {
+    return http.post(`${SERVER_URL}/allUsers`, data);
   };
 
   saveApplication = async (data) => {

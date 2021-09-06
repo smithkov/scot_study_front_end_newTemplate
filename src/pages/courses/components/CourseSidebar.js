@@ -53,6 +53,7 @@ class CourseSidebar extends Component {
                 <h5>Institutions</h5>
                 <select
                   onChange={this.props.onChangeInstitution}
+                  name="selectedInstitution"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >

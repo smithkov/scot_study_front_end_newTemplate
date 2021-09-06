@@ -88,7 +88,7 @@ class CourseGrid extends Component {
     });
     let totalLoad = result.data.data;
     let totalLoadLength = totalLoad.length;
-
+    console.log(result.data.data);
     this.setState({
       courses: result.data.data,
       totalLoad,
@@ -100,12 +100,12 @@ class CourseGrid extends Component {
   };
 
   onChangeDegreeType = async (e) => {
-    const { selectedFaculty, selectedInstitution, offset, limit, search } =
-      this.state;
-
+    const { selectedFaculty, selectedInstitution, limit, search } = this.state;
+    const offset = initialOffset;
     const degreeType = e.target.value;
     this.setState({
-      selectedDegree: degreeType,
+      selectedDegreeType: degreeType,
+      offset: offset,
     });
     await this.schoolCourse(
       selectedFaculty,
@@ -118,12 +118,13 @@ class CourseGrid extends Component {
   };
 
   onChangeFaculty = async (e) => {
-    const { selectedDegreeType, selectedInstitution, offset, limit, search } =
+    const { selectedDegreeType, selectedInstitution, limit, search } =
       this.state;
-
+    const offset = initialOffset;
     const faculty = e.target.value;
     this.setState({
       selectedFaculty: faculty,
+      offset,
     });
     await this.schoolCourse(
       faculty,
@@ -131,6 +132,31 @@ class CourseGrid extends Component {
       limit,
       selectedDegreeType,
       selectedInstitution,
+      search
+    );
+  };
+
+  onChangeInstitution = async (e) => {
+    const {
+      selectedDegreeType,
+      selectedInstitution,
+      selectedFaculty,
+      limit,
+      search,
+    } = this.state;
+    const offset = initialOffset;
+    const institution = e.target.value;
+
+    this.setState({
+      selectedInstitution: institution,
+      offset,
+    });
+    await this.schoolCourse(
+      selectedFaculty,
+      offset,
+      limit,
+      selectedDegreeType,
+      institution,
       search
     );
   };
@@ -269,7 +295,7 @@ class CourseGrid extends Component {
 
         <Styles>
           {/* Course Grid */}
-          <section id="wrapper" className="course-grid-area">
+          <section className="course-grid-area">
             <Container>
               <Row>
                 <Col lg="3" md="4" sm="5">
@@ -277,6 +303,7 @@ class CourseGrid extends Component {
                     canShowFaculty={true}
                     search={search}
                     onChange={this.onChange}
+                    onChangeInstitution={this.onChangeInstitution}
                     onChangeFaculty={this.onChangeFaculty}
                     onChangeDegreeType={this.onChangeDegreeType}
                     reset={this.reset}
@@ -285,7 +312,7 @@ class CourseGrid extends Component {
                     degreeTypes={degreeTypes}
                   />
                 </Col>
-                <Col lg="9" md="8" sm="7">
+                <Col id="wrapper" lg="9" md="8" sm="7">
                   {isLoading ? (
                     <Loading />
                   ) : isEmpty ? (
@@ -300,7 +327,7 @@ class CourseGrid extends Component {
                   {isEmpty || isLoading ? (
                     ""
                   ) : (
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-flex flex-row">
                       <Button
                         loading={loadingPrev}
                         disabled={isDisablePrev}

@@ -88,12 +88,12 @@ function Login(props) {
                     className="form"
                   >
                     <p className="form-control">
-                      <label htmlFor="login_user">Email</label>
+                      <label htmlFor="login_user">Email or username</label>
                       <input
                         onChange={onChange}
                         name="email"
                         type="text"
-                        placeholder="Email"
+                        placeholder="Email or username"
                         id="login_user"
                       />
                       <span className="login_input-msg"></span>
@@ -121,8 +121,9 @@ function Login(props) {
                           Save Password
                         </label>
                       </div>
+
                       <div className="forget-password">
-                        <a href="">Forget Password?</a>
+                        <a href="/forgot-password">Forget Password?</a>
                       </div>
                     </div>
                     <div className="not_account-btn text-center">
@@ -131,6 +132,10 @@ function Login(props) {
                         <a href="/register">Click Here</a>
                       </p>
                     </div>
+                    {/* <p>
+                      {" "}
+                      <a href="/agent-login">Agent Login</a>
+                    </p> */}
                   </form>
                 </div>
               </Col>

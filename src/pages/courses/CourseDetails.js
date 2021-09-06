@@ -7,6 +7,8 @@ import RelatedCourse from "./components/RelatedCourse";
 import CourseTag from "./components/CourseTag";
 import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/course.js";
+import { asyncLocalStorage } from "../../utility/global";
+import { formatScholarship } from "../../utility/constants";
 import clientService from "../../services/clientService";
 
 function CourseDetails(props) {
@@ -26,6 +28,12 @@ function CourseDetails(props) {
       setHasData(true);
     })();
   }, [courseId]);
+
+  const apply = async (e) => {
+    e.preventDefault();
+    await asyncLocalStorage.setCourse(course.id);
+    props.history.push("/edu_background");
+  };
 
   return (
     <div className="main-wrapper course-details-page">
@@ -113,7 +121,7 @@ function CourseDetails(props) {
                             {course.DegreeType.id ==
                             "1aad6011-8464-4c38-a84e-36442d64911c" ? (
                               <div className="course-learn">
-                                <h5>Course Requirements</h5>
+                                <h5>Course Description</h5>
                                 <p>
                                   Undergraduate is a post-secondary school
                                   education. An undergraduate degree is a
@@ -148,10 +156,10 @@ function CourseDetails(props) {
                                 <br />
                                 <p>
                                   {" "}
-                                  IN ADDITION : Write a personal statement
-                                  detailing your reasons for choosing the
-                                  proposed course and benefits to be gained on
-                                  completion.
+                                  <strong>IN ADDITION : </strong>Write a
+                                  personal statement detailing your reasons for
+                                  choosing the proposed course and benefits to
+                                  be gained on completion.
                                 </p>
                               </div>
                             ) : (
@@ -161,7 +169,7 @@ function CourseDetails(props) {
                             {course.DegreeType.id ==
                             "ead37f16-9474-4c55-ab96-c798341d60f4" ? (
                               <div className="course-learn">
-                                <h5>Course Requirements</h5>
+                                <h5>Course Description</h5>
                                 <p>
                                   Generally, a postgraduate degree is a degree
                                   which you study for once you have finished a
@@ -180,8 +188,11 @@ function CourseDetails(props) {
                                   environment.
                                   <br />
                                   <br />
-                                  Requirements for admission for masters,
-                                  masters of research and doctorates.
+                                  <strong>
+                                    {" "}
+                                    Requirements for admission for masters,
+                                    masters of research and doctorates.
+                                  </strong>
                                   <br />
                                   <br />
                                   - Completed application form.
@@ -208,7 +219,8 @@ function CourseDetails(props) {
                                   - Research proposal (for masters of research
                                   and doctorate degree applicants).
                                   <br /> <br />
-                                  Please note : <br /> <br />
+                                  <strong>Please note : </strong>
+                                  <br /> <br />
                                   - Additional documentations may be required
                                   depending on the proposed course i.e
                                   Architecture, MBA, Photography, etc
@@ -236,8 +248,14 @@ function CourseDetails(props) {
                           <ul className="list-unstyled feature-list">
                             {course.scholarshipAmount ? (
                               <li>
-                                <i className="fa fa-money"></i> Scholarship
-                                Amount: <span>£{course.scholarshipAmount}</span>
+                                <i
+                                  style={{ color: "green" }}
+                                  class="fas fa-check-circle"
+                                ></i>{" "}
+                                Scholarship Amount:{" "}
+                                <span>
+                                  {formatScholarship(course.scholarshipAmount)}
+                                </span>
                               </li>
                             ) : (
                               ""
@@ -272,7 +290,7 @@ function CourseDetails(props) {
                               ""
                             )}
                           </ul>
-                          <a href={`/login`}>
+                          <a onClick={apply}>
                             <button type="button" className="enroll-btn">
                               Apply
                             </button>

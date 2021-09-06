@@ -97,19 +97,21 @@ export default class HomeOne extends Component {
                                   </div>
                                   <div className="event-desc">
                                     <p>
-                                      There are many sources of financial
-                                      support including postgraduate loans and
-                                      additional study funding that is offered
-                                      by Universities and Charities.
-                                      Universities offer postgraduate funding to
-                                      support students looking to continue their
-                                      studies at a specialist level. These
-                                      degrees can offer qualifications such as
-                                      MA, MSc, MRes, MBA, MPhill and PhD.
-                                      Postgraduate degrees are expensive and
-                                      many students looking to study in the UK
-                                      will look to additional funding sources in
-                                      order to provide extra support.
+                                      Looking for the next step in your Academic
+                                      Career? Sign up for your research
+                                      programme today!
+                                      <br /> <br />
+                                      Direct the passion of your study field
+                                      into a three or four year programme. There
+                                      is a variety of research programmes to
+                                      choose from, including: PhD, MPhil, DBA,
+                                      etc... This is your opportunity to make an
+                                      original contribution to your subject.{" "}
+                                      <br /> <br />
+                                      Not sure what to base your research on? We
+                                      are here to guide you and help you make
+                                      the next step. Get in touch with our team
+                                      to start your future!
                                     </p>
                                   </div>
                                 </Col>

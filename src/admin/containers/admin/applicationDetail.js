@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../index";
-import clientService from "../../services/clientService";
+import clientService from "../../../services/clientService";
 import Moment from "react-moment";
 import { imageStyles } from "../../utility/constants";
 import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
@@ -40,12 +40,15 @@ const ApplicationDetail = (props) => {
   let [previousQualification, setPreviousQualification] = useState({});
   let [highSchool, setHighSchool] = useState({});
   let [english, setEnglish] = useState({});
+  let [visaStatuses, setVisaStatuses] = useState([]);
+  let [selectedVisaStatus, setSelectedVisaStatus] = useState("");
   let [sponsor, setSponsor] = useState({});
   let [visa, setVisa] = useState({});
   let [applications, setApplications] = useState([]);
   let [decisions, setDecisions] = useState([]);
   let [selectedDecision, setSelectedDecision] = useState("");
   let [decisionText, setDecisionText] = useState("");
+  let [visaStatusText, setVisaStatusText] = useState("");
   let [hasDecided, setHasDecided] = useState(false);
   let [hasCAS, setHasCAS] = useState(false);
   let [hasPaid, setHasPaid] = useState(false);
@@ -101,17 +104,26 @@ const ApplicationDetail = (props) => {
         userId: id,
       });
       const appData = userApplications.data.data;
+      //console.log(appData);
       setApplications(appData);
 
       if (appData) {
-        const { hasPaid, hasDecided, hasCAS, eligibilityCheck, Decision } =
-          appData;
+        const {
+          hasPaid,
+          hasDecided,
+          hasCAS,
+          eligibilityCheck,
+          Decision,
+          VisaApplyStatus,
+        } = appData;
         setHasPaid(hasPaid);
         setHasDecided(hasDecided);
         setHasCAS(hasCAS);
         setEligibilityCheck(eligibilityCheck);
         setSelectedDecision(Decision ? Decision.id : "");
         setDecisionText(Decision ? Decision.name : "");
+        setVisaStatusText(VisaApplyStatus ? VisaApplyStatus.name : "");
+        setSelectedVisaStatus(VisaApplyStatus ? VisaApplyStatus.id : "");
         setAppId(appData.id);
       }
 
@@ -126,12 +138,25 @@ const ApplicationDetail = (props) => {
       });
 
       setDecisions(decisionData);
+
+      const visaApplyStatusResult = await clientService.visaApplyStatuses();
+
+      let visaData = visaApplyStatusResult.data.data.map((item) => {
+        return {
+          key: item.id,
+          value: item.id,
+          text: item.name,
+        };
+      });
+
+      setVisaStatuses(visaData);
     })();
   }, []);
   const onChangeDropdown = async (e, data) => {
     const value = data.value;
-
-    setSelectedDecision(value);
+    const name = data.name;
+    if (name == "selectedVisaStatus") setSelectedVisaStatus(value);
+    else setSelectedDecision(value);
   };
   const onChangeCheckbox = (e, data) => {
     let checked = data.checked;
@@ -156,6 +181,7 @@ const ApplicationDetail = (props) => {
         eligibilityCheck,
         hasDecided,
         decisionId: selectedDecision,
+        visaApplyStatusId: selectedVisaStatus,
       },
       appId
     );
@@ -498,46 +524,49 @@ const ApplicationDetail = (props) => {
                   )}
                 </CCardBody>
               </CCard>
-
-              <CCard accentColor="primary">
-                <CCardHeader>
-                  <Segment textAlign="center" stacked>
-                    <h3>Visa History</h3>
-                  </Segment>
-                </CCardHeader>
-
-                <CCardBody>
-                  {visa.hasApplied == "No" ? (
-                    <Segment textAlign="center" raised>
-                      This applicant has no travel history.
+              {visa ? (
+                <CCard accentColor="primary">
+                  <CCardHeader>
+                    <Segment textAlign="center" stacked>
+                      <h3>Visa History</h3>
                     </Segment>
-                  ) : (
-                    <Table singleLine>
-                      <Table.Body>
-                        {" "}
-                        <Table.Row>
-                          <Table.Cell>
-                            <h5>Has Appled for Visa?</h5>
-                          </Table.Cell>
-                          <Table.Cell>{visa.hasApplied}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.Cell>
-                            <h5>Has Appled for Visa?</h5>
-                          </Table.Cell>
-                          <Table.Cell>{visa.hasApplied}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.Cell>
-                            <h5>Has Appled for Visa?</h5>
-                          </Table.Cell>
-                          <Table.Cell>{visa.hasApplied}</Table.Cell>
-                        </Table.Row>
-                      </Table.Body>
-                    </Table>
-                  )}
-                </CCardBody>
-              </CCard>
+                  </CCardHeader>
+
+                  <CCardBody>
+                    {visa.hasApplied == "No" ? (
+                      <Segment textAlign="center" raised>
+                        This applicant has no travel history.
+                      </Segment>
+                    ) : (
+                      <Table singleLine>
+                        <Table.Body>
+                          {" "}
+                          <Table.Row>
+                            <Table.Cell>
+                              <h5>Has Appled for Visa?</h5>
+                            </Table.Cell>
+                            <Table.Cell>{visa.hasApplied}</Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                            <Table.Cell>
+                              <h5>Has Appled for Visa?</h5>
+                            </Table.Cell>
+                            <Table.Cell>{visa.hasApplied}</Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                            <Table.Cell>
+                              <h5>Has Appled for Visa?</h5>
+                            </Table.Cell>
+                            <Table.Cell>{visa.hasApplied}</Table.Cell>
+                          </Table.Row>
+                        </Table.Body>
+                      </Table>
+                    )}
+                  </CCardBody>
+                </CCard>
+              ) : (
+                ""
+              )}
               <CCard accentColor="primary">
                 <CCardHeader>
                   {" "}
@@ -688,6 +717,28 @@ const ApplicationDetail = (props) => {
                               name="selectedDecision"
                               label={"Decision"}
                               options={decisions}
+                              onChange={onChangeDropdown}
+                            />
+                          </Form.Field>
+                        </Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>
+                          <h5>Visa Apply Status</h5>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <Form.Field required>
+                            <Dropdown
+                              required
+                              fluid
+                              selection
+                              search
+                              placeholder={
+                                visaStatusText || "Select visa status"
+                              }
+                              name="selectedVisaStatus"
+                              label={"Visa Apply Status"}
+                              options={visaStatuses}
                               onChange={onChangeDropdown}
                             />
                           </Form.Field>

@@ -124,9 +124,9 @@ const VisaHistory = (props) => {
       if (!result.error) {
         setIsShowMessage(true);
         setErrorMessage(result.message);
-        if (!hasApplied) {
-          props.history.push("/application");
-        }
+        //if (!hasApplied) {
+        props.history.push("/application");
+        // }
       }
 
       setLoading(false);

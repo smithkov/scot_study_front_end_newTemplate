@@ -23,7 +23,7 @@ class CourseItemGrid extends Component {
                 <div
                   className="course-image"
                   style={{
-                    backgroundImage: `url(${item.CoursePhoto.url})`,
+                    backgroundImage: `url(${item.CoursePhoto?.url})`,
                   }}
                 >
                   <div className="author-img d-flex">

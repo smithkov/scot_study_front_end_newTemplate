@@ -88,9 +88,9 @@ const Sponsorship = (props) => {
       }
 
       setLoading(false);
-      if (!hasApplied) {
-        props.history.push("/visa_history");
-      }
+      //if (!hasApplied) {
+      props.history.push("/visa_history");
+      // }
     } else {
       setIsShowMessage(true);
       setErrorMessage("Please select a sponsor");

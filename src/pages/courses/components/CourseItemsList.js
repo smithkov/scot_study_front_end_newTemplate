@@ -3,7 +3,7 @@ import Datas from "../../../data/course/item.json";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import Pagination from "./../../../components/Pagination";
-import { myRoutes } from "../../../utility/constants";
+import { myRoutes, formatScholarship } from "../../../utility/constants";
 import { Dropdown, Checkbox, Table } from "semantic-ui-react";
 
 class CourseItemList extends Component {
@@ -18,12 +18,20 @@ class CourseItemList extends Component {
       <Fragment>
         {/* Course Item */}
         <Col md="12">
-          <Table color={this.props.color} fixed compact striped>
+          <Table color={this.props.color} unstackable fixed compact striped>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Fee</Table.HeaderCell>
-                <Table.HeaderCell>Scholarship</Table.HeaderCell>
+                {hasSelectedCourse || hasSelectedScholar ? (
+                  ""
+                ) : (
+                  <Table.HeaderCell>Fee</Table.HeaderCell>
+                )}
+                {hasSelectedCourse || hasSelectedFee ? (
+                  ""
+                ) : (
+                  <Table.HeaderCell>Scholarship</Table.HeaderCell>
+                )}
                 <Table.HeaderCell>Faculty</Table.HeaderCell>
                 <Table.HeaderCell>Degree</Table.HeaderCell>
               </Table.Row>
@@ -40,22 +48,30 @@ class CourseItemList extends Component {
                       </Link>
                     </strong>
                   </Table.Cell>
-                  <Table.Cell collapsing active={hasSelectedFee}>
-                    {item.fee}
-                  </Table.Cell>
-                  <Table.Cell collapsing active={hasSelectedScholar}>
-                    {item.scholarshipAmount > 0 || item.scholarshipAmount ? (
-                      <>
-                        <i
-                          style={{ color: "green" }}
-                          class="fas fa-check-circle"
-                        ></i>
-                        {` £${item.scholarshipAmount}`}
-                      </>
-                    ) : (
-                      "None"
-                    )}
-                  </Table.Cell>
+                  {hasSelectedCourse || hasSelectedScholar ? (
+                    ""
+                  ) : (
+                    <Table.Cell collapsing active={hasSelectedFee}>
+                      {item.fee}
+                    </Table.Cell>
+                  )}
+                  {hasSelectedCourse || hasSelectedFee ? (
+                    ""
+                  ) : (
+                    <Table.Cell collapsing active={hasSelectedScholar}>
+                      {item.scholarshipAmount > 0 || item.scholarshipAmount ? (
+                        <>
+                          <i
+                            style={{ color: "green" }}
+                            class="fas fa-check-circle"
+                          ></i>
+                          {` ${formatScholarship(item.scholarshipAmount)}`}
+                        </>
+                      ) : (
+                        "None"
+                      )}
+                    </Table.Cell>
+                  )}
                   <Table.Cell collapsing>{item.Faculty.name}</Table.Cell>
                   <Table.Cell collapsing>{item.DegreeType.name}</Table.Cell>
                 </Table.Row>

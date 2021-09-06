@@ -290,7 +290,7 @@ class CourseFaculty extends Component {
 
         <Styles>
           {/* Course Grid */}
-          <section id="wrapper" className="course-grid-area">
+          <section className="course-grid-area">
             <Container>
               <Row>
                 <Col lg="3" md="4" sm="5">
@@ -307,7 +307,7 @@ class CourseFaculty extends Component {
                     degreeTypes={degreeTypes}
                   />
                 </Col>
-                <Col lg="9" md="8" sm="7">
+                <Col id="wrapper" lg="9" md="8" sm="7">
                   {isLoading ? (
                     <Loading />
                   ) : isEmpty ? (
@@ -323,7 +323,7 @@ class CourseFaculty extends Component {
                   {isEmpty || isLoading ? (
                     ""
                   ) : (
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-flex flex-row">
                       <Button
                         disabled={isDisablePrev}
                         loading={loadingPrev}

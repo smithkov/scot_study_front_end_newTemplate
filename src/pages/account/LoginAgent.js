@@ -121,7 +121,7 @@ function LoginAgent(props) {
                         </label>
                       </div>
                       <div className="forget-password">
-                        <a href="">Forget Password?</a>
+                        <a href="/forgot-password">Forget Password?</a>
                       </div>
                     </div>
                     <div className="not_account-btn text-center">

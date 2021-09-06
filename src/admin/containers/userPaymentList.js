@@ -75,7 +75,7 @@ const UserPaymentList = (props) => {
                         <div className="card-header-actions">
                           <Button color="blue" as="a" href="/payment">
                             <Icon name="payment" />
-                            Visa Payment
+                            Make Payment
                           </Button>
                         </div>
                       </CCardHeader>

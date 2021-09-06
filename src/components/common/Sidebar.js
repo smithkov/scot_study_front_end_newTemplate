@@ -140,7 +140,11 @@ function Sidebar() {
               {contact.fullAddress()}
             </li>
             <li>
-              <i className="las la-phone"></i>${contact.phone1} Contact Us
+              <i className="las la-phone"></i>
+              {contact.phone1}
+            </li>
+            <li>
+              <i className="las la-envelope"></i>
               {contact.email}
             </li>
           </ul>

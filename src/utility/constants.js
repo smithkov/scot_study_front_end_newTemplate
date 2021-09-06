@@ -59,7 +59,12 @@ export const imageStyles = function (
     objectPosition: objectFit,
   };
 };
+export const formatScholarship = (amount) => {
+  const firstChar = amount[0];
 
+  if (firstChar == "£") return amount;
+  else return `£${amount}`;
+};
 export const imageOpacityStyles = function (
   height,
   width = "100%",

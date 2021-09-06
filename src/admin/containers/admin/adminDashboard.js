@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../index";
-import clientService from "../../services/clientService";
+import clientService from "../../../services/clientService";
 import Moment from "react-moment";
 import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
 import {
@@ -56,7 +56,7 @@ const Dashboard = (props) => {
       const userId = getUser.id;
       setUserId(userId);
 
-      const findApplications = await clientService.allApplications();
+      const findApplications = await clientService.allApplicationsForDash();
       setApplications(findApplications.data.data);
 
       const findAgents = await clientService.findAllAgents({ limit });
@@ -64,7 +64,7 @@ const Dashboard = (props) => {
 
       setHasApplied(findApplications.data.data.length > 0 ? true : false);
 
-      const allUsers = await clientService.allUsers();
+      const allUsers = await clientService.allUsersForDash();
 
       setUsers(allUsers.data.data);
     })();
@@ -134,7 +134,9 @@ const Dashboard = (props) => {
                           <Table.Cell>
                             <Moment format="LLLL">{item.createdAt}</Moment>
                           </Table.Cell>
-                          <Table.Cell>{item.DegreeType.name}</Table.Cell>
+                          <Table.Cell>
+                            {item.DegreeType ? item.DegreeType.name : ""}
+                          </Table.Cell>
                           <Table.Cell>
                             {agent ? agent.agencyName : "Individual"}
                           </Table.Cell>
@@ -176,7 +178,9 @@ const Dashboard = (props) => {
                       return (
                         <Table.Row>
                           <Table.Cell>
-                            {`${item.firstname}  ${item.lastname}`}
+                            {!item.firstname && !item.lastname
+                              ? `Unknown/Hasn't applied yet`
+                              : `${item.firstname}  ${item.lastname}`}
                           </Table.Cell>
                           <Table.Cell>
                             {item.email} {userId == item.id ? "(You)" : ""}{" "}

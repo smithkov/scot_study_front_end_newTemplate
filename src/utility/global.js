@@ -1,5 +1,5 @@
 //export const ENDPOINT = "http://localhost:8000/";
-export const ENDPOINT = "https://serverdev.scotstudy.co.uk/";
+export const ENDPOINT = "https://scotstudy.foodengo.com/";
 export const SERVER_URL = `${ENDPOINT}api`;
 export const TOKEN = "tk-cookie";
 export const USER = "tk-user";
@@ -51,6 +51,22 @@ export const asyncLocalStorage = {
   getRole: function () {
     return Promise.resolve().then(function () {
       return JSON.parse(localStorage.getItem(USER)).Role.name;
+    });
+  },
+  setCourse: function (value) {
+    return Promise.resolve().then(function () {
+      localStorage.setItem("courseId", value);
+    });
+  },
+
+  getCourse: function () {
+    return Promise.resolve().then(function () {
+      return localStorage.getItem("courseId");
+    });
+  },
+  removeCourse: function (value) {
+    return Promise.resolve().then(function () {
+      localStorage.removeItem("courseId");
     });
   },
 };

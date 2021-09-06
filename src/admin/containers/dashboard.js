@@ -37,6 +37,10 @@ const WidgetsDropdown = lazy(() =>
 );
 
 const Dashboard = (props) => {
+  const green = "green";
+  const grey = "grey";
+  const sad = "meh outline";
+  const happy = "smile outline";
   const [loading, setLoading] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
 
@@ -98,120 +102,129 @@ const Dashboard = (props) => {
                     color="success"
                   />
                 </CRow>
-                {hasApplied ? (
-                  <Table unstackable celled striped color="red">
-                    <Table.Header>
-                      <Table.Row>
-                        <Table.HeaderCell colSpan="3">
-                          <Segment textAlign="center" stacked>
-                            <h3>My Application</h3>
-                          </Segment>
-                        </Table.HeaderCell>
-                      </Table.Row>
-                    </Table.Header>
-                    {applications.map((item) => {
-                      const { hasPaid, Decision, eligibilityCheck, hasCAS } =
-                        item;
-                      return (
-                        <Table.Body>
-                          <Table.Row>
-                            <Table.Cell collapsing>
-                              <Header as="h4">Form Submission</Header>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <strong>Submitted</strong>
-                            </Table.Cell>
-                            <Table.Cell collapsing textAlign="right">
-                              <Icon
-                                color="grey"
-                                name="smile outline"
-                                size="large"
-                              />
-                            </Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell collapsing>
-                              <Header as="h4">Eligibilty Check</Header>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <strong>
-                                {eligibilityCheck ? "Passed" : PENDING}
-                              </strong>
-                            </Table.Cell>
-                            <Table.Cell collapsing textAlign="right">
-                              <Icon
-                                color="grey"
-                                name={
-                                  eligibilityCheck
-                                    ? "smile outline"
-                                    : "frown outline"
-                                }
-                                size="large"
-                              />
-                            </Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell collapsing>
-                              <Header as="h4">Has Paid?</Header>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <strong>{hasPaid ? "Yes" : "No"}</strong>
-                            </Table.Cell>
-                            <Table.Cell collapsing textAlign="right">
-                              <Icon
-                                color="grey"
-                                name={
-                                  hasPaid ? "smile outline" : "frown outline"
-                                }
-                                size="large"
-                              />
-                            </Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell collapsing>
-                              <Header as="h4">Has CAS?</Header>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <strong>{hasCAS ? "Yes" : PENDING}</strong>
-                            </Table.Cell>
-                            <Table.Cell collapsing textAlign="right">
-                              <Icon
-                                color="grey"
-                                name={
-                                  hasCAS ? "smile outline" : "frown outline"
-                                }
-                                size="large"
-                              />
-                            </Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell collapsing>
-                              <Header as="h4">Decision</Header>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <strong>
-                                {Decision ? Decision.name : PENDING}
-                              </strong>
-                            </Table.Cell>
-                            <Table.Cell collapsing textAlign="right">
-                              <Icon
-                                color="grey"
-                                name={
-                                  Decision ? "smile outline" : "frown outline"
-                                }
-                                size="large"
-                              />
-                            </Table.Cell>
-                          </Table.Row>
-                        </Table.Body>
-                      );
-                    })}
-                  </Table>
-                ) : (
-                  ""
-                )}
+                {applications.map((item) => {
+                  const {
+                    hasPaid,
+                    Decision,
+                    eligibilityCheck,
+                    hasCAS,
+                    VisaApplyStatus,
+                  } = item;
+                  return (
+                    <Table unstackable celled striped color="red">
+                      <Table.Body>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Form Submission</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>Submitted</strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon color={green} name={happy} size="large" />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Eligibilty Check</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>
+                              {eligibilityCheck ? "Passed" : PENDING}
+                            </strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={eligibilityCheck ? green : grey}
+                              name={eligibilityCheck ? happy : sad}
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Tuition Payment</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>{hasPaid ? "Yes" : "No"}</strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={hasPaid ? green : grey}
+                              name={hasPaid ? happy : sad}
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Has CAS?</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>{hasCAS ? "Yes" : PENDING}</strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={hasCAS ? green : grey}
+                              name={hasCAS ? happy : sad}
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Decision</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>
+                              {Decision ? Decision.name : PENDING}
+                            </strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={
+                                Decision
+                                  ? Decision.name == "Rejected"
+                                    ? "red"
+                                    : green
+                                  : grey
+                              }
+                              name={
+                                Decision
+                                  ? Decision.name == "Rejected"
+                                    ? "frown"
+                                    : happy
+                                  : sad
+                              }
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
+                            <Header as="h6">Visa Application</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>
+                              {VisaApplyStatus
+                                ? VisaApplyStatus.name
+                                : "Pending"}
+                            </strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={green}
+                              name={`call square`}
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  );
+                })}
                 <Button as="a" href="/edu_background" fluid positive>
-                  {hasApplied ? "Start a new application" : "Apply"}
+                  {hasApplied ? "Start another application" : "Apply"}
                 </Button>
               </>
             </Grid.Column>

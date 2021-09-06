@@ -42,6 +42,7 @@ const English = (props) => {
       });
       const currentData = findEnglishResult.data.data;
       if (currentData) {
+        alert(JSON.stringify(currentData));
         setScore(currentData.score);
         setSelectedName(currentData.name);
       } else {
@@ -78,9 +79,9 @@ const English = (props) => {
       setErrorMessage(result.message);
     }
     setLoading(false);
-    if (!hasApplied) {
-      props.history.push("/sponsorship");
-    }
+    //if (!hasApplied) {
+    props.history.push("/sponsorship");
+    //}
     // } else {
     //   setIsShowMessage(true);
     //   setErrorMessage("Please select test type");
