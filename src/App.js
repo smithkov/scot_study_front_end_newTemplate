@@ -80,6 +80,7 @@ library.add(
 const TheLayout = React.lazy(() => import("./admin/containers/TheLayout"));
 const Profile = React.lazy(() => import("./admin/containers/profile"));
 const English = React.lazy(() => import("./admin/containers/english"));
+const UploadDoc = React.lazy(() => import("./admin/containers/upload"));
 const HighSchool = React.lazy(() => import("./admin/containers/highSchool"));
 const Sponsor = React.lazy(() => import("./admin/containers/sponsorship"));
 const Application = React.lazy(() => import("./admin/containers/application"));
@@ -530,6 +531,11 @@ function App() {
             path="/english_test"
             name="Home"
             component={ProtectedRoute(English)}
+          />
+          <Route
+            path="/upload_documents"
+            name="Home"
+            component={ProtectedRoute(UploadDoc)}
           />
           <Route
             path="/sponsorship"

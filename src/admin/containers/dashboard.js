@@ -143,6 +143,35 @@ const Dashboard = (props) => {
                         </Table.Row>
                         <Table.Row>
                           <Table.Cell collapsing>
+                            <Header as="h6">Decision</Header>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>
+                              {Decision ? Decision.name : PENDING}
+                            </strong>
+                          </Table.Cell>
+                          <Table.Cell collapsing textAlign="right">
+                            <Icon
+                              color={
+                                Decision
+                                  ? Decision.name == "Rejected"
+                                    ? "red"
+                                    : green
+                                  : grey
+                              }
+                              name={
+                                Decision
+                                  ? Decision.name == "Rejected"
+                                    ? "frown"
+                                    : happy
+                                  : sad
+                              }
+                              size="large"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell collapsing>
                             <Header as="h6">Tuition Payment</Header>
                           </Table.Cell>
                           <Table.Cell>
@@ -171,35 +200,7 @@ const Dashboard = (props) => {
                             />
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row>
-                          <Table.Cell collapsing>
-                            <Header as="h6">Decision</Header>
-                          </Table.Cell>
-                          <Table.Cell>
-                            <strong>
-                              {Decision ? Decision.name : PENDING}
-                            </strong>
-                          </Table.Cell>
-                          <Table.Cell collapsing textAlign="right">
-                            <Icon
-                              color={
-                                Decision
-                                  ? Decision.name == "Rejected"
-                                    ? "red"
-                                    : green
-                                  : grey
-                              }
-                              name={
-                                Decision
-                                  ? Decision.name == "Rejected"
-                                    ? "frown"
-                                    : happy
-                                  : sad
-                              }
-                              size="large"
-                            />
-                          </Table.Cell>
-                        </Table.Row>
+
                         <Table.Row>
                           <Table.Cell collapsing>
                             <Header as="h6">Visa Application</Header>

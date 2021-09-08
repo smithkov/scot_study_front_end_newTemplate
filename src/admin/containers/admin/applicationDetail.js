@@ -41,6 +41,7 @@ const ApplicationDetail = (props) => {
   let [highSchool, setHighSchool] = useState({});
   let [english, setEnglish] = useState({});
   let [visaStatuses, setVisaStatuses] = useState([]);
+  let [documents, setDocuments] = useState([]);
   let [selectedVisaStatus, setSelectedVisaStatus] = useState("");
   let [sponsor, setSponsor] = useState({});
   let [visa, setVisa] = useState({});
@@ -94,7 +95,7 @@ const ApplicationDetail = (props) => {
 
       const userProfile = await clientService.findUserById({ userId: id });
       setProfile(userProfile.data.data);
-
+      setDocuments(userProfile.data.data.Documents);
       const visaResult = await clientService.findVisa({
         userId: id,
       });
@@ -562,6 +563,37 @@ const ApplicationDetail = (props) => {
                         </Table.Body>
                       </Table>
                     )}
+                  </CCardBody>
+                </CCard>
+              ) : (
+                ""
+              )}
+
+              {documents.length > 0 ? (
+                <CCard accentColor="primary">
+                  <CCardHeader>
+                    <Segment textAlign="center" stacked>
+                      <h3>Documents</h3>
+                    </Segment>
+                  </CCardHeader>
+
+                  <CCardBody>
+                    <Table singleLine>
+                      <Table.Body>
+                        {documents.map((item) => {
+                          return (
+                            <Table.Row>
+                              <Table.Cell>{item.name}</Table.Cell>
+                              <Table.Cell>
+                                <a href={item.url}>
+                                  <Icon name="download" />
+                                </a>
+                              </Table.Cell>
+                            </Table.Row>
+                          );
+                        })}
+                      </Table.Body>
+                    </Table>
                   </CCardBody>
                 </CCard>
               ) : (

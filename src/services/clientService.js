@@ -165,8 +165,8 @@ class ClientService {
   allInstitutions = async () => {
     return http.post(`${SERVER_URL}/allInstitutions`);
   };
-  allApplications = async () => {
-    return http.post(`${SERVER_URL}/allApplications`);
+  allApplications = async (data) => {
+    return http.post(`${SERVER_URL}/allApplications`, data);
   };
 
   allApplicationsForDash = async () => {
@@ -188,8 +188,23 @@ class ClientService {
     return http.post(`${SERVER_URL}/galleries`);
   };
 
-  allUsers = async () => {
-    return http.post(`${SERVER_URL}/allUsers`);
+  allUsers = async (data) => {
+    return http.post(`${SERVER_URL}/allUsers`, data);
+  };
+
+  uploadDocument = async (file, userId, name, onUploadProgress) => {
+    let formData = new FormData();
+
+    formData.append("docs", file);
+    formData.append("userId", userId);
+    formData.append("name", name);
+    return http.post(`${SERVER_URL}/uploadDocument`, formData, {
+      onUploadProgress,
+    });
+  };
+
+  findUserDocuments = async (data) => {
+    return http.post(`${SERVER_URL}/findUserDocuments`, data);
   };
 
   allUsersForDash = async () => {

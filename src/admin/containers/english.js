@@ -42,7 +42,6 @@ const English = (props) => {
       });
       const currentData = findEnglishResult.data.data;
       if (currentData) {
-        alert(JSON.stringify(currentData));
         setScore(currentData.score);
         setSelectedName(currentData.name);
       } else {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../index";
-import clientService from "../../services/clientService";
+
+import clientService from "../../../services/clientService";
 import Moment from "react-moment";
 import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
 import { MDBDataTableV5 } from "mdbreact";
@@ -43,7 +44,7 @@ const AllApplicants = (props) => {
   let initialOffset = 0;
   const [loading, setLoading] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
-  const [btnNext, setBtnNext] = useState(true);
+  const [btnNext, setBtnNext] = useState(false);
   const [btnPrev, setBtnPrev] = useState(true);
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(initialOffset);
@@ -66,11 +67,11 @@ const AllApplicants = (props) => {
         refSearch,
       });
       const data = findApplication.data.data;
-      if (data.length < limit) {
-        setBtnNext(true);
-      } else {
-        setBtnNext(false);
-      }
+      // if (data.length < limit) {
+      //   setBtnNext(true);
+      // } else {
+      //   setBtnNext(false);
+      // }
       setApplications(data);
     })();
   }, []);
@@ -195,12 +196,14 @@ const AllApplicants = (props) => {
                       <Table.HeaderCell>Agent</Table.HeaderCell>
                       <Table.HeaderCell></Table.HeaderCell>
                       <Table.HeaderCell></Table.HeaderCell>
+                      <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
 
                   <Table.Body>
                     {applications.map((item) => {
                       const agent = item.User.Agent;
+                      const user = item.User;
                       return (
                         <Table.Row>
                           <Table.Cell>
@@ -227,6 +230,17 @@ const AllApplicants = (props) => {
                             >
                               View application
                             </Button>
+                          </Table.Cell>
+                          <Table.Cell>
+                            {user.Documents.length > 0 ? (
+                              <>
+                                <Icon name="attach" />{" "}
+                                {`${user.Documents.length}
+                                 attachment(s)`}
+                              </>
+                            ) : (
+                              ""
+                            )}
                           </Table.Cell>
                           <Table.Cell>
                             <Button color="red" circular icon="trash" />

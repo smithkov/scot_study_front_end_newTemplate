@@ -123,13 +123,14 @@ const Dashboard = (props) => {
                   <Table.Body>
                     {applications.map((item) => {
                       const agent = item.User.Agent;
+                      const user = item.User;
                       return (
                         <Table.Row>
                           <Table.Cell>
                             <h6>{item.refNo}</h6>
                           </Table.Cell>
                           <Table.Cell>
-                            <>{`${item.User.firstname}  ${item.User.lastname}`}</>
+                            <>{`${user.firstname}  ${user.lastname}`}</>
                           </Table.Cell>
                           <Table.Cell>
                             <Moment format="LLLL">{item.createdAt}</Moment>

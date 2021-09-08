@@ -60,6 +60,7 @@ const VisaHistory = (props) => {
         if (currentData.hasApplied == YES) {
           setIsShowPurpose(true);
         }
+
         if (currentData.hasRefused == YES) {
           setIsShowReason(true);
         }
@@ -96,10 +97,16 @@ const VisaHistory = (props) => {
     }
   };
   const update = async () => {
-    if (selectedHasRefused != "" && selectedHasApplied != "") {
+    if (selectedHasApplied == "") {
+      setIsShowMessage(true);
+      setErrorMessage("You are required to select on of the options.");
+      window.scrollTo(500, 0);
+      return;
+    }
+    if (selectedHasApplied == "Yes") {
       if (selectedHasRefused == YES && reason == "") {
         setIsShowMessage(true);
-        setErrorMessage("Reason of Visa refusal is required");
+        setErrorMessage("Reason of visa refusal is required");
         window.scrollTo(500, 0);
         return;
       }
@@ -110,31 +117,26 @@ const VisaHistory = (props) => {
         return;
       }
       setLoading(true);
-
-      const updateUser = await clientService.saveVisa({
-        hasApplied: selectedHasApplied,
-        hasRefused: selectedHasRefused,
-        purpose: purpose,
-        moreInfo: moreInfo,
-        reason: reason,
-        userId: userId,
-      });
-
-      const result = updateUser.data;
-      if (!result.error) {
-        setIsShowMessage(true);
-        setErrorMessage(result.message);
-        //if (!hasApplied) {
-        props.history.push("/application");
-        // }
-      }
-
-      setLoading(false);
-    } else {
-      setIsShowMessage(true);
-      setErrorMessage("All fields marked '*' are required");
     }
-    window.scrollTo(500, 0);
+    const updateUser = await clientService.saveVisa({
+      hasApplied: selectedHasApplied,
+      hasRefused: selectedHasRefused,
+      purpose: purpose,
+      moreInfo: moreInfo,
+      reason: reason,
+      userId: userId,
+    });
+
+    const result = updateUser.data;
+    if (!result.error) {
+      setIsShowMessage(true);
+      setErrorMessage(result.message);
+      //if (!hasApplied) {
+      props.history.push("/upload_documents");
+      // }
+    }
+
+    setLoading(false);
   };
   const onChange = async (e) => {
     const value = e.target.value;
@@ -175,7 +177,7 @@ const VisaHistory = (props) => {
                     ""
                   )}
                   <Form>
-                    <Form.Field required>
+                    <Form.Field>
                       <label>Have you applied for a UK Visa before ?</label>
                       <Dropdown
                         selection
@@ -193,59 +195,63 @@ const VisaHistory = (props) => {
                       />
                     </Form.Field>
                     {isShowPurpose ? (
-                      <Form.Field required>
-                        <label>Purpose</label>
-                        <Form.TextArea
-                          value={purpose}
-                          name="purpose"
-                          onChange={onChange}
-                          placeholder="Tell us purpose of Visa application..."
-                        />
-                      </Form.Field>
+                      <>
+                        <Form.Field>
+                          <label>Purpose</label>
+                          <Form.TextArea
+                            value={purpose}
+                            name="purpose"
+                            onChange={onChange}
+                            placeholder="Tell us purpose of Visa application..."
+                          />
+                        </Form.Field>
+
+                        <Form.Field>
+                          <label>Have you been refused UK Visa before?</label>
+                          <Dropdown
+                            selection
+                            onChange={onChangeDropdown}
+                            name="selectedHasRefused"
+                            options={[
+                              {
+                                key: 1,
+                                text: "Yes",
+                                value: "Yes",
+                              },
+                              { key: 2, text: "No", value: "No" },
+                            ]}
+                            placeholder={
+                              selectedHasRefused || "Choose an option"
+                            }
+                          />
+                        </Form.Field>
+                        {isShowReason ? (
+                          <Form.Field>
+                            <label>Reason of refusal</label>
+                            <Form.TextArea
+                              value={reason}
+                              name="reason"
+                              onChange={onChange}
+                              placeholder="Reason of refusal..."
+                            />
+                          </Form.Field>
+                        ) : (
+                          ""
+                        )}
+
+                        <Form.Field>
+                          <label>More info</label>
+                          <Form.TextArea
+                            value={moreInfo}
+                            onChange={onChange}
+                            name="moreInfo"
+                            placeholder="More info..."
+                          />
+                        </Form.Field>
+                      </>
                     ) : (
                       ""
                     )}
-
-                    <Form.Field required>
-                      <label>Have you been refused UK Visa before?</label>
-                      <Dropdown
-                        selection
-                        onChange={onChangeDropdown}
-                        name="selectedHasRefused"
-                        options={[
-                          {
-                            key: 1,
-                            text: "Yes",
-                            value: "Yes",
-                          },
-                          { key: 2, text: "No", value: "No" },
-                        ]}
-                        placeholder={selectedHasRefused || "Choose an option"}
-                      />
-                    </Form.Field>
-                    {isShowReason ? (
-                      <Form.Field required>
-                        <label>Reason of refusal</label>
-                        <Form.TextArea
-                          value={reason}
-                          name="reason"
-                          onChange={onChange}
-                          placeholder="Reason of refusal..."
-                        />
-                      </Form.Field>
-                    ) : (
-                      ""
-                    )}
-
-                    <Form.Field>
-                      <label>More info</label>
-                      <Form.TextArea
-                        value={moreInfo}
-                        onChange={onChange}
-                        name="moreInfo"
-                        placeholder="More info..."
-                      />
-                    </Form.Field>
 
                     <hr />
                     <Button as="a" href="/sponsorship" type="submit">

@@ -100,17 +100,7 @@ function Exchange(props) {
                   <div className="login-title text-center">
                     <h3>Currency Converter</h3>
                   </div>
-                  {/* {isShowMessage ? (
-                    <div
-                      style={{ textAlign: "center" }}
-                      class="alert alert-warning"
-                      role="alert"
-                    >
-                      {errorMessage}
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
+
                   <Form>
                     <Form.Group widths="equal">
                       <Form.Field
