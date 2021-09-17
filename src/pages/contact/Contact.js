@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import HeaderTwo from "../../components/HeaderTwo";
 import { BreadcrumbBox } from "../../components/common/Breadcrumb";
@@ -6,8 +6,15 @@ import GoogleMap from "./GoogleMap";
 import FooterTwo from "../../components/FooterTwo";
 import { Styles } from "./styles/contact.js";
 import { contact, social } from "../../utility/constants";
+import { Message } from "semantic-ui-react";
+import clientService from "../../services/clientService";
 
 function Contact() {
+  const [isShowMessage, setIsShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
+  const [subject, setSubject] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
   useEffect(() => {
     const form = document.getElementById("form_contact");
     const name = document.getElementById("contact_name");
@@ -68,6 +75,32 @@ function Contact() {
       return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
     }
   });
+
+  const save = async () => {
+    const saveContact = await clientService.contact({
+      fullname,
+      email,
+      subject,
+      message,
+    });
+    if (!saveContact.data.error) {
+      setIsShowMessage(true);
+    }
+  };
+  const handleOnchange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name == "fullname") {
+      setFullname(value);
+    } else if (name == "email") {
+      setEmail(value);
+    } else if (name == "subject") {
+      setSubject(value);
+    } else if (name == "message") {
+      setMessage(value);
+    }
+  };
 
   return (
     <Styles>
@@ -153,11 +186,28 @@ function Contact() {
                     <h4>Get In Touch</h4>
                   </div>
                   <div className="form-box">
-                    <form id="form_contact" className="form">
+                    {isShowMessage ? (
+                      <Message positive>
+                        <Message.Header>
+                          ENQUIRY SUBMITTED SUCCESSFULLY
+                        </Message.Header>
+                        <p>
+                          We have received your enquiry and will get back to you
+                          shortly.
+                        </p>
+                      </Message>
+                    ) : (
+                      ""
+                    )}
+
+                    <form onSubmit={save} id="form_contact" className="form">
                       <Row>
                         <Col md="6">
                           <p className="form-control">
                             <input
+                              required
+                              name="fullname"
+                              onChange={handleOnchange}
                               type="text"
                               placeholder="Full Name"
                               id="contact_name"
@@ -168,6 +218,9 @@ function Contact() {
                         <Col md="6">
                           <p className="form-control">
                             <input
+                              required
+                              onChange={handleOnchange}
+                              name="email"
                               type="email"
                               placeholder="Email Address"
                               id="contact_email"
@@ -178,6 +231,9 @@ function Contact() {
                         <Col md="12">
                           <p className="form-control">
                             <input
+                              required
+                              onChange={handleOnchange}
+                              name="subject"
                               type="text"
                               placeholder="Subject"
                               id="contact_subject"
@@ -188,6 +244,9 @@ function Contact() {
                         <Col md="12">
                           <p className="form-control">
                             <textarea
+                              required
+                              onChange={handleOnchange}
+                              name="message"
                               name="message"
                               id="contact_message"
                               placeholder="Enter Message"
@@ -196,7 +255,7 @@ function Contact() {
                           </p>
                         </Col>
                         <Col md="12">
-                          <button>Send Message</button>
+                          <button type="submit">Send Message</button>
                         </Col>
                       </Row>
                     </form>

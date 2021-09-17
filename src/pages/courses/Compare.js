@@ -107,7 +107,7 @@ class Compare extends Component {
       tables.all
     );
 
-    clientService.facultiesLight().then((facultyResult) => {
+    clientService.facultiesSuperLight().then((facultyResult) => {
       let facultypeData = facultyResult.data.data.map((item) => {
         return {
           key: item.id,

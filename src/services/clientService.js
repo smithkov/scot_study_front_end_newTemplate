@@ -31,6 +31,10 @@ class ClientService {
     return http.post(`${SERVER_URL}/facultiesLight`);
   };
 
+  facultiesSuperLight = async () => {
+    return http.post(`${SERVER_URL}/facultiesSuperLight`);
+  };
+
   institutions = async () => {
     return http.post(`${SERVER_URL}/institutions`);
   };
@@ -380,10 +384,28 @@ class ClientService {
     return http.post(`${SERVER_URL}/resetPasswordPost`, data);
   };
 
-  //   return http.post(`${SERVER_URL}/findFacultyPhotos`, data);
-  // };
-  // findAllPhotos = async () => {
-  //   return http.post(`${SERVER_URL}/findAllPhotos`);
-  // };
+  contact = async (data) => {
+    return http.post(`${SERVER_URL}/contact`, data);
+  };
+
+  allContacts = async () => {
+    return http.post(`${SERVER_URL}/allContacts`);
+  };
+
+  findContactById = async (id) => {
+    return http.get(`${SERVER_URL}/findContactById/${id}`);
+  };
+
+  newsletter = async (data) => {
+    return http.post(`${SERVER_URL}/newsletter`, data);
+  };
+
+  allNewsletter = async () => {
+    return http.post(`${SERVER_URL}/allNewsletter`);
+  };
+
+  findNewsLetterById = async (id) => {
+    return http.get(`${SERVER_URL}/findNewsLetterById/${id}`);
+  };
 }
 export default new ClientService();

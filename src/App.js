@@ -158,6 +158,14 @@ const PaymentList = React.lazy(() =>
   import("./admin/containers/admin/paymentList/list")
 );
 
+const ContactList = React.lazy(() =>
+  import("./admin/containers/admin/contactList/list")
+);
+
+const NewsLetterList = React.lazy(() =>
+  import("./admin/containers/admin/newsLetter/list")
+);
+
 const AllAgents = React.lazy(() =>
   import("./admin/containers/admin/allAgents")
 );
@@ -511,6 +519,16 @@ function App() {
             path="/payment_list"
             name="Home"
             component={ProtectedRoute(PaymentList)}
+          />
+          <Route
+            path="/contact_list"
+            name="Home"
+            component={ProtectedRoute(ContactList)}
+          />
+          <Route
+            path="/newsletter_list"
+            name="Home"
+            component={ProtectedRoute(NewsLetterList)}
           />
           <Route
             path="/user_payment_list"

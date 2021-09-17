@@ -3,7 +3,8 @@ import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../index";
 
 import clientService from "../../../services/clientService";
 import Moment from "react-moment";
-import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
+import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
+import { capitalize } from "../../../utility/constants";
 import { MDBDataTableV5 } from "mdbreact";
 import {
   CBadge,
@@ -48,7 +49,6 @@ const AllApplicants = (props) => {
   const [btnPrev, setBtnPrev] = useState(true);
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(initialOffset);
-  const [refSearch, setRefSearch] = useState("");
 
   let [userId, setUserId] = useState("");
   let [applications, setApplications] = useState([]);
@@ -61,10 +61,9 @@ const AllApplicants = (props) => {
       setUserId(userId);
 
       const findApplication = await clientService.allApplications({
-        offset,
-        limit,
+        offset: 0,
+        limit: 10,
         search,
-        refSearch,
       });
       const data = findApplication.data.data;
       // if (data.length < limit) {
@@ -83,32 +82,15 @@ const AllApplicants = (props) => {
       offset: initialOffset,
       limit,
       search: value,
-      refSearch,
     });
     const data = findApplication.data.data;
-    if (data.length == limit) {
-      setBtnNext(false);
-    } else {
-      setBtnNext(true);
-    }
-    setApplications(data);
-  };
 
-  const refSearchHandle = async (e) => {
-    const value = e.target.value;
-    setOffset(initialOffset);
-    const findApplication = await clientService.allApplications({
-      offset: initialOffset,
-      limit,
-      search,
-      refSearch: value,
-    });
-    const data = findApplication.data.data;
     if (data.length == limit) {
       setBtnNext(false);
     } else {
       setBtnNext(true);
     }
+    setSearch(value);
     setApplications(data);
   };
 
@@ -119,7 +101,6 @@ const AllApplicants = (props) => {
       offset: newOffset,
       limit,
       search,
-      refSearch,
     });
     const data = findApplication.data.data;
     if (data.length == limit) {
@@ -136,7 +117,6 @@ const AllApplicants = (props) => {
       offset: newOffset,
       limit,
       search,
-      refSearch,
     });
     const data = findApplication.data.data;
     console.log(`${newOffset}   ${limit}`);
@@ -170,17 +150,10 @@ const AllApplicants = (props) => {
                           fluid
                           onChange={searchHandle}
                           //loading
-                          placeholder="Search by first name or last name"
+                          placeholder="Search by first name, last name or email"
                         />
                       </Grid.Column>
-                      <Grid.Column width={6}>
-                        <Input
-                          fluid
-                          onChange={refSearchHandle}
-                          // loading
-                          placeholder="Search by application no."
-                        />
-                      </Grid.Column>
+                      <Grid.Column width={6}></Grid.Column>
                       <Grid.Column width={4}></Grid.Column>
                     </Grid.Row>
                   </Grid>
@@ -189,12 +162,14 @@ const AllApplicants = (props) => {
                 <Table unstackable striped>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>No.</Table.HeaderCell>
                       <Table.HeaderCell>Full Name</Table.HeaderCell>
+                      <Table.HeaderCell>Email</Table.HeaderCell>
                       <Table.HeaderCell>Date of Submission</Table.HeaderCell>
                       <Table.HeaderCell>Degree Type</Table.HeaderCell>
                       <Table.HeaderCell>Agent</Table.HeaderCell>
                       <Table.HeaderCell></Table.HeaderCell>
+
+                      {/* <Table.HeaderCell></Table.HeaderCell> */}
                       <Table.HeaderCell></Table.HeaderCell>
                       <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
@@ -207,19 +182,29 @@ const AllApplicants = (props) => {
                       return (
                         <Table.Row>
                           <Table.Cell>
-                            <h6>{item.refNo}</h6>
+                            <h6>{`${capitalize(
+                              item.User.firstname
+                            )} ${capitalize(item.User.middlename)} ${capitalize(
+                              item.User.lastname
+                            )}`}</h6>
                           </Table.Cell>
+                          <Table.Cell>{item.User.email}</Table.Cell>
                           <Table.Cell>
-                            <>{`${item.User.firstname}  ${item.User.lastname}`}</>
-                          </Table.Cell>
-                          <Table.Cell>
-                            <Moment format="LLLL">{item.regDate}</Moment>
+                            <Moment format="LLLL">{item.createdAt}</Moment>
                           </Table.Cell>
                           <Table.Cell>
                             {item.DegreeType ? item.DegreeType.name : ""}
                           </Table.Cell>
                           <Table.Cell>
                             {agent ? agent.agencyName : "Individual"}
+                          </Table.Cell>
+                          <Table.Cell>
+                            <strong>
+                              {" "}
+                              {item.Decision
+                                ? item.Decision.name
+                                : "Not Decided"}
+                            </strong>
                           </Table.Cell>
                           <Table.Cell>
                             <Button
@@ -231,17 +216,21 @@ const AllApplicants = (props) => {
                               View application
                             </Button>
                           </Table.Cell>
-                          <Table.Cell>
-                            {user.Documents.length > 0 ? (
+
+                          {/* <Table.Cell>
+                            {item.credential ? (
                               <>
-                                <Icon name="attach" />{" "}
-                                {`${user.Documents.length}
-                                 attachment(s)`}
+                                <Icon name="attach" />
+                                <a
+                                  href={`https://scotsudy.s3.eu-west-2.amazonaws.com/oldCredentials/${item.credential}`}
+                                >
+                                  Old attachment
+                                </a>
                               </>
                             ) : (
                               ""
                             )}
-                          </Table.Cell>
+                          </Table.Cell> */}
                           <Table.Cell>
                             <Button color="red" circular icon="trash" />
                           </Table.Cell>

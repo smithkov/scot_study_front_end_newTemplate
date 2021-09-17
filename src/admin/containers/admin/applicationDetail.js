@@ -52,6 +52,8 @@ const ApplicationDetail = (props) => {
   let [visaStatusText, setVisaStatusText] = useState("");
   let [hasDecided, setHasDecided] = useState(false);
   let [hasCAS, setHasCAS] = useState(false);
+  let [credential, setCredential] = useState("");
+  let [hasLoadedApplication, setHasLoadedApplication] = useState(false);
   let [hasPaid, setHasPaid] = useState(false);
   let [eligibilityCheck, setEligibilityCheck] = useState(false);
   let [appId, setAppId] = useState("");
@@ -116,16 +118,20 @@ const ApplicationDetail = (props) => {
           eligibilityCheck,
           Decision,
           VisaApplyStatus,
+          credential,
         } = appData;
+        setCredential(credential);
         setHasPaid(hasPaid);
         setHasDecided(hasDecided);
         setHasCAS(hasCAS);
         setEligibilityCheck(eligibilityCheck);
         setSelectedDecision(Decision ? Decision.id : "");
+
         setDecisionText(Decision ? Decision.name : "");
-        setVisaStatusText(VisaApplyStatus ? VisaApplyStatus.name : "");
+        //setVisaStatusText(VisaApplyStatus ? VisaApplyStatus.name : "");
         setSelectedVisaStatus(VisaApplyStatus ? VisaApplyStatus.id : "");
         setAppId(appData.id);
+        setHasLoadedApplication(true);
       }
 
       const decisionResult = await clientService.decisions();
@@ -568,7 +574,35 @@ const ApplicationDetail = (props) => {
               ) : (
                 ""
               )}
+              {credential ? (
+                <CCard accentColor="primary">
+                  <CCardHeader>
+                    <Segment textAlign="center" stacked>
+                      <h3>Document</h3>
+                    </Segment>
+                  </CCardHeader>
 
+                  <CCardBody>
+                    <Table singleLine>
+                      <Table.Body>
+                        <Table.Row>
+                          <Table.Cell>Credential</Table.Cell>
+                          <Table.Cell>
+                            <a
+                              target="_blank"
+                              href={`https://scotsudy.s3.eu-west-2.amazonaws.com/oldCredentials/${credential}`}
+                            >
+                              <Icon name="download" />
+                            </a>
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </CCardBody>
+                </CCard>
+              ) : (
+                ""
+              )}
               {documents.length > 0 ? (
                 <CCard accentColor="primary">
                   <CCardHeader>
@@ -734,48 +768,54 @@ const ApplicationDetail = (props) => {
                           />
                         </Table.Cell>
                       </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>
-                          <h5>Decision</h5>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <Form.Field required>
-                            <Dropdown
-                              required
-                              fluid
-                              selection
-                              search
-                              placeholder={decisionText || "Select decision"}
-                              name="selectedDecision"
-                              label={"Decision"}
-                              options={decisions}
-                              onChange={onChangeDropdown}
-                            />
-                          </Form.Field>
-                        </Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>
-                          <h5>Visa Apply Status</h5>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <Form.Field required>
-                            <Dropdown
-                              required
-                              fluid
-                              selection
-                              search
-                              placeholder={
-                                visaStatusText || "Select visa status"
-                              }
-                              name="selectedVisaStatus"
-                              label={"Visa Apply Status"}
-                              options={visaStatuses}
-                              onChange={onChangeDropdown}
-                            />
-                          </Form.Field>
-                        </Table.Cell>
-                      </Table.Row>
+                      {hasLoadedApplication ? (
+                        <>
+                          <Table.Row>
+                            <Table.Cell>
+                              <h5>Decision </h5>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Form.Field required>
+                                <Dropdown
+                                  required
+                                  defaultValue={selectedDecision}
+                                  fluid
+                                  selection
+                                  search
+                                  placeholder={"Select decision"}
+                                  name="selectedDecision"
+                                  label={"Decision"}
+                                  options={decisions}
+                                  onChange={onChangeDropdown}
+                                />
+                              </Form.Field>
+                            </Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                            <Table.Cell>
+                              <h5>Visa Apply Status</h5>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Form.Field required>
+                                <Dropdown
+                                  defaultValue={selectedVisaStatus}
+                                  required
+                                  fluid
+                                  selection
+                                  search
+                                  placeholder={"Select visa status"}
+                                  name="selectedVisaStatus"
+                                  label={"Visa Apply Status"}
+                                  options={visaStatuses}
+                                  onChange={onChangeDropdown}
+                                />
+                              </Form.Field>
+                            </Table.Cell>
+                          </Table.Row>
+                        </>
+                      ) : (
+                        ""
+                      )}
                     </Table.Body>
                   </Table>
                   <hr></hr>

@@ -52,7 +52,7 @@ class CourseFaculty extends Component {
       search
     );
 
-    const facultyResult = await clientService.faculties();
+    const facultyResult = await clientService.facultiesSuperLight();
     this.setState({
       faculties: facultyResult.data.data,
     });
@@ -60,7 +60,7 @@ class CourseFaculty extends Component {
     this.setState({
       degreeTypes: degreeTypeResult.data.data,
     });
-    const institutionResult = await clientService.institutions();
+    const institutionResult = await clientService.institutionsLighter();
 
     this.setState({
       institutions: institutionResult.data.data,

@@ -2,7 +2,8 @@ import React, { useState, useEffect, lazy } from "react";
 import { TheContent, AdminSidebar, TheFooter, TheHeader } from "../index";
 import clientService from "../../../services/clientService";
 import Moment from "react-moment";
-import { asyncLocalStorage, TOKEN, USER } from "../../utility/global";
+import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
+import { capitalize } from "../../../utility/constants";
 import { MDBDataTableV5 } from "mdbreact";
 import {
   CBadge,
@@ -174,7 +175,9 @@ const AllUsers = (props) => {
                               {" "}
                               {!user.firstname && !user.lastname
                                 ? "Unknown"
-                                : `${user.firstname} ${user.lastname}`}
+                                : `${capitalize(user.firstname)}  ${capitalize(
+                                    user.firstname
+                                  )} ${capitalize(user.lastname)}`}
                             </h6>
                           </Table.Cell>
                           <Table.Cell>{user.email}</Table.Cell>
@@ -183,7 +186,7 @@ const AllUsers = (props) => {
                           <Table.Cell>
                             {" "}
                             <Moment format="DD/MM/YYYY HH:mm">
-                              {user.regDate}
+                              {user.createdAt}
                             </Moment>
                           </Table.Cell>
                           <Table.Cell>

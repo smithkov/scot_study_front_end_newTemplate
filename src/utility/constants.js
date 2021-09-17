@@ -25,6 +25,10 @@ export const myRoutes = {
   about: () => `/about`,
   gallery: () => `/gallery`,
 };
+export const capitalize = (s) => {
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1).toLocaleLowerCase();
+};
 export const scrollUp = (id) => document.getElementById(id).scrollIntoView();
 export const social = {
   youtube: "https://www.youtube.com/channel/UC9ItAoglSWFBcxHsiJ0QX9g",

@@ -117,7 +117,9 @@ const PaymentList = (props) => {
                                       <h6>{item.refId}</h6>
                                     </Table.Cell>
                                     <Table.Cell>
-                                      {`${item.User.firstname} ${item.User.lastname}`}
+                                      {`${
+                                        item.User ? item.User.firstname : ""
+                                      } ${item.User ? item.User.lastname : ""}`}
                                     </Table.Cell>
                                     <Table.Cell width="2">
                                       {item.amount}

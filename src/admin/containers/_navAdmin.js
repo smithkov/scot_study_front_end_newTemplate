@@ -42,6 +42,18 @@ const _nav = [
     to: "/payment_list",
     icon: "cil-grid",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Contacts",
+    to: "/contact_list",
+    icon: "cil-grid",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Newsletters",
+    to: "/newsletter_list",
+    icon: "cil-grid",
+  },
   // {
   //   _tag: "CSidebarNavItem",
   //   name: "Academic Background",

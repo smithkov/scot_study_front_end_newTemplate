@@ -54,7 +54,7 @@ class CourseGrid extends Component {
       search
     );
 
-    const facultyResult = await clientService.faculties();
+    const facultyResult = await clientService.facultiesSuperLight();
     this.setState({
       faculties: facultyResult.data.data,
     });
@@ -62,7 +62,7 @@ class CourseGrid extends Component {
     this.setState({
       degreeTypes: degreeTypeResult.data.data,
     });
-    const institutionResult = await clientService.institutions();
+    const institutionResult = await clientService.institutionsLighter();
 
     this.setState({
       institutions: institutionResult.data.data,
@@ -162,20 +162,18 @@ class CourseGrid extends Component {
   };
   onChange = async (e) => {
     const search = e.target.value;
-    const {
-      selectedFaculty,
-      selectedDegreeType,
-      selectedInstitution,
-      offset,
-      limit,
-    } = this.state;
+    const newOffset = initialOffset;
+
+    const { selectedFaculty, selectedDegreeType, selectedInstitution, limit } =
+      this.state;
     this.setState({
       [e.target.name]: search,
+      offset: newOffset,
     });
 
     const result = await this.schoolCourse(
       selectedFaculty,
-      offset,
+      newOffset,
       limit,
       selectedDegreeType,
       selectedInstitution,

@@ -208,6 +208,9 @@ const CourseListForAdmin = (props) => {
                                   <Table.HeaderCell width="6">
                                     Name
                                   </Table.HeaderCell>
+                                  <Table.HeaderCell width="6">
+                                    Institution
+                                  </Table.HeaderCell>
                                   <Table.HeaderCell>Fee</Table.HeaderCell>
                                   <Table.HeaderCell>Intake</Table.HeaderCell>
                                   <Table.HeaderCell width="2">
@@ -224,6 +227,9 @@ const CourseListForAdmin = (props) => {
                                     <Table.Row>
                                       <Table.Cell collapsing={false} width="6">
                                         {item.name}
+                                      </Table.Cell>
+                                      <Table.Cell collapsing={false} width="6">
+                                        {item.Institution.name}
                                       </Table.Cell>
                                       <Table.Cell>{item.fee}</Table.Cell>
                                       <Table.Cell>{item.intake}</Table.Cell>
