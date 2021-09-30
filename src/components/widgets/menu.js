@@ -41,7 +41,7 @@ function Menu(props) {
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
-              to={process.env.PUBLIC_URL + "/"}
+              to={`/institutions`}
               data-toggle="dropdown"
             >
               Institutions <i className="las la-angle-down"></i>

@@ -5,19 +5,16 @@ import clientService from "../../../services/clientService";
 import Moment from "react-moment";
 import { asyncLocalStorage, TOKEN, USER } from "../../../utility/global";
 import { capitalize } from "../../../utility/constants";
+import { Link } from "react-router-dom";
 import { MDBDataTableV5 } from "mdbreact";
 import {
   CBadge,
   CButton,
-  CButtonGroup,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCol,
-  CProgress,
-  CRow,
-  CCallout,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
 } from "@coreui/react";
 import {
   Menu,
@@ -52,6 +49,9 @@ const AllApplicants = (props) => {
 
   let [userId, setUserId] = useState("");
   let [applications, setApplications] = useState([]);
+  let [delName, setDelName] = useState("");
+  let [showModal, setShowModal] = useState(false);
+  let [id, setId] = useState("");
   let limit = 10;
 
   useEffect(() => {
@@ -127,6 +127,20 @@ const AllApplicants = (props) => {
     setApplications(data);
   };
 
+  const deleteHandler = async () => {
+    const deleteData = await clientService.deleteApplication(id);
+    if (!deleteData.data.error) {
+      let application = applications.filter((item) => item.id != id);
+      setApplications(application);
+      setShowModal(false);
+    }
+  };
+  const modalHandler = (item) => {
+    setId(item.id);
+    setDelName(item.User.firstname);
+    setShowModal(true);
+  };
+
   return (
     <div className="c-app c-default-layout">
       <AdminSidebar />
@@ -139,6 +153,29 @@ const AllApplicants = (props) => {
             <Grid.Column width={1}></Grid.Column>
             <Grid.Column width={14}>
               <>
+                <CModal
+                  show={showModal}
+                  onClose={() => setShowModal(false)}
+                  size="sm"
+                >
+                  <CModalHeader closeButton>
+                    <CModalTitle>Deletion prompt</CModalTitle>
+                  </CModalHeader>
+                  <CModalBody>
+                    Are you sure you want to delete <strong>{delName}</strong> ?
+                  </CModalBody>
+                  <CModalFooter>
+                    <CButton color="danger" onClick={deleteHandler}>
+                      Yes
+                    </CButton>{" "}
+                    <CButton
+                      color="secondary"
+                      onClick={() => setShowModal(false)}
+                    >
+                      No
+                    </CButton>
+                  </CModalFooter>
+                </CModal>
                 <Segment textAlign="center" color="blue">
                   <h3>All Applications</h3>
                 </Segment>
@@ -232,7 +269,9 @@ const AllApplicants = (props) => {
                             )}
                           </Table.Cell> */}
                           <Table.Cell>
-                            <Button color="red" circular icon="trash" />
+                            <Link onClick={() => modalHandler(item)}>
+                              <Icon color="red" name="trash" />
+                            </Link>
                           </Table.Cell>
                         </Table.Row>
                       );

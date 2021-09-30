@@ -8,15 +8,11 @@ import { MDBDataTableV5 } from "mdbreact";
 import {
   CBadge,
   CButton,
-  CButtonGroup,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCol,
-  CProgress,
-  CRow,
-  CCallout,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
 } from "@coreui/react";
 import {
   Menu,
@@ -36,6 +32,7 @@ import {
   Message,
   Flag,
 } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 const WidgetsDropdown = lazy(() =>
   import("../../views/widgets/WidgetsDropdown.js")
 );
@@ -51,6 +48,9 @@ const AllUsers = (props) => {
   const [btnPrev, setBtnPrev] = useState(true);
   let [userId, setUserId] = useState("");
   let [users, setUsers] = useState([]);
+  let [delName, setDelName] = useState("");
+  let [showModal, setShowModal] = useState(false);
+  let [id, setId] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -100,13 +100,27 @@ const AllUsers = (props) => {
       search,
     });
     const data = findUsers.data.data;
-    console.log(data);
+
     if (data.length == limit) {
       setBtnPrev(false);
     } else {
       setBtnNext(true);
     }
     setUsers(data);
+  };
+
+  const deleteHandler = async () => {
+    const deleteData = await clientService.deleteUser(id);
+    if (!deleteData.data.error) {
+      let user = users.filter((item) => item.id != id);
+      setUsers(user);
+      setShowModal(false);
+    }
+  };
+  const modalHandler = (item) => {
+    setId(item.id);
+    setDelName(item.firstname);
+    setShowModal(true);
   };
   const prevHandle = async (e) => {
     const newOffset = offset - limit;
@@ -136,6 +150,29 @@ const AllUsers = (props) => {
             <Grid.Column width={1}></Grid.Column>
             <Grid.Column width={14}>
               <>
+                <CModal
+                  show={showModal}
+                  onClose={() => setShowModal(false)}
+                  size="sm"
+                >
+                  <CModalHeader closeButton>
+                    <CModalTitle>Deletion prompt</CModalTitle>
+                  </CModalHeader>
+                  <CModalBody>
+                    Are you sure you want to delete <strong>{delName}</strong> ?
+                  </CModalBody>
+                  <CModalFooter>
+                    <CButton color="danger" onClick={deleteHandler}>
+                      Yes
+                    </CButton>{" "}
+                    <CButton
+                      color="secondary"
+                      onClick={() => setShowModal(false)}
+                    >
+                      No
+                    </CButton>
+                  </CModalFooter>
+                </CModal>
                 <Segment textAlign="center" color="blue">
                   <h3>All Users</h3>
                 </Segment>
@@ -190,7 +227,9 @@ const AllUsers = (props) => {
                             </Moment>
                           </Table.Cell>
                           <Table.Cell>
-                            <Button color="red" circular icon="trash" />
+                            <Link onClick={() => modalHandler(user)}>
+                              <Icon color="red" name="trash" />
+                            </Link>
                           </Table.Cell>
                         </Table.Row>
                       );

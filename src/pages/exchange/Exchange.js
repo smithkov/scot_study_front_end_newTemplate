@@ -15,7 +15,7 @@ function Exchange(props) {
   const [loading, setLoading] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [unit, setUnit] = useState("1");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState("1");
   const [codes, setCodes] = useState([]);
   const [selectedCode, setSelectedCode] = useState("NGN");
   const [isPoundGotFocus, setIsPoundGotFocus] = useState(false);
@@ -25,14 +25,14 @@ function Exchange(props) {
       const codes = await clientService.supportedCodes();
       const data = codes.data.supported_codes.map((data) => {
         return {
-          key: "af",
+          key: data[0],
           value: data[0],
           flag: data[0].substring(0, 2).toLowerCase(),
           text: data[1],
         };
       });
       setCodes(data);
-      convert(unit, selectedCode);
+      reverseConvert2(unit, selectedCode);
     })();
   }, []);
 
@@ -52,7 +52,7 @@ function Exchange(props) {
     setResult(converter.data.conversion_result);
   };
 
-  const reverseConvert = async (value, selectedCode) => {
+  const reverseConvert2 = async (value, selectedCode) => {
     const converter = await clientService.currencyConverter({
       amount: value,
       target: selectedCode,
@@ -61,16 +61,27 @@ function Exchange(props) {
     setUnit(converter.data.conversion_result);
   };
 
+  const reverseConvert = async (value, selectedCode) => {
+    console.log(selectedCode);
+    const converter = await clientService.currencyConverterReverse({
+      amount: value,
+      target: selectedCode,
+    });
+
+    setResult(converter.data.conversion_result);
+  };
+
   const onChange = async (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
     if (name == "unit") {
       setUnit(value);
-      convert(value, selectedCode);
+      console.log(value);
+      reverseConvert(value, selectedCode);
     } else if (name == "result") {
       setResult(value);
-      reverseConvert(value, selectedCode);
+      reverseConvert2(value, selectedCode);
     }
   };
 
@@ -79,7 +90,7 @@ function Exchange(props) {
 
     setSelectedCode(value);
 
-    convert(unit, value);
+    reverseConvert(unit, value);
   };
   return (
     <Styles>

@@ -202,6 +202,28 @@ function FooterTwo() {
                 </form>
               </div>
             </Col> */}
+
+            <Col md="12">
+              <a
+                target="_blank"
+                href="https://play.google.com/store/apps/details?id=com.scotstudymobile.app"
+              >
+                <img
+                  style={{ width: "200px", height: "80px" }}
+                  src="/assets/images/app_store.png"
+                />
+              </a>
+              <a
+                target="_blank"
+                href="https://apps.apple.com/gb/app/scotstudy/id1583428226"
+              >
+                <img
+                  style={{ width: "200px", height: "80px" }}
+                  src="/assets/images/play_store.png"
+                />
+              </a>
+            </Col>
+
             <Col md="12">
               <div className="copytext-area text-center">
                 <p>

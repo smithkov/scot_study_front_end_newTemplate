@@ -147,6 +147,14 @@ class ClientService {
     return http.delete(`${SERVER_URL}/course/${id}`);
   };
 
+  deleteUser = async (id) => {
+    return http.delete(`${SERVER_URL}/user/${id}`);
+  };
+
+  deleteApplication = async (id) => {
+    return http.delete(`${SERVER_URL}/application/${id}`);
+  };
+
   updateCourse = async (data, courseId) => {
     return http.patch(`${SERVER_URL}/updateCourse/${courseId}`, data);
   };
@@ -263,6 +271,13 @@ class ClientService {
   currencyConverter = async (data) => {
     return http.get(
       `https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_EXCHANGE_KEY}/pair/GBP/${data.target}/${data.amount}`,
+      data
+    );
+  };
+
+  currencyConverterReverse = async (data) => {
+    return http.get(
+      `https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_EXCHANGE_KEY}/pair/${data.target}/GBP/${data.amount}`,
       data
     );
   };

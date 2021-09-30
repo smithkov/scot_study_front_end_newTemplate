@@ -33,11 +33,11 @@ class AboutUs extends Component {
                     className="main-img"
                     alt=""
                   />
-                  <img
+                  {/* <img
                     src={process.env.PUBLIC_URL + "/assets/images/pattern.png"}
                     className="pattern-img"
                     alt=""
-                  />
+                  /> */}
                   <div
                     className="video-player"
                     style={{
@@ -86,7 +86,7 @@ class AboutUs extends Component {
                     <Col sm="4">
                       <div className="counter-box box3 text-center">
                         <h3>
-                          <CountUp end={2000} duration={5} delay={1.5} />
+                          <CountUp end={5000} duration={5} delay={1.5} />
                           <i className="las la-plus"></i>
                         </h3>
                         <p>Courses</p>

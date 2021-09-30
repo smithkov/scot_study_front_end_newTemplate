@@ -200,6 +200,28 @@ class Footer extends Component {
                 </ul>
               </Col>
             </Row>
+            <Row>
+              <Col md="6">
+                <a
+                  target="_blank"
+                  href="https://play.google.com/store/apps/details?id=com.scotstudymobile.app"
+                >
+                  <img
+                    style={{ width: "250px", height: "100px" }}
+                    src="/assets/images/app_store.png"
+                  />
+                </a>
+                <a
+                  target="_blank"
+                  href="https://apps.apple.com/gb/app/scotstudy/id1583428226"
+                >
+                  <img
+                    style={{ width: "250px", height: "100px" }}
+                    src="/assets/images/play_store.png"
+                  />
+                </a>
+              </Col>
+            </Row>
           </Container>
 
           {/* Back To Top */}

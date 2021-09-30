@@ -136,9 +136,28 @@ function MobileMenu() {
           <div className="mb-menu-item">
             <button className="mb-menu-button active">
               <p>
-                Home <i className="las la-plus"></i>
+                <a href={`/`}>Home</a>
               </p>
             </button>
+          </div>
+          <div className="mb-menu-item">
+            <button className="mb-menu-button active">
+              <p>
+                Login <i className="las la-plus"></i>
+              </p>
+            </button>
+            <div className="mb-menu-content show">
+              <ul className="list-unstyled">
+                <li key={13}>
+                  <Link to={`/login`}>User login</Link>
+                </li>
+                <li key={12}>
+                  <Link className="nav-link" to={`/agent-login`}>
+                    Agent login
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="mb-menu-item">
             <button className="mb-menu-button active">

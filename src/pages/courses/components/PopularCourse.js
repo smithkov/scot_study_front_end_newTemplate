@@ -30,7 +30,10 @@ class PopularCourse extends Component {
               <div className="item-box d-flex" key={item.id}>
                 <div className="item-img">
                   <Link to={myRoutes.courseDetail(item.id)}>
-                    <img src={item.CoursePhoto.url} alt="" />
+                    <img
+                      src={item.CoursePhoto ? item.CoursePhoto.url : ""}
+                      alt=""
+                    />
                   </Link>
                 </div>
                 <div className="item-content">

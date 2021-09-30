@@ -32,30 +32,17 @@ class RelatedCourse extends Component {
               <div className="item-box d-flex" key={item.id}>
                 <div className="item-img">
                   <Link to={myRoutes.courseDetail(item.id)}>
-                    <img src={item.CoursePhoto.url} alt="" />
+                    <img
+                      src={item.CoursePhoto ? item.CoursePhoto.url : ""}
+                      alt=""
+                    />
                   </Link>
                 </div>
                 <div className="item-content">
                   <p className="title">
                     <Link to={myRoutes.courseDetail(item.id)}>{item.name}</Link>
                   </p>
-                  {/* <ul className="list-unstyled list-inline rating">
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                    <li className="list-inline-item">
-                      <i className="las la-star"></i>
-                    </li>
-                  </ul> */}
+
                   <p className="price">{item.fee}</p>
                 </div>
               </div>
