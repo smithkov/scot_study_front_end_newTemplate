@@ -80,7 +80,7 @@ const Dashboard = (props) => {
               <>
                 <div style={{ height: 20 }}></div>
                 {/* <WidgetsDropdown /> */}
-                <CRow>
+                {/* <CRow>
                   <WidgetsDropdown
                     title={"Home"}
                     icon={"cil-home"}
@@ -101,7 +101,7 @@ const Dashboard = (props) => {
                     icon={"cil-inbox"}
                     color="success"
                   />
-                </CRow>
+                </CRow> */}
                 {applications.map((item) => {
                   const {
                     hasPaid,

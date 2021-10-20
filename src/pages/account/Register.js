@@ -105,7 +105,15 @@ function Register(props) {
 
   const register = async (e) => {
     e.preventDefault();
-    if (password == confirmPassword) {
+    if (
+      selectedCountry == "" ||
+      selectedGender == "" ||
+      selectedMarital == ""
+    ) {
+      setIsShowMessage(true);
+      setErrorMessage("Fields marked with '*' are required");
+      window.scrollTo(500, 0);
+    } else if (password == confirmPassword) {
       setLoading(true);
       const response = await clientService.signUp({
         email,
@@ -194,11 +202,15 @@ function Register(props) {
                                             <span className="registration_input-msg"></span>
                                         </p> */}
                     <p className="form-control">
-                      <label htmlFor="registration_email">Email Address</label>
+                      <label htmlFor="registration_email">
+                        {" "}
+                        Email Address *
+                      </label>
                       <input
                         onChange={onChange}
                         name="email"
                         type="email"
+                        required
                         placeholder="Email address"
                         id="registration_email"
                       />
@@ -214,11 +226,12 @@ function Register(props) {
                       <span className="registration_input-msg"></span>
                     </p> */}
                     <p className="form-control">
-                      <label htmlFor="registration_password">Password</label>
+                      <label htmlFor="registration_password">Password *</label>
                       <input
                         onChange={onChange}
                         name="password"
                         type="password"
+                        required
                         placeholder="*******"
                         id="registration_password"
                       />
@@ -226,12 +239,13 @@ function Register(props) {
                     </p>
                     <p className="form-control">
                       <label htmlFor="registration_cpassword">
-                        Confirm Password
+                        Confirm Password *
                       </label>
                       <input
                         onChange={onChange}
                         name="confirmPassword"
                         type="password"
+                        required
                         placeholder="Confirm password"
                         id="registration_cpassword"
                       />
@@ -240,22 +254,26 @@ function Register(props) {
                     <hr />
                     {/* Personal Information */}
                     <p className="form-control">
-                      <label htmlFor="registration_email">Contact Email</label>
+                      <label htmlFor="registration_email">
+                        Contact Email *
+                      </label>
                       <input
                         onChange={onChange}
                         type="email"
                         name="contactEmail"
+                        required
                         placeholder="Contact Email"
                         id="registration_email"
                       />
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">First Name</label>
+                      <label htmlFor="registration_user">First Name *</label>
                       <input
                         onChange={onChange}
                         name="firstname"
                         type="text"
+                        required
                         placeholder="First Name"
                         id="registration_user"
                       />
@@ -273,29 +291,31 @@ function Register(props) {
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Last Name</label>
+                      <label htmlFor="registration_user">Last Name *</label>
                       <input
                         onChange={onChange}
                         name="lastname"
                         type="text"
+                        required
                         placeholder="Last Name"
                         id="registration_user"
                       />
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Phone</label>
+                      <label htmlFor="registration_user">Phone *</label>
                       <input
                         onChange={onChange}
                         name="phone"
                         type="text"
+                        required
                         placeholder="Phone"
                         id="registration_user"
                       />
                       <span className="registration_input-msg"></span>
                     </p>
                     <p>
-                      <label htmlFor="registration_user">Country</label>
+                      <label htmlFor="registration_user">Country *</label>
                       <Dropdown
                         placeholder="Select Country"
                         fluid
@@ -320,7 +340,7 @@ function Register(props) {
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Gender</label>
+                      <label htmlFor="registration_user">Gender *</label>
                       <select
                         onChange={onChangeDropdown}
                         name="selectedGender"
@@ -334,7 +354,7 @@ function Register(props) {
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Marital</label>
+                      <label htmlFor="registration_user">Marital *</label>
                       <select
                         onChange={onChangeDropdown}
                         name="selectedMarital"
@@ -348,22 +368,26 @@ function Register(props) {
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Home Address</label>
+                      <label htmlFor="registration_user">Home Address *</label>
                       <input
                         onChange={onChange}
                         name="homeAddress"
                         type="text"
+                        required
                         placeholder="Home Address"
                         id="registration_user"
                       />
                       <span className="registration_input-msg"></span>
                     </p>
                     <p className="form-control">
-                      <label htmlFor="registration_user">Contact Address</label>
+                      <label htmlFor="registration_user">
+                        Contact Address *
+                      </label>
                       <input
                         onChange={onChange}
                         name="postalAddress"
                         type="text"
+                        required
                         placeholder="Contact Address"
                         id="registration_user"
                       />

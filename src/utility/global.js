@@ -1,5 +1,5 @@
 //export const ENDPOINT = "http://localhost:8000/";
-export const ENDPOINT = "https://scotstudy.foodengo.com/";
+const ENDPOINT = "https://scotstudy.foodengo.com/";
 export const SERVER_URL = `${ENDPOINT}api`;
 export const TOKEN = "tk-cookie";
 export const USER = "tk-user";

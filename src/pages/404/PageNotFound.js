@@ -18,9 +18,9 @@ class PageNotFound extends Component {
           {/* 404 Area */}
           <section
             className="error-area"
-            style={{
-              backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/${Datas.backgroundImage})`,
-            }}
+            // style={{
+            //   backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/${Datas.backgroundImage})`,
+            // }}
           >
             <Container>
               <Row>
@@ -33,7 +33,7 @@ class PageNotFound extends Component {
                     <p>
                       Ooops! The page you are looking for, couldn't be found.
                     </p>
-                    <a to={process.env.PUBLIC_URL + "/"}>
+                    <a href={"/"}>
                       <i className="fas fa-home"></i>Go To Homepage
                     </a>
                   </div>

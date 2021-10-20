@@ -10,6 +10,7 @@ import { Styles } from "./styles/course.js";
 import { asyncLocalStorage } from "../../utility/global";
 import { formatScholarship } from "../../utility/constants";
 import clientService from "../../services/clientService";
+import PageNotFound from "../404/PageNotFound";
 
 function CourseDetails(props) {
   const courseId = props.match.params.id;
@@ -23,9 +24,11 @@ function CourseDetails(props) {
       const data = result.data.data;
       if (data) {
         setFacultyId(data.facultyId);
+        setCourse(data);
+        setHasData(true);
+      } else {
+        setHasData(false);
       }
-      setCourse(data);
-      setHasData(true);
     })();
   }, [courseId]);
 
@@ -307,7 +310,7 @@ function CourseDetails(props) {
             </Container>
           </section>
         ) : (
-          ""
+          <PageNotFound />
         )}
       </Styles>
 

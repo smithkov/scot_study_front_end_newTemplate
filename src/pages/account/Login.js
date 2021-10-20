@@ -123,7 +123,7 @@ function Login(props) {
                       </div>
 
                       <div className="forget-password">
-                        <a href="/forgot-password">Forget Password?</a>
+                        <a href="/forgot-password">Forgot Password?</a>
                       </div>
                     </div>
                     <div className="not_account-btn text-center">
